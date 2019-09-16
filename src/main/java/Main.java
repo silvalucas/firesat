@@ -21,11 +21,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class Main {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         System.out.println("Olha mundo");
-        /*FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.getApplicationDefault())
-                .build();
 
-        FirebaseApp.initializeApp(options);*/
         InputStream serviceAccount = new FileInputStream("serviceAccount.json");
         GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
 
@@ -36,12 +32,13 @@ public class Main {
         FirebaseApp app = FirebaseApp.initializeApp(options);
 
         Firestore db = FirestoreClient.getFirestore();
-        DocumentReference docRef = db.collection("usuarios").document("NikFG");
+        DocumentReference docRef = db.collection("usuarios").document("piruzao");
         Map<String, Object> data = new HashMap<>();
-        data.put("Nome", "Nikollas");
-        data.put("senha", "xxx");
-        data.put("ano", 1997);
+        data.put("Nome", "Kid");
+        data.put("senha", "toma");
+        data.put("ano", 1969);
         ApiFuture<WriteResult> result = docRef.set(data);
+        Thread.sleep(5000);
         ApiFuture<QuerySnapshot> query =
                 db.collection("usuarios").get();
         QuerySnapshot querySnapshot = query.get();
@@ -61,12 +58,8 @@ public class Main {
         BlobId blobId = BlobId.of(options.getStorageBucket(), "arquivo2.json");
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/json").build();
         InputStream testFile = new FileInputStream("la.json");
-        System.out.println(testFile.toString());
         //Blob blob = storage.create(blobInfo, testFile.toString().getBytes(UTF_8));
         storage.create(blobInfo,testFile);
-
-
-        //String blobString = "Diax/" + "la.txt";
 
     }
 }

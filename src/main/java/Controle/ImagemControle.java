@@ -1,12 +1,12 @@
 package Controle;
 
 import Modelo.Imagem;
-import Util.UtilArquivo;
+import Util.UtilPpm;
 
 public class ImagemControle {
 
     public Imagem[][] MontaMatriz(String caminho) {
-        String cores[] = UtilArquivo.LeArquivoPpm(caminho);
+        String cores[] = UtilPpm.LeArquivoPpm(caminho);
 
         Imagem imagem[][] = new Imagem[400][300];
 

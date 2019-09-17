@@ -1,7 +1,9 @@
 import Controle.ImagemControle;
 import DAO.EsquadraoDAO;
+import DAO.RegiaoDAO;
 import Modelo.Esquadrao;
 import Modelo.Imagem;
+import Modelo.Regiao;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
@@ -24,21 +26,18 @@ import Util.UtilFirebase;
 
 public class Main {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
-        Esquadrao esquadrao = new Esquadrao("nomi","fogareu",5);
-        esquadraoDAO.GravaEsquadrao(esquadrao);
-/*        UtilFirebase utilFirebase = new UtilFirebase();
-        ImagemControle controle = new ImagemControle();
-        Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
-        utilFirebase.GravaDadosImagem(img);
-        utilFirebase.PegaDadosImagem("Arquivo.json");
-        Imagem img2[][] = utilFirebase.RecuperaImagem();
-        for (int i = 0; i < 400; i++) {
-            for (int j = 0; j < 300; j++) {
-                System.out.println(img2[i][j].toString());
 
-            }
-        }*/
+        //    EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
+        Esquadrao esquadrao = new Esquadrao("nomi", "fogareu", 65);
+        //   esquadraoDAO.GravaEsquadrao(esquadrao);
+
+        UtilFirebase utilFirebase = new UtilFirebase();
+    /*    ImagemControle controle = new ImagemControle();
+        Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
+        utilFirebase.GravaDadosImagem(img);*/
+        Regiao regiao = new Regiao("aaaaa", true, esquadrao);
+        RegiaoDAO regiaoDAO = new RegiaoDAO();
+        regiaoDAO.GravaRegiao(regiao);
 
         /*ApiFuture<QuerySnapshot> query =
                 db.collection("usuarios").get();

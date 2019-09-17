@@ -27,7 +27,11 @@ import java.util.Map;
 public class UtilFirebase {
     public static Firestore db;
     public static GoogleCredentials credentials;
-    private static FirebaseOptions options;
+    public static FirebaseOptions options;
+
+    public UtilFirebase(int a) {
+
+    }
 
     public UtilFirebase() {
         try {
@@ -53,64 +57,7 @@ public class UtilFirebase {
         db = FirestoreClient.getFirestore();
     }
 
-    public void GravaDadosImagem(Imagem img[][]) {
-        final String arquivo = "Arquivo.json";
-        //imagem para json
-        Gson gson = new Gson();
-        String json = gson.toJson(img);
-        StorageOptions storageOptions = StorageOptions.newBuilder()
-                .setCredentials(credentials)
-                .build();
-        Storage storage = storageOptions.getService();
-        BlobId blobId = BlobId.of(options.getStorageBucket(), arquivo);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/json").build();
-
-        try {
-            //Criando Json
-            FileWriter writer = new FileWriter(arquivo);
-            writer.write(json);
-            writer.close();
-
-            //salvando no firebase
-            InputStream file = new FileInputStream(arquivo);
-
-            storage.create(blobInfo, file);
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        DocumentReference docRef = db.collection("imagens").document();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy ");
-        Date currentDate = new Date();
-        Map<String, Object> data = new HashMap<>();
 
-        data.put("imagem", arquivo);
-        data.put("data", formatter.format(currentDate));
-        data.put("baixada", false);
-        ApiFuture<WriteResult> result = docRef.set(data);
-        File fileTemp = new File(arquivo);
-        fileTemp.delete();
-    }
-
-    public void PegaDadosImagem(String nome) {
-        StorageOptions storageOptions = StorageOptions.newBuilder()
-                .setCredentials(credentials)
-                .build();
-        Storage storage = storageOptions.getService();
-        Blob blob = storage.get(BlobId.of(options.getStorageBucket(), nome));
-        Path destFilePath = Paths.get("Arquivo.json");
-        blob.downloadTo(destFilePath);
-    }
-
-    public Imagem[][] RecuperaImagem() throws IOException {
-
-        Gson gson = new Gson();
-        PegaDadosImagem("Arquivo.json");
-        Reader reader = new FileReader("Arquivo.json");
-        Imagem imagem[][] = gson.fromJson(reader, Imagem[][].class);
-
-
-        return imagem;
-    }
 }

@@ -1,4 +1,6 @@
 import Controle.ImagemControle;
+import DAO.EsquadraoDAO;
+import Modelo.Esquadrao;
 import Modelo.Imagem;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -22,20 +24,21 @@ import Util.UtilFirebase;
 
 public class Main {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-
-        InputStream serviceAccount = new FileInputStream("serviceAccount.json");
-        UtilFirebase utilFirebase = new UtilFirebase();
+        EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
+        Esquadrao esquadrao = new Esquadrao("nomi","fogareu",5);
+        esquadraoDAO.GravaEsquadrao(esquadrao);
+/*        UtilFirebase utilFirebase = new UtilFirebase();
         ImagemControle controle = new ImagemControle();
         Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
         utilFirebase.GravaDadosImagem(img);
-       utilFirebase.PegaDadosImagem("Arquivo.json");
+        utilFirebase.PegaDadosImagem("Arquivo.json");
         Imagem img2[][] = utilFirebase.RecuperaImagem();
-        for(int i=0;i<400;i++){
-            for(int j=0;j<300;j++){
+        for (int i = 0; i < 400; i++) {
+            for (int j = 0; j < 300; j++) {
                 System.out.println(img2[i][j].toString());
 
             }
-        }
+        }*/
 
         /*ApiFuture<QuerySnapshot> query =
                 db.collection("usuarios").get();

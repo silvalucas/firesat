@@ -90,16 +90,6 @@ public class UtilFirebase {
         data.put("baixada", false);
         ApiFuture<WriteResult> result = docRef.set(data);
 
-       /* for (int i = 0; i < img.length; i++) {
-            for (int j = 0; j < img[i].length; j++) {
-                data.put("red", img[i][j].getRed());
-                data.put("green", img[i][j].getGreen());
-                data.put("blue", img[i][j].getBlue());
-                docRef.set(data);
-                docRef = db.collection("imagens").document("Cor1").collection("Cores").document(i + " " + j);
-            }*/
-
-
     }
 
     public void PegaDadosImagem(String nome) {

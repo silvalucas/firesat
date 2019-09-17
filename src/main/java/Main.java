@@ -23,6 +23,7 @@ import Util.UtilFirebase;
 public class Main {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
 
+        InputStream serviceAccount = new FileInputStream("serviceAccount.json");
         UtilFirebase utilFirebase = new UtilFirebase();
         ImagemControle controle = new ImagemControle();
         Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
@@ -47,12 +48,8 @@ public class Main {
         BlobId blobId = BlobId.of(options.getStorageBucket(), "arquivo2.json");
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/json").build();
         InputStream testFile = new FileInputStream("la.json");
-        System.out.println(testFile.toString());
         //Blob blob = storage.create(blobInfo, testFile.toString().getBytes(UTF_8));
         storage.create(blobInfo, testFile);*/
-
-
-        //String blobString = "Diax/" + "la.txt";
 
     }
 }

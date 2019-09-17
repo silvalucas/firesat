@@ -28,7 +28,15 @@ public class Main {
         ImagemControle controle = new ImagemControle();
         Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
         utilFirebase.GravaDadosImagem(img);
-        utilFirebase.PegaDadosImagem("Arquivo.json");
+       utilFirebase.PegaDadosImagem("Arquivo.json");
+        Imagem img2[][] = utilFirebase.RecuperaImagem();
+        for(int i=0;i<400;i++){
+            for(int j=0;j<300;j++){
+                System.out.println(img2[i][j].toString());
+
+            }
+        }
+
         /*ApiFuture<QuerySnapshot> query =
                 db.collection("usuarios").get();
         QuerySnapshot querySnapshot = query.get();

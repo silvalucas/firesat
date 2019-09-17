@@ -13,6 +13,7 @@ import com.google.firebase.cloud.FirestoreClient;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -20,27 +21,13 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UtilFirebase {
     public static Firestore db;
     public static GoogleCredentials credentials;
     private static FirebaseOptions options;
-
-    private static void getCredentials() throws IOException {
-        InputStream serviceAccount = new FileInputStream("serviceAccount.json");
-        credentials = GoogleCredentials.fromStream(serviceAccount);
-
-    }
-
-    private static void getInstance() throws IOException {
-        options = new FirebaseOptions.Builder()
-                .setCredentials(credentials)
-                .setStorageBucket("fire-sat.appspot.com")
-                .build();
-        FirebaseApp app = FirebaseApp.initializeApp(options);
-        db = FirestoreClient.getFirestore();
-    }
 
     public UtilFirebase() {
         try {
@@ -49,6 +36,21 @@ public class UtilFirebase {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void getCredentials() throws IOException {
+        InputStream serviceAccount = new FileInputStream("serviceAccount.json");
+        credentials = GoogleCredentials.fromStream(serviceAccount);
+
+    }
+
+    private static void getInstance() {
+        options = new FirebaseOptions.Builder()
+                .setCredentials(credentials)
+                .setStorageBucket("fire-sat.appspot.com")
+                .build();
+        FirebaseApp app = FirebaseApp.initializeApp(options);
+        db = FirestoreClient.getFirestore();
     }
 
     public void GravaDadosImagem(Imagem img[][]) {
@@ -100,21 +102,24 @@ public class UtilFirebase {
 
     }
 
-
-    // if (result.isDone()) {
-    //add retorno
-    // }//add else com retorno
-
-
     public void PegaDadosImagem(String nome) {
         StorageOptions storageOptions = StorageOptions.newBuilder()
                 .setCredentials(credentials)
                 .build();
         Storage storage = storageOptions.getService();
         Blob blob = storage.get(BlobId.of(options.getStorageBucket(), nome));
-        Path destFilePath = Paths.get("D:/Games/Arquivo.json");
+        Path destFilePath = Paths.get("Arquivo.json");
         blob.downloadTo(destFilePath);
-
     }
-    
+
+    public Imagem[][] RecuperaImagem() throws IOException {
+
+        Gson gson = new Gson();
+        PegaDadosImagem("Arquivo.json");
+        Reader reader = new FileReader("Arquivo.json");
+        Imagem imagem[][] = gson.fromJson(reader, Imagem[][].class);
+
+
+        return imagem;
+    }
 }

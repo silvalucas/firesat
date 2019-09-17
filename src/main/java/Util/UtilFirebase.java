@@ -89,7 +89,8 @@ public class UtilFirebase {
         data.put("data", formatter.format(currentDate));
         data.put("baixada", false);
         ApiFuture<WriteResult> result = docRef.set(data);
-
+        File fileTemp = new File(arquivo);
+        fileTemp.delete();
     }
 
     public void PegaDadosImagem(String nome) {

@@ -16,13 +16,17 @@ public class UtilJson {
     public UtilJson() {
     }
 
-    public void BaixaJson(String nome) {
+    public boolean BaixaJson(String nome) {
         StorageOptions storageOptions = StorageOptions.newBuilder()
                 .setCredentials(credentials)
                 .build();
         Storage storage = storageOptions.getService();
         Blob blob = storage.get(BlobId.of(options.getStorageBucket(), nome));
         Path destFilePath = Paths.get(nome);
-        blob.downloadTo(destFilePath);
+        if (blob != null){
+            blob.downloadTo(destFilePath);
+            return true;
+        }
+        return false;
     }
 }

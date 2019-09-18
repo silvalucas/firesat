@@ -17,6 +17,7 @@ import javax.rmi.CORBA.Util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,34 +33,16 @@ public class Main {
         //   esquadraoDAO.GravaEsquadrao(esquadrao);
 
         UtilFirebase utilFirebase = new UtilFirebase();
-    /*    ImagemControle controle = new ImagemControle();
-        Imagem img[][] = controle.MontaMatriz("lagoa.ppm");
-        utilFirebase.GravaDadosImagem(img);*/
-        Regiao regiao = new Regiao("aaaaa", true, esquadrao);
+        EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
+        // esquadraoDAO.GravaEsquadrao(esquadrao);
+        ArrayList<EsquadraoDAO> lista = esquadraoDAO.RecuperaEsquadrao();
+        if (!lista.isEmpty()) {
+            System.out.println("tem coisa");
+        }
+        Regiao regiao = new Regiao("nome", true, esquadrao);
         RegiaoDAO regiaoDAO = new RegiaoDAO();
         regiaoDAO.GravaRegiao(regiao);
 
-        /*ApiFuture<QuerySnapshot> query =
-                db.collection("usuarios").get();
-        QuerySnapshot querySnapshot = query.get();
-        List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-        for (QueryDocumentSnapshot document : documents) {
-            System.out.println("User: " + document.getId());
-            System.out.println("User: " + document.getString("Nome"));
-            System.out.println("User: " + document.getString("senha"));
-            System.out.println("User: " + document.getDouble("ano"));
-        }
-
-
-        StorageOptions storageOptions = StorageOptions.newBuilder()
-                .setCredentials(credentials)
-                .build();
-        Storage storage = storageOptions.getService();
-        BlobId blobId = BlobId.of(options.getStorageBucket(), "arquivo2.json");
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/json").build();
-        InputStream testFile = new FileInputStream("la.json");
-        //Blob blob = storage.create(blobInfo, testFile.toString().getBytes(UTF_8));
-        storage.create(blobInfo, testFile);*/
 
     }
 }

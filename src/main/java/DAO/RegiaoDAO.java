@@ -1,28 +1,39 @@
 package DAO;
 
 import Modelo.Regiao;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.WriteResult;
+import Util.UtilFirebase;
+import Util.UtilJson;
+import com.google.gson.Gson;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static Util.UtilFirebase.db;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+import java.util.ArrayList;
 
 public class RegiaoDAO {
-    public void GravaRegiao(Regiao regiao) {
-        DocumentReference docRef = db.collection("Regiao").document();
-        Map<String, Object> data = new HashMap<>();
-        data.put("nome", regiao.getNome());
-        data.put("esquadrao", regiao.getEsquadrao().getNome());
-        data.put("areaProtecao", regiao.isAreaDeProtecaoo());
-        ApiFuture<WriteResult> result = docRef.set(data);
-        System.out.println("Aguarde...");
-        while (!result.isDone()) {
+    private final String nomeArquivo = "Regiao";
 
+    public void GravaRegiao(Regiao regiao) {
+        UtilFirebase util = new UtilFirebase(1);
+
+        ArrayList<Regiao> lista = RecuperaRegiao();
+        lista.add(regiao);
+        util.salvaArquivo(lista, nomeArquivo);
+    }
+
+    private ArrayList RecuperaRegiao() {
+        ArrayList<Regiao> lista = new ArrayList<>();
+        Gson gson = new Gson();
+        UtilJson util = new UtilJson();
+        if (util.BaixaJson(nomeArquivo)) {
+            try {
+                Reader reader = new FileReader(nomeArquivo);
+                lista = gson.fromJson(reader, ArrayList.class);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println("Foii");
+        return lista;
     }
 
 }

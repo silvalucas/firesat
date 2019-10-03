@@ -1,0 +1,11 @@
+.botaoMenuSidebar {
+    -fx-background-color: none;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-border-color: #ffffff;
+}
+
+.botoes {
+    -fx-background-color: none;
+    -fx-border-color: #cacaca;
+    -fx-border-radius: 5;
+}

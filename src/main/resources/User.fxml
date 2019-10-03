@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="USUÁRIOS">
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+            </Label>
+            <HBox layoutY="158.0" prefHeight="157.0" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="262.0" prefWidth="297.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#goToCadSquad" prefHeight="54.0" prefWidth="300.0" styleClass="botoes" text="CADASTRAR">
+                           <VBox.margin>
+                              <Insets left="30.0" right="15.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="300.0" styleClass="botoes" text="LISTAR">
+                           <VBox.margin>
+                              <Insets left="30.0" right="15.0" top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="157.0" prefWidth="303.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="300.0" styleClass="botoes" text="ALTERAR">
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="300.0" styleClass="botoes" text="REMOVER">
+                           <VBox.margin>
+                              <Insets left="15.0" right="30.0" top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

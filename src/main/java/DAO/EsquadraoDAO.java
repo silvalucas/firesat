@@ -17,7 +17,7 @@ public class EsquadraoDAO {
     }
 
     public void GravaEsquadrao(Esquadrao esquadrao) {
-        UtilFirebase util = new UtilFirebase(1);
+        UtilFirebase util = new UtilFirebase();
 
         ArrayList<Esquadrao> lista = RecuperaEsquadrao();
         lista.add(esquadrao);
@@ -38,7 +38,7 @@ public class EsquadraoDAO {
     }
 
     public ArrayList RecuperaEsquadrao() {
-        ArrayList<Esquadrao> lista = new ArrayList<>();
+        ArrayList lista = new ArrayList<>();
         Gson gson = new Gson();
         UtilJson util = new UtilJson();
         if (util.BaixaJson(nomeArquivo)) {

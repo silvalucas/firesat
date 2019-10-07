@@ -12,4 +12,7 @@ public class HomeController {
     public void goToUser(javafx.event.ActionEvent actionEvent) {
         Main.changeScreen("user");
     }
+    public void goToLogin(javafx.event.ActionEvent actionEvent) {
+        Main.changeScreen("login");
+    }
 }

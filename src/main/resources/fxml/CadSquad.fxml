@@ -16,35 +16,63 @@
                   <Font name="Segoe UI" size="24.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <VBox layoutY="95.0" prefHeight="228.0" prefWidth="600.0">
+=======
+            <VBox layoutY="95.0" prefHeight="242.0" prefWidth="600.0">
+>>>>>>> master
                <children>
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="NOME">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
+<<<<<<< HEAD
                   <TextField fx:id="txtnome" prefHeight="30.0" prefWidth="420.0">
                      <VBox.margin>
                         <Insets left="90.0" right="90.0" />
                      </VBox.margin></TextField>
+=======
+                  <TextField prefHeight="31.0" prefWidth="420.0" promptText="3º BATALHÃO INFANTARIA ">
+                     <VBox.margin>
+                        <Insets left="90.0" right="90.0" />
+                     </VBox.margin>
+                  </TextField>
+>>>>>>> master
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="ESPECIALIDADE">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
+<<<<<<< HEAD
                   <TextField fx:id="txtespecialidade" prefHeight="30.0" prefWidth="420.0">
                      <VBox.margin>
                         <Insets left="90.0" right="90.0" />
                      </VBox.margin></TextField>
+=======
+                  <TextField prefHeight="31.0" prefWidth="420.0" promptText="INCENDIO LARGA ESCALA">
+                     <VBox.margin>
+                        <Insets left="90.0" right="90.0" />
+                     </VBox.margin>
+                  </TextField>
+>>>>>>> master
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="QUANTIDADE SOLDADOS">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
+<<<<<<< HEAD
                   <TextField fx:id="txtsoldado" prefHeight="30.0" prefWidth="420.0">
                      <VBox.margin>
                         <Insets left="90.0" right="90.0" />
                      </VBox.margin></TextField>
+=======
+                  <TextField prefHeight="31.0" prefWidth="420.0" promptText="12,20,32...">
+                     <VBox.margin>
+                        <Insets left="90.0" right="90.0" />
+                     </VBox.margin>
+                  </TextField>
+>>>>>>> master
                </children>
             </VBox>
             <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToSquad" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
@@ -56,7 +84,11 @@
                   </ImageView>
                </graphic>
             </Button>
+<<<<<<< HEAD
             <Button layoutX="224.0" layoutY="323.0" mnemonicParsing="false" onAction="#concludeCadSquad" prefHeight="39.0" prefWidth="152.0" styleClass="botoes" text="CONCLUIR" />
+=======
+            <Button layoutX="224.0" layoutY="330.0" mnemonicParsing="false" onAction="#concludeCadSquad" prefHeight="39.0" prefWidth="152.0" styleClass="botoes" text="CONCLUIR" />
+>>>>>>> master
          </children>
       </Pane>
    </children>

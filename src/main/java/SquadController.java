@@ -18,7 +18,17 @@ public class SquadController implements Initializable {
         Main.changeScreen("cadSquad");
     }
 
+    public void goToEditSquad(ActionEvent actionEvent){
+        Main.changeScreen("editSquad");
+    }
 
+    public void goToListSquad(ActionEvent actionEvent){
+        Main.changeScreen("listSquad");
+    }
+
+    public void goToRemoveSquad(ActionEvent actionEvent){
+        Main.changeScreen("removeSquad");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

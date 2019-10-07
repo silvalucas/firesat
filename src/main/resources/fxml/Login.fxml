@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+   <children>
+      <Label alignment="CENTER" layoutX="87.0" layoutY="26.0" prefHeight="75.0" prefWidth="426.0" text="FIRESAT">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Label>
+      <VBox layoutX="87.0" layoutY="140.0" prefHeight="197.0" prefWidth="426.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="427.0" text="USUÁRIO">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtUser" prefHeight="35.0" prefWidth="426.0">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="425.0" text="SENHA">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <PasswordField fx:id="txtPassword" prefHeight="38.0" prefWidth="426.0">
+               <font>
+                  <Font name="Segoe UI Semilight" size="14.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </VBox>
+      <Separator layoutX="151.0" layoutY="84.0" prefHeight="6.0" prefWidth="298.0" />
+      <Label alignment="CENTER" layoutX="151.0" layoutY="93.0" prefHeight="17.0" prefWidth="298.0" text="EM PROL DA AMAZÕNIA" />
+      <Button layoutX="195.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEntrar" prefHeight="38.0" prefWidth="211.0" styleClass="botoes" text="ENTRAR" />
+   </children>
+</AnchorPane>

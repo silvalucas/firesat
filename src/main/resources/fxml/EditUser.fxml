@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditUserController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="EDITAR USUÁRIO">
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+            </Label>
+            <VBox layoutX="7.0" layoutY="94.0" prefHeight="213.0" prefWidth="586.0">
+               <children>
+                  <TableView fx:id="tableUser" blendMode="DARKEN" editable="true" opacity="0.98" prefHeight="213.0" prefWidth="505.0">
+                    <columns>
+                      <TableColumn prefWidth="223.0" text="NOME" />
+                      <TableColumn prefWidth="157.0" text="ÁREA DE PRESERVAÇÃO" />
+                        <TableColumn prefWidth="204.0" text="ESQUADRÃO RESPONSÁVEL" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToUser" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="224.0" layoutY="323.0" mnemonicParsing="false" onAction="#concludeEditUser" prefHeight="39.0" prefWidth="152.0" styleClass="botoes" text="CONCLUIR" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

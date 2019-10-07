@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CadSquadController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CadRegionController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="CADASTRAR ESQUADRÃO">
+            <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="CADASTRAR REGIÃO">
                <font>
                   <Font name="Segoe UI" size="24.0" />
                </font>
@@ -23,31 +23,33 @@
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtnome" prefHeight="30.0" prefWidth="420.0">
+                  <TextField fx:id="txtNome" prefHeight="30.0" prefWidth="420.0">
                      <VBox.margin>
                         <Insets left="90.0" right="90.0" />
                      </VBox.margin></TextField>
-                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="ESPECIALIDADE">
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="ÁREA DE PROTEÇÃO">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtespecialidade" prefHeight="30.0" prefWidth="420.0">
+                  <CheckBox fx:id="checkProtectYes" mnemonicParsing="false" prefHeight="29.0" prefWidth="45.0" text="SIM">
                      <VBox.margin>
-                        <Insets left="90.0" right="90.0" />
-                     </VBox.margin></TextField>
-                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="QUANTIDADE SOLDADOS">
+                        <Insets left="280.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="600.0" text="ESQUADRÃO RESPONSÁVEL">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtsoldado" prefHeight="30.0" prefWidth="420.0">
+                  <ComboBox fx:id="comboSelectSquad" blendMode="DARKEN" prefHeight="25.0" prefWidth="602.0" promptText="SELECIONE O ESQUADRÃO">
                      <VBox.margin>
                         <Insets left="90.0" right="90.0" />
-                     </VBox.margin></TextField>
+                     </VBox.margin>
+                  </ComboBox>
                </children>
             </VBox>
-            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToSquad" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
+            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToRegion" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="224.0" layoutY="323.0" mnemonicParsing="false" onAction="#concludeCadSquad" prefHeight="39.0" prefWidth="152.0" styleClass="botoes" text="CONCLUIR" />
+            <Button layoutX="224.0" layoutY="323.0" mnemonicParsing="false" onAction="#concludeCadRegion" prefHeight="39.0" prefWidth="152.0" styleClass="botoes" text="CONCLUIR" />
          </children>
       </Pane>
    </children>

@@ -9,23 +9,28 @@ import java.util.ResourceBundle;
 public class CadSquadController implements Initializable {
 
     @FXML
-    private TextField nomeTxt;
+    private TextField txtsoldado;
 
     @FXML
-    private TextField soldiersTxt;
+    private TextField txtnome;
 
     @FXML
-    private TextField specialtyTxt;
+    private TextField txtespecialidade;
 
     public void goToSquad(ActionEvent actionEvent){
         Main.changeScreen("squad");
     }
 
     @FXML
-    void concludeCadSquad(ActionEvent event) {
+    private void concludeCadSquad(javafx.event.ActionEvent actionEvent) {
         Main.changeScreen("loading");
+        String nome = txtnome.getText();
+        System.out.println(nome);
+        String especialidade = txtespecialidade.getText();
+        System.out.println(especialidade);
+        int quantSoldados = Integer.parseInt(txtsoldado.getText());
+        System.out.println(quantSoldados);
         //implementar a comunicação com o firebase
-
         Main.changeScreen("squad");
     }
 

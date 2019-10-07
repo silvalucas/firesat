@@ -23,7 +23,6 @@ public class Main extends Application {
       /*  //    EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
         Esquadrao esquadrao = new Esquadrao("nomi", "fogareu", 65);
         //   esquadraoDAO.GravaEsquadrao(esquadrao);
-
         UtilFirebase utilFirebase = new UtilFirebase();
         EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
         // esquadraoDAO.GravaEsquadrao(esquadrao);
@@ -34,7 +33,6 @@ public class Main extends Application {
         Regiao regiao = new Regiao("nome", true, esquadrao);
         RegiaoDAO regiaoDAO = new RegiaoDAO();
         regiaoDAO.GravaRegiao(regiao);
-
 */
     }
 

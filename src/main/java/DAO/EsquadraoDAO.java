@@ -4,6 +4,7 @@ import Modelo.Esquadrao;
 import Util.UtilFirebase;
 import Util.UtilJson;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -37,18 +38,21 @@ public class EsquadraoDAO {
         }*/
     }
 
-    public ArrayList RecuperaEsquadrao() {
-        ArrayList lista = new ArrayList<>();
+    public ArrayList<Esquadrao> RecuperaEsquadrao() {
+        ArrayList<Esquadrao> lista = new ArrayList<>();
+        UtilFirebase utilFirebase = new UtilFirebase();
         Gson gson = new Gson();
         UtilJson util = new UtilJson();
         if (util.BaixaJson(nomeArquivo)) {
             try {
                 Reader reader = new FileReader(nomeArquivo);
-                lista = gson.fromJson(reader, ArrayList.class);
+                lista = gson.fromJson(reader, new TypeToken<ArrayList<Esquadrao>>() {
+                }.getType());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
+
         return lista;
     }
 }

@@ -22,10 +22,10 @@ import java.util.Date;
 import java.util.List;
 
 public class UtilFirebase {
-    public static Firestore db;
-    public static GoogleCredentials credentials;
+    public  static Firestore db;
+    public  static GoogleCredentials credentials;
     public static FirebaseOptions options;
-    public static Storage storage;
+    public  static Storage storage;
 
     public UtilFirebase(int a) {
 
@@ -63,7 +63,7 @@ public class UtilFirebase {
         storage = storageOptions.getService();
     }
 
-    public void salvaArquivo(ArrayList lista, String nomeArquivo) {
+    public static void salvaArquivo(ArrayList lista, String nomeArquivo) {
         Gson gson = new Gson();
         String json = gson.toJson(lista);
         BlobId blobId = BlobId.of(options.getStorageBucket(), nomeArquivo);
@@ -81,7 +81,7 @@ public class UtilFirebase {
         }
     }
 
-    public void salvaArquivo(Object[][] objects, String nomeArquivo) {
+    public static void salvaArquivo(Object[][] objects, String nomeArquivo) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
         Date currentDate = new Date();
         final String arquivo = nomeArquivo + "-" + formatter.format(currentDate) + ".json";

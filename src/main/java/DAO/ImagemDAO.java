@@ -13,8 +13,8 @@ public class ImagemDAO {
     }
 
     public void GravaDadosImagem(Imagem img[][]) {
-        UtilFirebase util = new UtilFirebase();
-        util.salvaArquivo(img, "Imagem");
+
+        UtilFirebase.salvaArquivo(img, "Imagem");
         /*
         DocumentReference docRef = db.collection("imagens").document();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

@@ -18,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 
 public class Main extends Application {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
+        new UtilFirebase();
         launch(args);
 
       /*  //    EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
@@ -36,8 +37,6 @@ public class Main extends Application {
 */
     }
 
-*/
-    }
 
     private static Stage stage;
     private static Scene homeScene;
@@ -123,7 +122,7 @@ public class Main extends Application {
     }
 
     public static void changeScreen(String tela) {
-        switch (tela){
+        switch (tela) {
             case "squad":
                 stage.setScene(squadScene);
                 break;

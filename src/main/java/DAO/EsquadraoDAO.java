@@ -18,11 +18,11 @@ public class EsquadraoDAO {
     }
 
     public void GravaEsquadrao(Esquadrao esquadrao) {
-        UtilFirebase util = new UtilFirebase();
+
 
         ArrayList<Esquadrao> lista = RecuperaEsquadrao();
         lista.add(esquadrao);
-        util.salvaArquivo(lista, nomeArquivo);
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
 
         /*DocumentReference docRef = db.collection("Esquadrao").document();
         Map<String, Object> data = new HashMap<>();
@@ -40,7 +40,7 @@ public class EsquadraoDAO {
 
     public ArrayList<Esquadrao> RecuperaEsquadrao() {
         ArrayList<Esquadrao> lista = new ArrayList<>();
-        UtilFirebase utilFirebase = new UtilFirebase();
+
         Gson gson = new Gson();
         UtilJson util = new UtilJson();
         if (util.BaixaJson(nomeArquivo)) {

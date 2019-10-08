@@ -5,6 +5,7 @@ import Util.UtilFirebase;
 import Util.UtilJson;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import jdk.jshell.execution.Util;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,11 +16,9 @@ public class RegiaoDAO {
     private final String nomeArquivo = "Regiao";
 
     public void GravaRegiao(Regiao regiao) {
-        UtilFirebase util = new UtilFirebase(1);
-
         ArrayList<Regiao> lista = RecuperaRegiao();
         lista.add(regiao);
-        util.salvaArquivo(lista, nomeArquivo);
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
     private ArrayList<Regiao> RecuperaRegiao() {

@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ public class ListSquadController implements Initializable {
     private TableColumn<Esquadrao, Integer> qtdSoldados;
 
 
-    public void goToSquad(ActionEvent actionEvent) {
+    public void goToSquad(ActionEvent actionEvent) throws IOException {
         Main.changeScreen("squad");
     }
 

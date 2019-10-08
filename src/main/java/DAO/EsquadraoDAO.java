@@ -17,6 +17,12 @@ public class EsquadraoDAO {
     public EsquadraoDAO() {
     }
 
+    public void GravaEsquadraoArray(ArrayList<Esquadrao> lista) {
+
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+
+    }
+
     public void GravaEsquadrao(Esquadrao esquadrao) {
 
 

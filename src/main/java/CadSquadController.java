@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,12 +21,12 @@ public class CadSquadController implements Initializable {
     @FXML
     private TextField txtespecialidade;
 
-    public void goToSquad(ActionEvent actionEvent) {
+    public void goToSquad(ActionEvent actionEvent) throws IOException {
         Main.changeScreen("squad");
     }
 
     @FXML
-    private void concludeCadSquad(javafx.event.ActionEvent actionEvent) {
+    private void concludeCadSquad(javafx.event.ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
         String nome = txtnome.getText();
         System.out.println(nome);

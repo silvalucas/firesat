@@ -66,53 +66,17 @@ public class Main extends Application {
         Parent fxmlHome = FXMLLoader.load(getClass().getResource("fxml/Home.fxml"));
         homeScene = new Scene(fxmlHome, 600, 400);
 
-        Parent fxmlSquad = FXMLLoader.load(getClass().getResource("fxml/Squad.fxml"));
-        squadScene = new Scene(fxmlSquad, 600, 400);
-
-        Parent fxmlRegion = FXMLLoader.load(getClass().getResource("fxml/Region.fxml"));
-        regionScene = new Scene(fxmlRegion, 600, 400);
-
-        Parent fxmlUser = FXMLLoader.load(getClass().getResource("fxml/User.fxml"));
-        userScene = new Scene(fxmlUser, 600, 400);
-
         Parent fxmlLoading = FXMLLoader.load(getClass().getResource("fxml/Loading.fxml"));
         loadingScene = new Scene(fxmlLoading, 600, 400);
 
         Parent fxmlCadSquad = FXMLLoader.load(getClass().getResource("fxml/CadSquad.fxml"));
         cadSquadScene = new Scene(fxmlCadSquad, 600, 400);
 
-        Parent fxmlListSquad = FXMLLoader.load(getClass().getResource("fxml/ListSquad.fxml"));
-        listSquadScene = new Scene(fxmlListSquad, 600, 400);
-
-        Parent fxmlRemoveSquad = FXMLLoader.load(getClass().getResource("fxml/RemoveSquad.fxml"));
-        removeSquadScene = new Scene(fxmlRemoveSquad, 600, 400);
-
-        Parent fxmlEditSquad = FXMLLoader.load(getClass().getResource("fxml/EditSquad.fxml"));
-        editSquadScene = new Scene(fxmlEditSquad, 600, 400);
-
         Parent fxmlCadRegion = FXMLLoader.load(getClass().getResource("fxml/CadRegion.fxml"));
         cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
 
-        Parent fxmlListRegion = FXMLLoader.load(getClass().getResource("fxml/ListRegion.fxml"));
-        listRegionScene = new Scene(fxmlListRegion, 600, 400);
-
-        Parent fxmlRemoveRegion = FXMLLoader.load(getClass().getResource("fxml/RemoveRegion.fxml"));
-        removeRegionScene = new Scene(fxmlRemoveRegion, 600, 400);
-
-        Parent fxmlEditRegion = FXMLLoader.load(getClass().getResource("fxml/EditRegion.fxml"));
-        editRegionScene = new Scene(fxmlEditRegion, 600, 400);
-
         Parent fxmlCadUser = FXMLLoader.load(getClass().getResource("fxml/CadUser.fxml"));
         cadUserScene = new Scene(fxmlCadUser, 600, 400);
-
-        Parent fxmlListUser = FXMLLoader.load(getClass().getResource("fxml/ListUser.fxml"));
-        listUserScene = new Scene(fxmlListUser, 600, 400);
-
-        Parent fxmlRemoveUser = FXMLLoader.load(getClass().getResource("fxml/RemoveUser.fxml"));
-        removeUserScene = new Scene(fxmlRemoveUser, 600, 400);
-
-        Parent fxmlEditUser = FXMLLoader.load(getClass().getResource("fxml/EditUser.fxml"));
-        editUserScene = new Scene(fxmlEditUser, 600, 400);
 
         Parent fxmlLogin = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
         loginScene = new Scene(fxmlLogin, 600, 400);
@@ -121,18 +85,24 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void changeScreen(String tela) {
+    public static void changeScreen(String tela) throws IOException {
         switch (tela) {
             case "squad":
+                Parent fxmlSquad = FXMLLoader.load(Main.class.getResource("fxml/Squad.fxml"));
+                squadScene = new Scene(fxmlSquad, 600, 400);
                 stage.setScene(squadScene);
                 break;
             case "home":
                 stage.setScene(homeScene);
                 break;
             case "region":
+                Parent fxmlRegion = FXMLLoader.load(Main.class.getResource("fxml/Region.fxml"));
+                regionScene = new Scene(fxmlRegion, 600, 400);
                 stage.setScene(regionScene);
                 break;
             case "user":
+                Parent fxmlUser = FXMLLoader.load(Main.class.getResource("fxml/User.fxml"));
+                userScene = new Scene(fxmlUser, 600, 400);
                 stage.setScene(userScene);
                 break;
             case "loading":
@@ -142,36 +112,54 @@ public class Main extends Application {
                 stage.setScene(cadSquadScene);
                 break;
             case "editSquad":
+                Parent fxmlEditSquad = FXMLLoader.load(Main.class.getResource("fxml/EditSquad.fxml"));
+                editSquadScene = new Scene(fxmlEditSquad, 600, 400);
                 stage.setScene(editSquadScene);
                 break;
             case "removeSquad":
+                Parent fxmlRemoveSquad = FXMLLoader.load(Main.class.getResource("fxml/RemoveSquad.fxml"));
+                removeSquadScene = new Scene(fxmlRemoveSquad, 600, 400);
                 stage.setScene(removeSquadScene);
                 break;
             case "listSquad":
+                Parent fxmlListSquad = FXMLLoader.load(Main.class.getResource("fxml/ListSquad.fxml"));
+                listSquadScene = new Scene(fxmlListSquad, 600, 400);
                 stage.setScene(listSquadScene);
                 break;
             case "cadRegion":
                 stage.setScene(cadRegionScene);
                 break;
             case "editRegion":
+                Parent fxmlEditRegion = FXMLLoader.load(Main.class.getResource("fxml/EditRegion.fxml"));
+                editRegionScene = new Scene(fxmlEditRegion, 600, 400);
                 stage.setScene(editRegionScene);
                 break;
             case "removeRegion":
+                Parent fxmlRemoveRegion = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegion.fxml"));
+                removeRegionScene = new Scene(fxmlRemoveRegion, 600, 400);
                 stage.setScene(removeRegionScene);
                 break;
             case "listRegion":
+                Parent fxmlListRegion = FXMLLoader.load(Main.class.getResource("fxml/ListRegion.fxml"));
+                listRegionScene = new Scene(fxmlListRegion, 600, 400);
                 stage.setScene(listRegionScene);
                 break;
             case "cadUser":
                 stage.setScene(cadUserScene);
                 break;
             case "editUser":
+                Parent fxmlEditUser = FXMLLoader.load(Main.class.getResource("fxml/EditUser.fxml"));
+                editUserScene = new Scene(fxmlEditUser, 600, 400);
                 stage.setScene(editUserScene);
                 break;
             case "removeUser":
+                Parent fxmlRemoveUser = FXMLLoader.load(Main.class.getResource("fxml/RemoveUser.fxml"));
+                removeUserScene = new Scene(fxmlRemoveUser, 600, 400);
                 stage.setScene(removeUserScene);
                 break;
             case "listUser":
+                Parent fxmlListUser = FXMLLoader.load(Main.class.getResource("fxml/ListUser.fxml"));
+                listUserScene = new Scene(fxmlListUser, 600, 400);
                 stage.setScene(listUserScene);
                 break;
             case "login":

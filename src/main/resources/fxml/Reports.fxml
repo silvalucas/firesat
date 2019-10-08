@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportsController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="RELATÓRIOS">
+               <font>
+                  <Font name="Segoe UI" size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TableView fx:id="reportsTable" layoutX="6.0" layoutY="100.0" prefHeight="247.0" prefWidth="587.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="CÓDIGO" />
+                <TableColumn prefWidth="185.0" text="IMAGEM" />
+                  <TableColumn prefWidth="157.0" text="DATA" />
+                  <TableColumn prefWidth="169.0" text="BAIXADA" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

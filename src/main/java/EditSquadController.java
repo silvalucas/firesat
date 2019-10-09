@@ -1,5 +1,6 @@
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
+import Util.UtilJson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
 import static javafx.scene.control.cell.TextFieldTableCell.*;
 
 public class EditSquadController implements Initializable {
-
+    private ObservableList<Esquadrao> lista;
     @FXML
     private TableView<Esquadrao> tableSquad;
     @FXML
@@ -39,24 +40,17 @@ public class EditSquadController implements Initializable {
     private void concludeEditSquad(ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
 
-        ArrayList<Esquadrao> todos = new ArrayList<Esquadrao>();
+        ArrayList<Esquadrao> todos = new ArrayList<Esquadrao>(tableSquad.getItems());
 
-        for(int i = 0; i < tableSquad.getItems().size();i++){
-            Esquadrao e = tableSquad.getItems().get(i);
-            System.out.println(i + "-" + e);
-            todos.add(e);
-        }
-
-        for (int i = 0; i<todos.size();i++){
-            System.out.println("\\" + todos.get(i));
-        }
+        EsquadraoDAO dao = new EsquadraoDAO();
+        dao.GravaEsquadraoArray(todos);
 
         Main.changeScreen("squad");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
+        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));
@@ -64,5 +58,14 @@ public class EditSquadController implements Initializable {
         nome.setCellFactory(forTableColumn());
         especialidade.setCellFactory(forTableColumn());
         qtdSoldados.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        nome.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
+        });
+        especialidade.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setEspecialidade(event.getNewValue());
+        });
+        qtdSoldados.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setQtdSoldados(event.getNewValue());
+        });
     }
 }

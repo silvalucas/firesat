@@ -3,9 +3,9 @@ package Modelo;
 public class Regiao {
     private String nome;
     private boolean areaDeProtecao;
-    private Esquadrao esquadrao;
+    private int esquadrao;
 
-    public Regiao(String nome, boolean areaDeProtecao, Esquadrao esquadrao) {
+    public Regiao(String nome, boolean areaDeProtecao, int esquadrao) {
         this.nome = nome;
         this.areaDeProtecao = areaDeProtecao;
         this.esquadrao = esquadrao;
@@ -31,11 +31,15 @@ public class Regiao {
         this.areaDeProtecao = areaDeProtecao;
     }
 
-    public Esquadrao getEsquadrao() {
+    public boolean isAreaDeProtecao() {
+        return areaDeProtecao;
+    }
+
+    public int getEsquadrao() {
         return esquadrao;
     }
 
-    public void setEsquadrao(Esquadrao esquadrao) {
+    public void setEsquadrao(int esquadrao) {
         this.esquadrao = esquadrao;
     }
 
@@ -44,7 +48,7 @@ public class Regiao {
         return "Regiao{" +
                 "nome='" + nome + '\'' +
                 ", areaDeProteção=" + areaDeProtecao +
-                ", esquadrao=" + esquadrao.toString() +
+                ", esquadrao=" + esquadrao +
                 '}';
     }
 }

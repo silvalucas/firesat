@@ -33,7 +33,7 @@ public class ListSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
+        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

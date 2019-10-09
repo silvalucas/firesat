@@ -1,20 +1,35 @@
 package Modelo;
 
 public class Esquadrao {
+    private int id;
     private String nome;
     private String especialidade;
     private int qtdSoldados;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Esquadrao() {
 
     }
 
     public Esquadrao(String nome, String especialidade, int qtdSoldados) {
+
         this.nome = nome;
         this.especialidade = especialidade;
         this.qtdSoldados = qtdSoldados;
     }
-
+    public Esquadrao(int id, String nome, String especialidade, int qtdSoldados) {
+        this.id = id;
+        this.nome = nome;
+        this.especialidade = especialidade;
+        this.qtdSoldados = qtdSoldados;
+    }
     public String getNome() {
         return nome;
     }

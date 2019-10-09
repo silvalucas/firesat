@@ -16,7 +16,7 @@ public class UtilJson {
     public UtilJson() {
     }
 
-    public boolean BaixaJson(String nome) {
+    public static boolean BaixaJson(String nome) {
         StorageOptions storageOptions = StorageOptions.newBuilder()
                 .setCredentials(credentials)
                 .build();

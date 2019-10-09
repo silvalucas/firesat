@@ -20,9 +20,9 @@
                <children>
                   <TableView fx:id="tableRegion" blendMode="DARKEN" editable="true" opacity="0.98" prefHeight="213.0" prefWidth="505.0">
                     <columns>
-                      <TableColumn prefWidth="223.0" text="NOME" />
-                      <TableColumn prefWidth="157.0" text="ÁREA DE PRESERVAÇÃO" />
-                        <TableColumn prefWidth="204.0" text="ESQUADRÃO RESPONSÁVEL" />
+                      <TableColumn fx:id="nome" prefWidth="223.0" text="NOME" />
+                      <TableColumn fx:id="areaprotecao" prefWidth="157.0" text="ÁREA DE PRESERVAÇÃO" />
+                        <TableColumn fx:id="esquadraoResponsavel" prefWidth="204.0" text="ESQUADRÃO RESPONSÁVEL" />
                     </columns>
                   </TableView>
                </children>

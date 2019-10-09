@@ -21,7 +21,13 @@ public class RegiaoDAO {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
-    private ArrayList<Regiao> RecuperaRegiao() {
+    public void GravaRegiaoArray(ArrayList<Regiao> lista) {
+
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+
+    }
+
+    public ArrayList<Regiao> RecuperaRegiao() {
         ArrayList<Regiao> lista = new ArrayList<>();
         Gson gson = new Gson();
         UtilJson util = new UtilJson();

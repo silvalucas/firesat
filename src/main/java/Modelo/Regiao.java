@@ -23,7 +23,7 @@ public class Regiao {
         this.nome = nome;
     }
 
-    public boolean isAreaDeProtecaoo() {
+    public boolean getAreaDeProtecao() {
         return areaDeProtecao;
     }
 

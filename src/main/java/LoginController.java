@@ -1,3 +1,5 @@
+import DAO.UsuarioDAO;
+import Modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -29,27 +31,35 @@ public class LoginController {
         txtPassword.setText("");
         txtUser.setText("");
 
-        //VERIFICAR LOGIN AQUI
+        boolean usuario = new UsuarioDAO().AutenticaUsuario(user, password);
 
         boolean analise = radioAnalise.isSelected();
         boolean satelite = radioSatelite.isSelected();
 
-        if(!analise && !satelite){
+        if (!analise && !satelite) {
             errorMsg.setText("SELECIONE UM DOS MODULOS!");
-        } else if(satelite){
-            errorMsg.setText("");
-            Main.changeScreen("homeSatelite");
-        } else{
-            errorMsg.setText("");
-            Main.changeScreen("home");
+        } else if (satelite) {
+            if (usuario) {
+                Main.changeScreen("homeSatelite");
+                errorMsg.setText("");
+            } else {
+                errorMsg.setText("CAMPO USUARIO/SENHA INCORRETO.");
+            }
+        } else {
+            if (usuario) {
+                Main.changeScreen("home");
+                errorMsg.setText("");
+            } else {
+                errorMsg.setText("CAMPO USUARIO/SENHA INCORRETO.");
+            }
         }
     }
 
-    public void limpaSatelite(javafx.event.ActionEvent actionEvent){
+    public void limpaSatelite(javafx.event.ActionEvent actionEvent) {
         radioSatelite.setSelected(false);
     }
 
-    public void limpaAnalise(javafx.event.ActionEvent actionEvent){
+    public void limpaAnalise(javafx.event.ActionEvent actionEvent) {
         radioAnalise.setSelected(false);
     }
 }

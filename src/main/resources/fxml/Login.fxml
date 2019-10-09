@@ -15,7 +15,7 @@
       </Label>
       <VBox layoutX="87.0" layoutY="102.0" prefHeight="189.0" prefWidth="426.0">
          <children>
-            <Label alignment="CENTER" prefHeight="37.0" prefWidth="427.0" text="USUÁRIO">
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="427.0" text="EMAIL">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

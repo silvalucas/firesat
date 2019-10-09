@@ -1,3 +1,5 @@
+import DAO.UsuarioDAO;
+import Modelo.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +30,13 @@ public class CadUserController implements Initializable {
     @FXML
     private void concludeCadUser(ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
+
+        String nome = txtNome.getText();
+        String email = txtEmail.getText();
+        String senha = txtPassword.getText();
+        Usuario user = new Usuario(nome,email,senha);
+        new UsuarioDAO().GravaUsuario(user);
+
         //implementar a comunicação com o firebase
         Main.changeScreen("user");
     }

@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 [{"nome":"nomi","especialidade":"fogareu","qtdSoldados":65},{"nome":"teste","especialidade":"12","qtdSoldados":12},{"nome":"testando","especialidade":"tiro","qtdSoldados":51}]
+=======
+[{"nome":"nomi","especialidade":"fogareu","qtdSoldados":65},{"nome":"nomi","especialidade":"fogareu","qtdSoldados":65},{"nome":"teste","especialidade":"12","qtdSoldados":12},{"nome":"12","especialidade":"124","qtdSoldados":124},{"nome":"ooiii","especialidade":"olaa","qtdSoldados":90}]
+>>>>>>> Stashed changes

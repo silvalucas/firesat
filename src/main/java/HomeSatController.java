@@ -23,8 +23,6 @@ public class HomeSatController {
     public void reportsBtn(javafx.event.ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
 
-        //GERAR RELATORIO DE (codigo, imagem, data, baixada?) PARA O MODULO DE ANALISE
-
-        Main.changeScreen("HomeSat");
+        Main.changeScreen("ReportsSat");
     }
 }

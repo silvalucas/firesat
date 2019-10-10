@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class MakeImageController implements Initializable {
@@ -76,7 +77,18 @@ public class MakeImageController implements Initializable {
             String cdgImg = codigo.getText();
             String dataImg = data.getText();
             String regiaoImg = choiceSelectRegion.getSelectionModel().getSelectedItem();
-            //implementar gravação do json com o id da imagem,
+            Calendar data = Calendar.getInstance();
+            int day = data.get(Calendar.DAY_OF_MONTH);
+            int mes = data.get(Calendar.MONTH);
+            int ano = data.get(Calendar.YEAR);
+            int hora = data.get(Calendar.HOUR_OF_DAY);
+            int min = data.get(Calendar.MINUTE);
+            int seg = data.get(Calendar.SECOND);
+            String idImagem = String.valueOf(day) + String.valueOf(mes) + String.valueOf(ano) + String.valueOf(hora)+ String.valueOf(min) + String.valueOf(seg) + ".ppm";
+
+            new ImagemDAO().GravaDadosImagem(imagem, idImagem);
+            //implementar gravação do json com o id da imagem
+
             try {
                 Main.changeScreen("HomeSat");
             } catch (IOException ex) {

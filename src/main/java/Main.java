@@ -59,6 +59,8 @@ public class Main extends Application {
     private static Scene loginScene;
     private static Scene homeSat;
     private static Scene makeImageSat;
+    private static Scene reports;
+    private static Scene reportsSat;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -175,6 +177,16 @@ public class Main extends Application {
                 Parent fxmlMakeImage = FXMLLoader.load(Main.class.getResource("fxml/MakeImageSat.fxml"));
                 makeImageSat = new Scene(fxmlMakeImage, 900, 700);
                 stage.setScene(makeImageSat);
+                break;
+            case "reports":
+                Parent fxmlReports = FXMLLoader.load(Main.class.getResource("fxml/Reports.fxml"));
+                reports = new Scene(fxmlReports, 600, 400);
+                stage.setScene(reports);
+                break;
+            case "ReportsSat":
+                Parent fxmlReportsSat = FXMLLoader.load(Main.class.getResource("fxml/ReportsSat.fxml"));
+                reportsSat = new Scene(fxmlReportsSat, 600, 400);
+                stage.setScene(reportsSat);
                 break;
         }
     }

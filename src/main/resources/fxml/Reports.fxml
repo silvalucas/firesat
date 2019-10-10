@@ -25,14 +25,48 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TableView fx:id="reportsTable" layoutX="6.0" layoutY="100.0" prefHeight="247.0" prefWidth="587.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="CÓDIGO" />
-                <TableColumn prefWidth="185.0" text="IMAGEM" />
-                  <TableColumn prefWidth="157.0" text="DATA" />
-                  <TableColumn prefWidth="169.0" text="BAIXADA" />
-              </columns>
-            </TableView>
+            <ScrollPane layoutX="5.0" layoutY="230.0" prefHeight="147.0" prefWidth="590.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="195.0" prefWidth="598.0">
+                     <children>
+                        <TableView fx:id="reportsTable" prefHeight="147.0" prefWidth="587.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="CÓDIGO" />
+                            <TableColumn prefWidth="121.0" text="IMAGEM" />
+                              <TableColumn prefWidth="186.0" text="DATA" />
+                              <TableColumn prefWidth="204.0" text="PERCENTUAL EM CHAMAS" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <TextField fx:id="dateInicial" layoutX="32.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
+            <Label layoutX="32.0" layoutY="73.0" text="DATA INICIAL" />
+            <Label layoutX="164.0" layoutY="73.0" text="DATA FINAL" />
+            <ComboBox fx:id="comboRegiao" layoutX="300.0" layoutY="95.0" prefHeight="25.0" prefWidth="119.0" promptText="SELECIONE" />
+            <TextField fx:id="dateFinal" layoutX="164.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
+            <Label layoutX="300.0" layoutY="73.0" text="REGIÃO" />
+            <Button alignment="CENTER" layoutX="456.0" layoutY="93.0" mnemonicParsing="false" onAction="#analisar" prefHeight="28.0" prefWidth="82.0" styleClass="botoes" stylesheets="@../style/style.css" text="ANALISAR" />
+            <Label fx:id="errorTxt" alignment="CENTER" layoutX="130.0" layoutY="131.0" prefHeight="34.0" prefWidth="296.0" textFill="RED">
+               <font>
+                  <Font name="Segoe UI Semibold" size="12.0" />
+               </font>
+            </Label>
+            <Pane layoutX="169.0" layoutY="166.0" prefHeight="34.0" prefWidth="263.0">
+               <children>
+                  <Label fx:id="statusAnalise" alignment="CENTER" layoutX="65.0" layoutY="4.0" prefHeight="28.0" prefWidth="198.0">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="5.0" prefHeight="25.0" prefWidth="65.0" text="STATUS:">
+                     <font>
+                        <Font name="Yu Gothic UI Semilight" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

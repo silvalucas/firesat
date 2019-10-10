@@ -25,22 +25,25 @@ public class UsuarioDAO {
 
     public void GravaUsuario(Usuario esquadrao) {
 
-        ArrayList<Usuario> lista = RecuperaUsuario();
+        ArrayList<Usuario> lista;
+        if ((lista = RecuperaUsuario()) == null) {
+            lista = new ArrayList<>();
+        }
         lista.add(esquadrao);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
 
     }
 
-    public boolean AutenticaUsuario(String email, String senha){
+    public boolean AutenticaUsuario(String email, String senha) {
         ArrayList<Usuario> lista = RecuperaUsuario();
-        for(int i=0;i < lista.size();i++){
-            if(lista.get(i).getEmail().equals(email)){
-                if(lista.get(i).getPassword().equals(senha)){
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getEmail().equals(email)) {
+                if (lista.get(i).getPassword().equals(senha)) {
                     return true;
-                } else{
+                } else {
                     return false;
                 }
-            } else{
+            } else {
                 return false;
             }
         }
@@ -51,14 +54,15 @@ public class UsuarioDAO {
         ArrayList<Usuario> lista = new ArrayList<>();
 
         Gson gson = new Gson();
-        UtilJson util = new UtilJson();
-        if (util.BaixaJson(nomeArquivo)) {
+
+        if (UtilJson.BaixaJson(nomeArquivo)) {
             try {
                 Reader reader = new FileReader(nomeArquivo);
                 lista = gson.fromJson(reader, new TypeToken<ArrayList<Usuario>>() {
                 }.getType());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                return null;
             }
         }
 

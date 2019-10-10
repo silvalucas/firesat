@@ -17,11 +17,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class HomeCentralController implements Initializable {
+public class MakeImageController implements Initializable {
 
     @FXML
     private HBox root;
@@ -61,6 +62,7 @@ public class HomeCentralController implements Initializable {
                 "-fx-border-color: #cacaca;" +
                 "-fx-border-radius: 5;");
         concluir.setPrefSize(100,40);
+
         concluir.setOnAction(e -> {
             for (int a = 0; a < 20; a++) {
                 for (int b = 0; b < 20; b++) {
@@ -74,8 +76,31 @@ public class HomeCentralController implements Initializable {
             String cdgImg = codigo.getText();
             String dataImg = data.getText();
             String regiaoImg = choiceSelectRegion.getSelectionModel().getSelectedItem();
-            System.out.println(cdgImg + "-" + dataImg + "-" + regiaoImg);
+            //implementar gravação do json com o id da imagem,
+            try {
+                Main.changeScreen("HomeSat");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
+
+        Button voltar = new Button("VOLTAR");
+        voltar.setStyle("-fx-background-color: none;" +
+                "-fx-border-color: #cacaca;" +
+                "-fx-border-radius: 5;");
+        voltar.setPrefSize(100,40);
+        voltar.setOnAction(e -> {
+            try {
+                Main.changeScreen("HomeSat");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        HBox horizontal = new HBox();
+        horizontal.setSpacing(10);
+        horizontal.getChildren().addAll(concluir,voltar);
+
         VBox vertical = new VBox();
         vertical.setPadding(new Insets(50, 10, 10, 10));
         vertical.setSpacing(20);
@@ -109,7 +134,7 @@ public class HomeCentralController implements Initializable {
         }
 
         root.getChildren().add(grid);
-        vertical.getChildren().addAll(titulo, txtcodigo, codigo, txtdata, data, txtregiao, choiceSelectRegion, concluir);
+        vertical.getChildren().addAll(titulo, txtcodigo, codigo, txtdata, data, txtregiao, choiceSelectRegion, horizontal);
         root.getChildren().add(vertical);
     }
 

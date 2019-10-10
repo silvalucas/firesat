@@ -40,7 +40,7 @@ public class LoginController {
             errorMsg.setText("SELECIONE UM DOS MODULOS!");
         } else if (satelite) {
             if (usuario) {
-                Main.changeScreen("HomeCentral");
+                Main.changeScreen("HomeSat");
                 errorMsg.setText("");
             } else {
                 errorMsg.setText("CAMPO USUARIO/SENHA INCORRETO.");

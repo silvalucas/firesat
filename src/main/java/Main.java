@@ -57,7 +57,8 @@ public class Main extends Application {
     private static Scene removeUserScene;
     private static Scene editUserScene;
     private static Scene loginScene;
-    private static Scene homeCentral;
+    private static Scene homeSat;
+    private static Scene makeImageSat;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -71,7 +72,6 @@ public class Main extends Application {
         loadingScene = new Scene(fxmlLoading, 600, 400);
 
         Parent fxmlCadSquad = FXMLLoader.load(getClass().getResource("fxml/CadSquad.fxml"));
-        cadSquadScene = new Scene(fxmlCadSquad, 600, 400);
 
         Parent fxmlCadRegion = FXMLLoader.load(getClass().getResource("fxml/CadRegion.fxml"));
         cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
@@ -166,10 +166,15 @@ public class Main extends Application {
             case "login":
                 stage.setScene(loginScene);
                 break;
-            case "HomeCentral":
-                Parent fxmlMainCentral = FXMLLoader.load(Main.class.getResource("fxml/HomeCentral.fxml"));
-                homeCentral = new Scene(fxmlMainCentral, 900, 700);
-                stage.setScene(homeCentral);
+            case "HomeSat":
+                Parent fxmlMainSat = FXMLLoader.load(Main.class.getResource("fxml/HomeSat.fxml"));
+                homeSat = new Scene(fxmlMainSat, 600, 400);
+                stage.setScene(homeSat);
+                break;
+            case "MakeImage":
+                Parent fxmlMakeImage = FXMLLoader.load(Main.class.getResource("fxml/MakeImageSat.fxml"));
+                makeImageSat = new Scene(fxmlMakeImage, 900, 700);
+                stage.setScene(makeImageSat);
                 break;
         }
     }

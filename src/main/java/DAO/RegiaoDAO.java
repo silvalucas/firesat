@@ -13,10 +13,13 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 public class RegiaoDAO {
-    private final String nomeArquivo = "Regiao";
+    private final String nomeArquivo = "Regiao.json";
 
     public void GravaRegiao(Regiao regiao) {
-        ArrayList<Regiao> lista = RecuperaRegiao();
+        ArrayList<Regiao> lista;
+        if ((lista = RecuperaRegiao()) == null) {
+            lista = new ArrayList<>();
+        }
         lista.add(regiao);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
@@ -30,14 +33,14 @@ public class RegiaoDAO {
     public ArrayList<Regiao> RecuperaRegiao() {
         ArrayList<Regiao> lista = new ArrayList<>();
         Gson gson = new Gson();
-        UtilJson util = new UtilJson();
-        if (util.BaixaJson(nomeArquivo)) {
+        if (UtilJson.BaixaJson(nomeArquivo)) {
             try {
                 Reader reader = new FileReader(nomeArquivo);
                 lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {
                 }.getType());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                return null;
             }
         }
         return lista;

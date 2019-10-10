@@ -35,7 +35,7 @@ public class RemoveSquadController implements Initializable {
         Main.changeScreen("loading");
 
         Esquadrao selecionado = tableSquad.getSelectionModel().getSelectedItem();
-        ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao();
+        ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(true);
 
         for(int i = 0; i < todos.size();i++){
             Esquadrao e = todos.get(i);
@@ -54,7 +54,7 @@ public class RemoveSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
+        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(true));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

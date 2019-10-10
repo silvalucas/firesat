@@ -50,7 +50,7 @@ public class EditSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
+        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(true));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

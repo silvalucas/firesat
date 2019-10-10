@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -44,11 +45,11 @@ public class CadRegionController implements Initializable {
         checkProtectYes.setSelected(false);
         txtNome.setText("");
         Esquadrao e = new Esquadrao();
-        for(int i = 0; i < listaSquad.size();i++){
-            if(esquadrao.equals(listaSquad.get(i).getNome())) e = listaSquad.get(i);
+        for (int i = 0; i < listaSquad.size(); i++) {
+            if (esquadrao.equals(listaSquad.get(i).getNome())) e = listaSquad.get(i);
         }
         Regiao regiao = new Regiao();
-        regiao.setEsquadrao(e);
+        regiao.setEsquadrao(e.getId());
         regiao.setAreaDeProtecao(areaprotecao);
         regiao.setNome(nome);
         new RegiaoDAO().GravaRegiao(regiao);
@@ -58,9 +59,15 @@ public class CadRegionController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaSquad = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao());
-        for(int i=0;i<listaSquad.size();i++){
-            choiceSelectSquad.getItems().add(listaSquad.get(i).getNome());
+        ArrayList<Esquadrao> listaAux;
+        if ((listaAux = new EsquadraoDAO().RecuperaEsquadrao(false)) != null) {
+            listaSquad = FXCollections.observableArrayList(listaAux);
+        } else {
+            listaSquad = FXCollections.observableArrayList();
+        }
+
+        for (Esquadrao esquadrao : listaSquad) {
+            choiceSelectSquad.getItems().add(esquadrao.getNome());
         }
     }
 }

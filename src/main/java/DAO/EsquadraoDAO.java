@@ -12,7 +12,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 public class EsquadraoDAO {
-    private final String nomeArquivo = "Esquadrao";
+    private final String nomeArquivo = "Esquadrao.json";
 
     public EsquadraoDAO() {
     }
@@ -25,39 +25,32 @@ public class EsquadraoDAO {
 
     public void GravaEsquadrao(Esquadrao esquadrao) {
 
-
-        ArrayList<Esquadrao> lista = RecuperaEsquadrao();
+        ArrayList<Esquadrao> lista;
+        if ((lista = RecuperaEsquadrao(true)) == null) {
+            lista = new ArrayList<>();
+        }
+        esquadrao.setId(lista.size());
         lista.add(esquadrao);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
-
-        /*DocumentReference docRef = db.collection("Esquadrao").document();
-        Map<String, Object> data = new HashMap<>();
-        data.put("nome", esquadrao.getNome());
-        data.put("especialidade", esquadrao.getEspecialidade());
-        data.put("quantidadeSoldados", esquadrao.getQtdSoldados());
-        ApiFuture<WriteResult> result = docRef.set(data);
-        System.out.println("Aguarde...");
-        while (!result.isDone()) {
-
-             }
-        System.out.println("Foii");
-        }*/
     }
 
-    public ArrayList<Esquadrao> RecuperaEsquadrao() {
+    public ArrayList<Esquadrao> RecuperaEsquadrao(boolean baixaDados) {
         ArrayList<Esquadrao> lista = new ArrayList<>();
-
         Gson gson = new Gson();
-        UtilJson util = new UtilJson();
-        if (util.BaixaJson(nomeArquivo)) {
-            try {
-                Reader reader = new FileReader(nomeArquivo);
-                lista = gson.fromJson(reader, new TypeToken<ArrayList<Esquadrao>>() {
-                }.getType());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        if (baixaDados) {
+            if (!UtilJson.BaixaJson(nomeArquivo)) {
+                return null;
             }
         }
+        try {
+            Reader reader = new FileReader(nomeArquivo);
+            lista = gson.fromJson(reader, new TypeToken<ArrayList<Esquadrao>>() {
+            }.getType());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
         return lista;
     }

@@ -20,6 +20,7 @@ public class RegiaoDAO {
         if ((lista = RecuperaRegiao()) == null) {
             lista = new ArrayList<>();
         }
+        regiao.setId(lista.size());
         lista.add(regiao);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }

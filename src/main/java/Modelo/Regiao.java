@@ -1,9 +1,18 @@
 package Modelo;
 
 public class Regiao {
+    private int id;
     private String nome;
     private boolean areaDeProtecao;
     private int esquadrao;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Regiao(String nome, boolean areaDeProtecao, int esquadrao) {
         this.nome = nome;

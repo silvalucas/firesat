@@ -57,6 +57,7 @@ public class Main extends Application {
     private static Scene removeUserScene;
     private static Scene editUserScene;
     private static Scene loginScene;
+    private static Scene homeCentral;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -164,6 +165,11 @@ public class Main extends Application {
                 break;
             case "login":
                 stage.setScene(loginScene);
+                break;
+            case "HomeCentral":
+                Parent fxmlMainCentral = FXMLLoader.load(Main.class.getResource("fxml/HomeCentral.fxml"));
+                homeCentral = new Scene(fxmlMainCentral, 900, 700);
+                stage.setScene(homeCentral);
                 break;
         }
     }

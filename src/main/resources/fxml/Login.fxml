@@ -37,7 +37,7 @@
             </PasswordField>
             <HBox prefHeight="39.0" prefWidth="426.0">
                <children>
-                  <RadioButton fx:id="radioSatelite" mnemonicParsing="false" onAction="#limpaAnalise" prefHeight="48.0" prefWidth="80.0" text="Satélite">
+                  <RadioButton fx:id="radioSatelite" mnemonicParsing="false" onAction="#limpaAnalise" prefHeight="48.0" prefWidth="80.0" text="Central">
                      <HBox.margin>
                         <Insets left="150.0" />
                      </HBox.margin>

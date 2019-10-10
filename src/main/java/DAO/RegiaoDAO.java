@@ -30,6 +30,14 @@ public class RegiaoDAO {
 
     }
 
+    public void EnviaDadosRegiao() {
+        ArrayList<Regiao> lista;
+        if ((lista = RecuperaRegiao()) == null) {
+            lista = new ArrayList<>();
+        }
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+    }
+
     public ArrayList<Regiao> RecuperaRegiao() {
         ArrayList<Regiao> lista = new ArrayList<>();
         Gson gson = new Gson();

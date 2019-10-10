@@ -22,10 +22,10 @@ import java.util.Date;
 import java.util.List;
 
 public class UtilFirebase {
-    public  static Firestore db;
-    public  static GoogleCredentials credentials;
+    public static Firestore db;
+    public static GoogleCredentials credentials;
     public static FirebaseOptions options;
-    public  static Storage storage;
+    public static Storage storage;
 
     public UtilFirebase(int a) {
 
@@ -80,6 +80,8 @@ public class UtilFirebase {
             e.printStackTrace();
         }
     }
+
+
 
     public static void salvaArquivo(Object[][] objects, String nomeArquivo) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");

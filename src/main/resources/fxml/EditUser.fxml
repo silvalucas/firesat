@@ -21,7 +21,7 @@
                   <TableView fx:id="tableUser" blendMode="DARKEN" editable="true" opacity="0.98" prefHeight="213.0" prefWidth="505.0">
                     <columns>
                       <TableColumn fx:id="nome" prefWidth="263.0" text="NOME" />
-                        <TableColumn fx:id="email" prefWidth="322.0" text="ESQUADRÃO RESPONSÁVEL" />
+                        <TableColumn fx:id="email" prefWidth="322.0" text="EMAIL" />
                     </columns>
                   </TableView>
                </children>

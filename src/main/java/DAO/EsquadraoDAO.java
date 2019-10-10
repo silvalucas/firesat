@@ -34,6 +34,14 @@ public class EsquadraoDAO {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
+    public void EnviaDadosEsquadrao() {
+        ArrayList<Esquadrao> lista;
+        if ((lista = RecuperaEsquadrao(false)) == null) {
+            lista = new ArrayList<>();
+        }
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+    }
+
     public ArrayList<Esquadrao> RecuperaEsquadrao(boolean baixaDados) {
         ArrayList<Esquadrao> lista = new ArrayList<>();
         Gson gson = new Gson();

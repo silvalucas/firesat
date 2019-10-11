@@ -32,7 +32,6 @@ public class MakeImageController implements Initializable {
     private Button[][] btn = new Button[20][20];
     private Imagem[][] imagem = new Imagem[20][20];
     private ObservableList<Regiao> listaRegiao;
-    private TextField codigo;
     private TextField data;
     private ChoiceBox<String> choiceSelectRegion;
     private final int TAM = 20;
@@ -76,7 +75,6 @@ public class MakeImageController implements Initializable {
                     }
                 }
             }
-            String cdgImg = codigo.getText();
             String dataImg = data.getText();
             int regiaoImg = listaRegiao.get(choiceSelectRegion.getSelectionModel().getSelectedIndex()).getId();
             Calendar data = Calendar.getInstance();
@@ -140,12 +138,6 @@ public class MakeImageController implements Initializable {
         titulo.setText("GERAR IMAGEM");
         titulo.setFont(new Font("Segoe UI Semibold", 20));
 
-        Label txtcodigo = new Label();
-        txtcodigo.setText("CODIGO");
-        txtcodigo.setFont(new Font("Segoe UI Semilight", 12));
-        codigo = new TextField();
-        codigo.setPrefSize(100, 40);
-
         Label txtdata = new Label();
         txtdata.setText("DATA");
         txtdata.setFont(new Font("Segoe UI Semilight", 12));
@@ -165,7 +157,7 @@ public class MakeImageController implements Initializable {
         }
 
         root.getChildren().add(grid);
-        vertical.getChildren().addAll(titulo, txtcodigo, codigo, txtdata, data, txtregiao, choiceSelectRegion, horizontal);
+        vertical.getChildren().addAll(titulo, txtdata, data, txtregiao, choiceSelectRegion, horizontal);
         root.getChildren().add(vertical);
     }
 

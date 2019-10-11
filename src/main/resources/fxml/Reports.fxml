@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportsController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
@@ -47,11 +48,11 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <TextField fx:id="dateInicial" layoutX="32.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
+            <DatePicker fx:id="dateInicial" layoutX="32.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
             <Label layoutX="32.0" layoutY="73.0" text="DATA INICIAL" />
             <Label layoutX="164.0" layoutY="73.0" text="DATA FINAL" />
             <ComboBox fx:id="comboRegiao" layoutX="300.0" layoutY="95.0" prefHeight="25.0" prefWidth="119.0" promptText="SELECIONE" />
-            <TextField fx:id="dateFinal" layoutX="164.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
+            <DatePicker fx:id="dateFinal" layoutX="164.0" layoutY="95.0" prefHeight="25.0" prefWidth="98.0" promptText="DD/MM/YYYY" />
             <Label layoutX="300.0" layoutY="73.0" text="REGIÃO" />
             <Button alignment="CENTER" layoutX="456.0" layoutY="93.0" mnemonicParsing="false" onAction="#analisar" prefHeight="28.0" prefWidth="82.0" styleClass="botoes" stylesheets="@../style/style.css" text="ANALISAR" />
             <Label fx:id="errorTxt" alignment="CENTER" layoutX="130.0" layoutY="131.0" prefHeight="34.0" prefWidth="296.0" textFill="RED">

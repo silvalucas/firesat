@@ -8,15 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import static Util.UtilDate.localdateToDate;
 
 public class ReportsController implements Initializable {
 
@@ -39,15 +38,13 @@ public class ReportsController implements Initializable {
     private ComboBox<String> comboRegiao;
 
     @FXML
-    private TextField dateInicial;
+    private DatePicker dateInicial;
 
-    @FXML
-    private Label statusAnalise;
 
     private ObservableList<Regiao> listaRegiao;
 
     @FXML
-    private TextField dateFinal;
+    private DatePicker dateFinal;
 
     @FXML
     private Label errorTxt;
@@ -62,8 +59,8 @@ public class ReportsController implements Initializable {
 
     public void analisar(javafx.event.ActionEvent actionEvent) {
         //Pega o que digitou na tela
-        String dtIni = dateInicial.getText();
-        String dtFin = dateFinal.getText();
+        Date dtIni = localdateToDate(dateInicial.getValue());
+        Date dtFin = localdateToDate(dateFinal.getValue());
         String reg = comboRegiao.getSelectionModel().getSelectedItem();
         System.out.println(dtIni + " " + dtFin + " " + reg);
 

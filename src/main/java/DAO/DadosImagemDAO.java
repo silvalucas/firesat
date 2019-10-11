@@ -1,6 +1,7 @@
 package DAO;
 
 import Modelo.DadosImagem;
+import Util.UtilDate;
 import Util.UtilFirebase;
 import Util.UtilJson;
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,7 +24,7 @@ public class DadosImagemDAO {
     public DadosImagemDAO() {
     }
 
-    public void GravaDadosImagemoArray(ArrayList<DadosImagem> lista) {
+    public void GravaDadosImagem(ArrayList<DadosImagem> lista) {
 
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
 
@@ -68,15 +70,18 @@ public class DadosImagemDAO {
         return lista;
     }
 
-    public ArrayList<DadosImagem> imagensEntreDatas(String data1, String data2) {
-        Date date1 = stringToDate(data1);
-        Date date2 = stringToDate(data2);
+    public ArrayList<DadosImagem> imagensEntreDatas(Date data1, Date data2) {
+        // Date date1 = stringToDate(data1);
+        //Date date2 = stringToDate(data2);
+
 
         ArrayList<DadosImagem> lista;
         ArrayList<DadosImagem> aux = new ArrayList<>();
         if ((lista = RecuperaDadosImagem(false)) != null) {
             for (int i = 0; i < lista.size(); i++) {
-                if (lista.get(i).getData().after(date1) && lista.get(i).getData().compareTo(date2) <= 0) {
+                if (UtilDate.localdateToDate(lista.get(i).getData()).after(data1)
+                        &&
+                        UtilDate.localdateToDate(lista.get(i).getData()).compareTo(data2) <= 0) {
                     aux.add(lista.get(i));
                 }
             }
@@ -85,15 +90,4 @@ public class DadosImagemDAO {
             return null;
     }
 
-    public Date stringToDate(String txt) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            return sdf.parse(txt);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }

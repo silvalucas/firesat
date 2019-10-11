@@ -1,11 +1,11 @@
 package Modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DadosImagem {
     private int id;
     private String nome;
-    private Date data;
+    private LocalDate data;
     private int regiao;
     private boolean baixada;
     private float percentual;
@@ -26,11 +26,11 @@ public class DadosImagem {
         this.id = id;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -58,7 +58,7 @@ public class DadosImagem {
         this.nome = nome;
     }
 
-    public DadosImagem(int id, String nome, Date data, int regiao, boolean baixada, float percentual) {
+    public DadosImagem(int id, String nome, LocalDate data, int regiao, boolean baixada, float percentual) {
         this.id = id;
         this.nome = nome;
         this.data = data;
@@ -72,7 +72,7 @@ public class DadosImagem {
     }
 
     public void calculaPercentual(int tam, int cont) {
-        this.percentual = ((float) cont / tam) * 100.0f;
+        this.percentual = ((float) cont / (tam*tam)) * 100.0f;
     }
 
     public String retornaAumento(float valFinal, float valInicial) {

@@ -4,25 +4,23 @@ import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Modelo.Regiao;
+import Util.UtilDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MakeImageController implements Initializable {
@@ -33,7 +31,7 @@ public class MakeImageController implements Initializable {
     private Imagem[][] imagem = new Imagem[20][20];
     private ObservableList<Regiao> listaRegiao;
     private TextField codigo;
-    private TextField data;
+    private DatePicker data;
     private ChoiceBox<String> choiceSelectRegion;
     private final int TAM = 20;
 
@@ -41,7 +39,7 @@ public class MakeImageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         GridPane grid = new GridPane();
         grid.setId("grid");
-        float tam = 35;
+
 
         for (int i = 0; i < TAM; i++)
             for (int j = 0; j < TAM; j++) {
@@ -77,7 +75,7 @@ public class MakeImageController implements Initializable {
                 }
             }
             String cdgImg = codigo.getText();
-            String dataImg = data.getText();
+            LocalDate dataImg = data.getValue();
             int regiaoImg = listaRegiao.get(choiceSelectRegion.getSelectionModel().getSelectedIndex()).getId();
             Calendar data = Calendar.getInstance();
             int day = data.get(Calendar.DAY_OF_MONTH);
@@ -105,7 +103,7 @@ public class MakeImageController implements Initializable {
             dados.setNome(nome);
             dados.setBaixada(false);
             dados.setRegiao(regiaoImg);
-            dados.setData(dadosDao.stringToDate(dataImg));
+            dados.setData(dataImg);
             dadosDao.GravaDadosImagem(dados);
 
             try {
@@ -149,7 +147,7 @@ public class MakeImageController implements Initializable {
         Label txtdata = new Label();
         txtdata.setText("DATA");
         txtdata.setFont(new Font("Segoe UI Semilight", 12));
-        data = new TextField();
+        data = new DatePicker();
         data.setPromptText("DD/MM/YYYY");
         data.setPrefSize(100, 40);
 

@@ -1,3 +1,4 @@
+import DAO.DadosImagemDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
 import Modelo.Regiao;
@@ -5,20 +6,34 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class ReportsController implements Initializable {
 
     @FXML
     private TableView<DadosImagem> reportsTable;
+
+    @FXML
+    private TableColumn<DadosImagem, Integer> id;
+
+    @FXML
+    private TableColumn<DadosImagem, Date> data;
+
+    @FXML
+    private TableColumn<DadosImagem, String> nome;
+
+    @FXML
+    private TableColumn<DadosImagem, Float> percentual;
 
     @FXML
     private ComboBox<String> comboRegiao;
@@ -28,6 +43,7 @@ public class ReportsController implements Initializable {
 
     @FXML
     private Label statusAnalise;
+
     private ObservableList<Regiao> listaRegiao;
 
     @FXML
@@ -36,30 +52,47 @@ public class ReportsController implements Initializable {
     @FXML
     private Label errorTxt;
 
+    @FXML
+    private Label statusTxt;
+
+
     public void goToHome(javafx.event.ActionEvent actionEvent) throws IOException {
         Main.changeScreen("home");
     }
 
-    public void analisar(javafx.event.ActionEvent actionEvent){
-        //Pega os trem q ele digitou na tela
+    public void analisar(javafx.event.ActionEvent actionEvent) {
+        //Pega o que digitou na tela
         String dtIni = dateInicial.getText();
         String dtFin = dateFinal.getText();
         String reg = comboRegiao.getSelectionModel().getSelectedItem();
-        System.out.println(dtIni +" " + dtFin + " " + reg);
+        System.out.println(dtIni + " " + dtFin + " " + reg);
 
-        if(dtIni.equals("") || dtFin.equals("") || reg == null){
+        if (dtIni.equals("") || dtFin.equals("") || reg == null) {
             errorTxt.setText("FAVOR PREENCHER TODOS OS CAMPOS!");
             return;
-        } else{
-            //continua o breguenait
+        } else {
+            DadosImagemDAO img = new DadosImagemDAO();
+            ArrayList<DadosImagem> dados = img.imagensEntreDatas(dtIni, dtFin);
+            String txt = "";
+            if (dados.size() > 0)
+                txt = dados.get(0).retornaAumento(dados.get(dados.size() - 1).getPercentual(), dados.get(0).getPercentual());
+            ObservableList<DadosImagem> lista = FXCollections.observableArrayList(dados);
+            reportsTable.setItems(lista);
+            statusTxt.setText(txt);
+
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        data.setCellValueFactory(new PropertyValueFactory<>("data"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        percentual.setCellValueFactory(new PropertyValueFactory<>("percentual"));
         listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         for (int i = 0; i < listaRegiao.size(); i++) {
             comboRegiao.getItems().add(listaRegiao.get(i).getNome());
         }
+
     }
 }

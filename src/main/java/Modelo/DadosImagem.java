@@ -4,9 +4,19 @@ import java.util.Date;
 
 public class DadosImagem {
     private int id;
+    private String nome;
     private Date data;
     private int regiao;
     private boolean baixada;
+    private float percentual;
+
+    public float getPercentual() {
+        return percentual;
+    }
+
+    public void setPercentual(float percentual) {
+        this.percentual = percentual;
+    }
 
     public int getId() {
         return id;
@@ -40,14 +50,39 @@ public class DadosImagem {
         this.baixada = baixada;
     }
 
-    public DadosImagem(int id, Date data, int regiao, boolean baixada) {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public DadosImagem(int id, String nome, Date data, int regiao, boolean baixada, float percentual) {
         this.id = id;
+        this.nome = nome;
         this.data = data;
         this.regiao = regiao;
         this.baixada = baixada;
+        this.percentual = percentual;
     }
 
     public DadosImagem() {
 
+    }
+
+    public void calculaPercentual(int tam, int cont) {
+        this.percentual = ((float) cont / tam) * 100.0f;
+    }
+
+    public String retornaAumento(float valFinal, float valInicial) {
+        float total = valFinal - valInicial;
+        if (total == 0) {
+            return "Sem aumento ou diminuição";
+        }
+        if (total < 0) {
+            return "Diminuiu " + ((Math.abs(total))) + "%";
+        }
+        return "Aumentou " + ((Math.abs(total))) + "%";
     }
 }

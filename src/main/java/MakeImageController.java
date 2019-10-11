@@ -1,5 +1,7 @@
+import DAO.DadosImagemDAO;
 import DAO.ImagemDAO;
 import DAO.RegiaoDAO;
+import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
@@ -28,21 +30,21 @@ public class MakeImageController implements Initializable {
     @FXML
     private HBox root;
     private Button[][] btn = new Button[20][20];
-    ;
     private Imagem[][] imagem = new Imagem[20][20];
     private ObservableList<Regiao> listaRegiao;
     private TextField codigo;
     private TextField data;
     private ChoiceBox<String> choiceSelectRegion;
+    private final int TAM = 20;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GridPane grid = new GridPane();
         grid.setId("grid");
         float tam = 35;
-        int i, j;
-        for (i = 0; i < 20; i++)
-            for (j = 0; j < 20; j++) {
+
+        for (int i = 0; i < TAM; i++)
+            for (int j = 0; j < TAM; j++) {
                 int x = i, y = j;
                 btn[i][j] = new Button("");
                 grid.add(btn[i][j], j, i);
@@ -62,21 +64,21 @@ public class MakeImageController implements Initializable {
         concluir.setStyle("-fx-background-color: none;" +
                 "-fx-border-color: #cacaca;" +
                 "-fx-border-radius: 5;");
-        concluir.setPrefSize(100,40);
+        concluir.setPrefSize(100, 40);
 
         concluir.setOnAction(e -> {
-            for (int a = 0; a < 20; a++) {
-                for (int b = 0; b < 20; b++) {
-                    if (btn[a][b].getStyle().equals("-fx-background-color: red")) {
-                        imagem[a][b] = new Imagem(255, 0, 0);
+            for (int i = 0; i < TAM; i++) {
+                for (int j = 0; j < TAM; j++) {
+                    if (btn[i][j].getStyle().equals("-fx-background-color: red")) {
+                        imagem[i][j] = new Imagem(255, 0, 0);
                     } else {
-                        imagem[a][b] = new Imagem(0, 255, 0);
+                        imagem[i][j] = new Imagem(0, 255, 0);
                     }
                 }
             }
             String cdgImg = codigo.getText();
             String dataImg = data.getText();
-            String regiaoImg = choiceSelectRegion.getSelectionModel().getSelectedItem();
+            int regiaoImg = listaRegiao.get(choiceSelectRegion.getSelectionModel().getSelectedIndex()).getId();
             Calendar data = Calendar.getInstance();
             int day = data.get(Calendar.DAY_OF_MONTH);
             int mes = data.get(Calendar.MONTH);
@@ -84,10 +86,27 @@ public class MakeImageController implements Initializable {
             int hora = data.get(Calendar.HOUR_OF_DAY);
             int min = data.get(Calendar.MINUTE);
             int seg = data.get(Calendar.SECOND);
-            String idImagem = String.valueOf(day) + String.valueOf(mes) + String.valueOf(ano) + String.valueOf(hora)+ String.valueOf(min) + String.valueOf(seg) + ".ppm";
+            String nome = String.valueOf(day) + String.valueOf(mes) +
+                    String.valueOf(ano) + String.valueOf(hora) +
+                    String.valueOf(min) + String.valueOf(seg) + ".ppm";
 
-            new ImagemDAO().GravaDadosImagem(imagem, idImagem);
-            //implementar gravação do json com o id da imagem
+            new ImagemDAO().GravaDadosImagem(imagem, nome);
+            int contRed = 0;
+            for (int i = 0; i < imagem.length; i++) {
+                for (int j = 0; j < imagem[i].length; j++) {
+                    if (imagem[i][j].getRed() == 255) {
+                        contRed++;
+                    }
+                }
+            }
+            DadosImagemDAO dadosDao = new DadosImagemDAO();
+            DadosImagem dados = new DadosImagem();
+            dados.calculaPercentual(TAM, contRed);
+            dados.setNome(nome);
+            dados.setBaixada(false);
+            dados.setRegiao(regiaoImg);
+            dados.setData(dadosDao.stringToDate(dataImg));
+            dadosDao.GravaDadosImagem(dados);
 
             try {
                 Main.changeScreen("HomeSat");
@@ -100,7 +119,7 @@ public class MakeImageController implements Initializable {
         voltar.setStyle("-fx-background-color: none;" +
                 "-fx-border-color: #cacaca;" +
                 "-fx-border-radius: 5;");
-        voltar.setPrefSize(100,40);
+        voltar.setPrefSize(100, 40);
         voltar.setOnAction(e -> {
             try {
                 Main.changeScreen("HomeSat");
@@ -111,7 +130,7 @@ public class MakeImageController implements Initializable {
 
         HBox horizontal = new HBox();
         horizontal.setSpacing(10);
-        horizontal.getChildren().addAll(concluir,voltar);
+        horizontal.getChildren().addAll(concluir, voltar);
 
         VBox vertical = new VBox();
         vertical.setPadding(new Insets(50, 10, 10, 10));
@@ -141,7 +160,7 @@ public class MakeImageController implements Initializable {
         choiceSelectRegion.setPrefSize(100, 40);
 
         listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
-        for (i = 0; i < listaRegiao.size(); i++) {
+        for (int i = 0; i < listaRegiao.size(); i++) {
             choiceSelectRegion.getItems().add(listaRegiao.get(i).getNome());
         }
 

@@ -1,6 +1,7 @@
 package Util;
 
 import Modelo.Esquadrao;
+import Modelo.Imagem;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.storage.BlobId;
@@ -82,19 +83,16 @@ public class UtilFirebase {
     }
 
 
-
-    public static void salvaArquivo(Object[][] objects, String nomeArquivo) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-        Date currentDate = new Date();
-        final String arquivo = nomeArquivo + "-" + formatter.format(currentDate) + ".json";
-        Gson gson = new Gson();
-        String json = gson.toJson(objects);
+    public static void salvaArquivo(Imagem[][] imagem, String arquivo) {
+        final int tamX = 20;
+        final int tamY = 20;
+        String dados = "P3\r\n" + tamX + " " + tamY + "\r\n" + UtilPpm.matrizImagemToString(imagem);
         BlobId blobId = BlobId.of(options.getStorageBucket(), arquivo);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/json").build();
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/x-portable-pixmap").build();
         try {
             //Criando Json
             FileWriter writer = new FileWriter(arquivo);
-            writer.write(json);
+            writer.write(dados);
             writer.close();
             //salvando no firebase
             InputStream file = new FileInputStream(arquivo);

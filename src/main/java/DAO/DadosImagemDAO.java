@@ -9,7 +9,12 @@ import com.google.gson.reflect.TypeToken;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DadosImagemDAO {
     private final String nomeArquivo = "Imagem.json";
@@ -23,14 +28,14 @@ public class DadosImagemDAO {
 
     }
 
-    public void GravaEsquadrao(DadosImagem esquadrao) {
+    public void GravaDadosImagem(DadosImagem imagem) {
 
         ArrayList<DadosImagem> lista;
         if ((lista = RecuperaDadosImagem(true)) == null) {
             lista = new ArrayList<>();
         }
-        esquadrao.setId(lista.size());
-        lista.add(esquadrao);
+        imagem.setId(lista.size());
+        lista.add(imagem);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
@@ -61,5 +66,34 @@ public class DadosImagemDAO {
 
 
         return lista;
+    }
+
+    public ArrayList<DadosImagem> imagensEntreDatas(String data1, String data2) {
+        Date date1 = stringToDate(data1);
+        Date date2 = stringToDate(data2);
+
+        ArrayList<DadosImagem> lista;
+        ArrayList<DadosImagem> aux = new ArrayList<>();
+        if ((lista = RecuperaDadosImagem(false)) != null) {
+            for (int i = 0; i < lista.size(); i++) {
+                if (lista.get(i).getData().after(date1) && lista.get(i).getData().compareTo(date2) <= 0) {
+                    aux.add(lista.get(i));
+                }
+            }
+            return aux;
+        } else
+            return null;
+    }
+
+    public Date stringToDate(String txt) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            return sdf.parse(txt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

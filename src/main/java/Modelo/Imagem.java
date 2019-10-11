@@ -46,4 +46,6 @@ public class Imagem {
                 ", blue=" + blue +
                 '}';
     }
+
+
 }

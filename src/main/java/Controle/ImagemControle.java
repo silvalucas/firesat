@@ -5,19 +5,18 @@ import Util.UtilPpm;
 
 public class ImagemControle {
     private final int x = 20;
-    private final int y = 30;
+    private final int y = 20;
 
     public Imagem[][] MontaMatriz(String caminho) {
         String cores[] = UtilPpm.LeArquivoPpm(caminho);
-
         Imagem imagem[][] = new Imagem[x][y];
-
         for (int i = 0; i < imagem.length; i++) {
             for (int j = 0; j < imagem[i].length; j++) {
                 imagem[i][j] = new Imagem();
             }
         }
         int aux = 4;
+        System.out.println(cores.length);
         for (int i = 0; i < imagem.length; i++) {
             for (int j = 0; j < imagem[i].length; j++) {
                 imagem[i][j].setRed(Integer.parseInt(cores[aux++]));

@@ -3,6 +3,7 @@ import DAO.DadosImagemDAO;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
+import Modelo.Imagem;
 import Util.UtilDados;
 import Util.UtilFirebase;
 
@@ -38,7 +39,8 @@ public class HomeController {
         if (listaImg != null) {
             for (DadosImagem dadosImagem : listaImg) {
                 UtilDados.BaixaDados(dadosImagem.getNome());
-                int cont = imagemControle.contadorFogo(imagemControle.MontaMatriz(dadosImagem.getNome()));
+                Imagem[][] imagem = imagemControle.MontaMatriz(dadosImagem.getNome());
+                int cont = imagemControle.contadorFogo(imagem);
                 dadosImagem.calculaPercentual(cont);
                 dadosImagem.setBaixada(true);
             }

@@ -82,7 +82,7 @@ public class UtilFirebase {
     public static void salvaArquivo(Imagem[][] imagem, String arquivo) {
         final int tamX = 20;
         final int tamY = 20;
-        String dados = "P3\r\n" + tamX + " " + tamY + "\r\n" + UtilPpm.matrizImagemToString(imagem);
+        String dados = "P3\r\n" + tamX + " " + tamY + "\r\n255\r\n" + UtilPpm.matrizImagemToString(imagem);
         BlobId blobId = BlobId.of(options.getStorageBucket(), arquivo);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/x-portable-pixmap").build();
         try {

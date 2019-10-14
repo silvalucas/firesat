@@ -1,8 +1,9 @@
 package DAO;
 
 import Modelo.Regiao;
+import Util.UtilDados;
 import Util.UtilFirebase;
-import UtilDados;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,7 +42,7 @@ public class RegiaoDAO {
     public ArrayList<Regiao> RecuperaRegiao() {
         ArrayList<Regiao> lista = new ArrayList<>();
         Gson gson = new Gson();
-        if (UtilDados.BaixaJson(nomeArquivo)) {
+        if (UtilDados.BaixaDados(nomeArquivo)) {
             try {
                 Reader reader = new FileReader(nomeArquivo);
                 lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {

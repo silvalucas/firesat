@@ -1,3 +1,4 @@
+import Controle.ImagemControle;
 import DAO.DadosImagemDAO;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
@@ -33,10 +34,12 @@ public class HomeController {
         esquadraoDAO.RecuperaEsquadrao(true);
         regiaoDAO.RecuperaRegiao();
         ArrayList<DadosImagem> listaImg = dadosImagemDAO.RecuperaDadosImagem(true);
-
+        ImagemControle imagemControle = new ImagemControle();
         if (listaImg != null) {
             for (DadosImagem dadosImagem : listaImg) {
                 UtilDados.BaixaDados(dadosImagem.getNome());
+                int cont = imagemControle.contadorFogo(imagemControle.MontaMatriz(dadosImagem.getNome()));
+                dadosImagem.calculaPercentual(cont);
                 dadosImagem.setBaixada(true);
             }
             dadosImagemDAO.GravaDadosImagem(listaImg);

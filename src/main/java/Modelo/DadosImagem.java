@@ -9,6 +9,7 @@ public class DadosImagem {
     private int regiao;
     private boolean baixada;
     private float percentual;
+    private final int tam = 20;
 
     public float getPercentual() {
         return percentual;
@@ -71,7 +72,7 @@ public class DadosImagem {
 
     }
 
-    public void calculaPercentual(int tam, int cont) {
+    public void calculaPercentual(int cont) {
         this.percentual = ((float) cont / (tam * tam)) * 100.0f;
     }
 }

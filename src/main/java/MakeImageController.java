@@ -89,20 +89,15 @@ public class MakeImageController implements Initializable {
 
             new ImagemDAO().GravaDadosImagem(imagem, nome);
             int contRed = 0;
-            for (int i = 0; i < imagem.length; i++) {
-                for (int j = 0; j < imagem[i].length; j++) {
-                    if (imagem[i][j].getRed() == 255) {
-                        contRed++;
-                    }
-                }
-            }
+
             DadosImagemDAO dadosDao = new DadosImagemDAO();
             DadosImagem dados = new DadosImagem();
-            dados.calculaPercentual(TAM, contRed);
+            // dados.calculaPercentual(TAM, contRed);
             dados.setNome(nome);
             dados.setBaixada(false);
             dados.setRegiao(regiaoImg);
             dados.setData(dataImg);
+            dados.setPercentual(0f);
             dadosDao.GravaDadosImagem(dados);
 
             try {

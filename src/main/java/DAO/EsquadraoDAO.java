@@ -2,7 +2,7 @@ package DAO;
 
 import Modelo.Esquadrao;
 import Util.UtilFirebase;
-import Util.UtilJson;
+import Util.UtilDados;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,7 +46,7 @@ public class EsquadraoDAO {
         ArrayList<Esquadrao> lista = new ArrayList<>();
         Gson gson = new Gson();
         if (baixaDados) {
-            if (!UtilJson.BaixaJson(nomeArquivo)) {
+            if (!UtilDados.BaixaDados(nomeArquivo)) {
                 return null;
             }
         }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static Controle.ImagemControle.retornaAumento;
 import static Util.UtilDate.localdateToDate;
 
 public class ReportsController implements Initializable {
@@ -71,11 +72,10 @@ public class ReportsController implements Initializable {
             ArrayList<DadosImagem> dados = img.imagensEntreDatas(dtIni, dtFin, listaRegiao.get(idRegiao).getId());
             String txt = "";
             if (dados.size() > 0)
-                txt = dados.get(0).retornaAumento(dados.get(dados.size() - 1).getPercentual(), dados.get(0).getPercentual());
+                txt = retornaAumento(dados.get(dados.size() - 1).getPercentual(), dados.get(0).getPercentual());
             ObservableList<DadosImagem> lista = FXCollections.observableArrayList(dados);
             reportsTable.setItems(lista);
             statusTxt.setText(txt);
-
         }
     }
 
@@ -87,7 +87,6 @@ public class ReportsController implements Initializable {
         percentual.setCellValueFactory(new PropertyValueFactory<>("percentual"));
         listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         for (int i = 0; i < listaRegiao.size(); i++) {
-
             comboRegiao.getItems().add(listaRegiao.get(i).getNome());
         }
 

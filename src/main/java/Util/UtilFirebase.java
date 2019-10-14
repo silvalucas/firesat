@@ -28,10 +28,6 @@ public class UtilFirebase {
     public static FirebaseOptions options;
     public static Storage storage;
 
-    public UtilFirebase(int a) {
-
-    }
-
     public UtilFirebase() {
         try {
             getCredentials();
@@ -101,15 +97,4 @@ public class UtilFirebase {
             e.printStackTrace();
         }
     }
-
- /*ApiFuture<QuerySnapshot> query =
-                db.collection("usuarios").get();
-        QuerySnapshot querySnapshot = query.get();
-        List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
-        for (QueryDocumentSnapshot document : documents) {
-            System.out.println("User: " + document.getId());
-            System.out.println("User: " + document.getString("Nome"));
-            System.out.println("User: " + document.getString("senha"));
-            System.out.println("User: " + document.getDouble("ano"));
-        }*/
 }

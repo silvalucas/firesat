@@ -3,18 +3,13 @@ package DAO;
 import Modelo.DadosImagem;
 import Util.UtilDate;
 import Util.UtilFirebase;
-import Util.UtilJson;
+import Util.UtilDados;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,7 +46,7 @@ public class DadosImagemDAO {
         ArrayList<DadosImagem> lista;
         Gson gson = new Gson();
         if (baixaDados) {
-            if (!UtilJson.BaixaJson(nomeArquivo)) {
+            if (!UtilDados.BaixaDados(nomeArquivo)) {
                 return null;
             }
         }

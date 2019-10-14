@@ -2,7 +2,7 @@ package DAO;
 
 import Modelo.Usuario;
 import Util.UtilFirebase;
-import Util.UtilJson;
+import Util.UtilDados;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -55,7 +55,7 @@ public class UsuarioDAO {
 
         Gson gson = new Gson();
 
-        if (UtilJson.BaixaJson(nomeArquivo)) {
+        if (UtilDados.BaixaDados(nomeArquivo)) {
             try {
                 Reader reader = new FileReader(nomeArquivo);
                 lista = gson.fromJson(reader, new TypeToken<ArrayList<Usuario>>() {

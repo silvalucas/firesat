@@ -2,7 +2,7 @@ package DAO;
 
 import Modelo.Imagem;
 import Util.UtilFirebase;
-import Util.UtilJson;
+import Util.UtilDados;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -19,7 +19,7 @@ public class ImagemDAO {
 
     public Imagem[][] RecuperaImagem(String nomeArquivo) throws IOException {
         Gson gson = new Gson();
-        new UtilJson().BaixaJson(nomeArquivo);
+        new UtilDados().BaixaDados(nomeArquivo);
         Reader reader = new FileReader(nomeArquivo);
         Imagem imagem[][] = gson.fromJson(reader, Imagem[][].class);
         return imagem;

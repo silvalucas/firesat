@@ -11,12 +11,12 @@ import java.nio.file.Paths;
 import static Util.UtilFirebase.credentials;
 import static Util.UtilFirebase.options;
 
-public class UtilJson {
+public class UtilDados {
 
-    public UtilJson() {
+    public UtilDados() {
     }
 
-    public static boolean BaixaJson(String nome) {
+    public static boolean BaixaDados(String nome) {
         StorageOptions storageOptions = StorageOptions.newBuilder()
                 .setCredentials(credentials)
                 .build();

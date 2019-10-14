@@ -2,6 +2,8 @@ import DAO.DadosImagemDAO;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
+import Util.UtilDados;
+import Util.UtilFirebase;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,11 +33,14 @@ public class HomeController {
         esquadraoDAO.RecuperaEsquadrao(true);
         regiaoDAO.RecuperaRegiao();
         ArrayList<DadosImagem> listaImg = dadosImagemDAO.RecuperaDadosImagem(true);
+
         if (listaImg != null) {
             for (DadosImagem dadosImagem : listaImg) {
+                UtilDados.BaixaDados(dadosImagem.getNome());
                 dadosImagem.setBaixada(true);
             }
             dadosImagemDAO.GravaDadosImagem(listaImg);
+
         }
     }
 

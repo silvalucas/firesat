@@ -73,7 +73,7 @@ public class MakeImageController implements Initializable {
                     }
                 }
             }
-            String cdgImg = codigo.getText();
+
             LocalDate dataImg = data.getValue();
             int regiaoImg = listaRegiao.get(choiceSelectRegion.getSelectionModel().getSelectedIndex()).getId();
             Calendar data = Calendar.getInstance();

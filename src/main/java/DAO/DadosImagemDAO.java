@@ -25,9 +25,7 @@ public class DadosImagemDAO {
     }
 
     public void GravaDadosImagem(ArrayList<DadosImagem> lista) {
-
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
-
     }
 
     public void GravaDadosImagem(DadosImagem imagem) {
@@ -50,7 +48,7 @@ public class DadosImagemDAO {
     }
 
     public ArrayList<DadosImagem> RecuperaDadosImagem(boolean baixaDados) {
-        ArrayList<DadosImagem> lista = new ArrayList<>();
+        ArrayList<DadosImagem> lista;
         Gson gson = new Gson();
         if (baixaDados) {
             if (!UtilJson.BaixaJson(nomeArquivo)) {
@@ -65,24 +63,19 @@ public class DadosImagemDAO {
             e.printStackTrace();
             return null;
         }
-
-
         return lista;
     }
 
-    public ArrayList<DadosImagem> imagensEntreDatas(Date data1, Date data2) {
-        // Date date1 = stringToDate(data1);
-        //Date date2 = stringToDate(data2);
-
-
+    public ArrayList<DadosImagem> imagensEntreDatas(Date data1, Date data2, int id) {
         ArrayList<DadosImagem> lista;
         ArrayList<DadosImagem> aux = new ArrayList<>();
         if ((lista = RecuperaDadosImagem(false)) != null) {
             for (int i = 0; i < lista.size(); i++) {
-                if (UtilDate.localdateToDate(lista.get(i).getData()).after(data1)
+                if (UtilDate.localdateToDate(lista.get(i).getData()).compareTo(data1) >= 0
                         &&
                         UtilDate.localdateToDate(lista.get(i).getData()).compareTo(data2) <= 0) {
-                    aux.add(lista.get(i));
+                    if (id == lista.get(i).getRegiao())
+                        aux.add(lista.get(i));
                 }
             }
             return aux;

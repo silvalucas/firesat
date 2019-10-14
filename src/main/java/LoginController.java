@@ -31,7 +31,7 @@ public class LoginController {
         txtPassword.setText("");
         txtUser.setText("");
 
-        boolean usuario = true;//new UsuarioDAO().AutenticaUsuario(user, password);
+        boolean usuario = true;// new UsuarioDAO().AutenticaUsuario(user, password);
 
         boolean analise = radioAnalise.isSelected();
         boolean satelite = radioSatelite.isSelected();

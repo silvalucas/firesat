@@ -43,6 +43,7 @@ public class HomeController {
         esquadraoDAO.EnviaDadosEsquadrao();
         regiaoDAO.EnviaDadosRegiao();
 
+
     }
 
     public void reportsBtn(javafx.event.ActionEvent actionEvent) throws IOException {

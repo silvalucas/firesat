@@ -74,6 +74,7 @@ public class Main extends Application {
         loadingScene = new Scene(fxmlLoading, 600, 400);
 
         Parent fxmlCadSquad = FXMLLoader.load(getClass().getResource("fxml/CadSquad.fxml"));
+        cadSquadScene = new Scene(fxmlCadSquad, 600, 400);
 
         Parent fxmlCadRegion = FXMLLoader.load(getClass().getResource("fxml/CadRegion.fxml"));
         cadRegionScene = new Scene(fxmlCadRegion, 600, 400);

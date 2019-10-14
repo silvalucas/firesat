@@ -22,7 +22,7 @@
                     <columns>
                       <TableColumn fx:id="nome" prefWidth="159.0" text="NOME" />
                       <TableColumn fx:id="areaprotecao" prefWidth="167.0" text="ÁREA DE PRESERVAÇÃO" />
-                        <TableColumn fx:id="esquadraoResponsavel" prefWidth="258.0" text="ESQUADRÃO RESPONSÁVEL" />
+                        <TableColumn fx:id="esquadraoResponsavel" prefWidth="258.0" text="ID ESQUADRÃO RESPONSÁVEL" />
                     </columns>
                   </TableView>
                </children>

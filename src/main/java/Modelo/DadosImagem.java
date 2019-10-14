@@ -78,7 +78,7 @@ public class DadosImagem {
     public String retornaAumento(float valFinal, float valInicial) {
         float total = valFinal - valInicial;
         if (total == 0) {
-            return "Sem aumento ou diminuição";
+            return "Sem aumento ou diminuicao";
         }
         if (total < 0) {
             return "Diminuiu " + ((Math.abs(total))) + "%";

@@ -29,12 +29,13 @@ public class CadSquadController implements Initializable {
     private void concludeCadSquad(javafx.event.ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
         String nome = txtnome.getText();
-        System.out.println(nome);
         String especialidade = txtespecialidade.getText();
-        System.out.println(especialidade);
+        txtnome.setText("");
+        txtespecialidade.setText("");
+
 
         int quantSoldados = Integer.parseInt(txtsoldado.getText());
-        System.out.println(quantSoldados);
+        txtsoldado.setText("");
         Esquadrao esquadrao = new Esquadrao(nome, especialidade, quantSoldados);
         EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
         esquadraoDAO.GravaEsquadrao(esquadrao);

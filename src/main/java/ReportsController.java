@@ -62,14 +62,13 @@ public class ReportsController implements Initializable {
         Date dtIni = localdateToDate(dateInicial.getValue());
         Date dtFin = localdateToDate(dateFinal.getValue());
         String reg = comboRegiao.getSelectionModel().getSelectedItem();
-        System.out.println(dtIni + " " + dtFin + " " + reg);
-
+        int idRegiao = comboRegiao.getSelectionModel().getSelectedIndex();
         if (dtIni.equals("") || dtFin.equals("") || reg == null) {
             errorTxt.setText("FAVOR PREENCHER TODOS OS CAMPOS!");
             return;
         } else {
             DadosImagemDAO img = new DadosImagemDAO();
-            ArrayList<DadosImagem> dados = img.imagensEntreDatas(dtIni, dtFin);
+            ArrayList<DadosImagem> dados = img.imagensEntreDatas(dtIni, dtFin, listaRegiao.get(idRegiao).getId());
             String txt = "";
             if (dados.size() > 0)
                 txt = dados.get(0).retornaAumento(dados.get(dados.size() - 1).getPercentual(), dados.get(0).getPercentual());
@@ -88,6 +87,7 @@ public class ReportsController implements Initializable {
         percentual.setCellValueFactory(new PropertyValueFactory<>("percentual"));
         listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         for (int i = 0; i < listaRegiao.size(); i++) {
+
             comboRegiao.getItems().add(listaRegiao.get(i).getNome());
         }
 

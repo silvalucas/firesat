@@ -1,4 +1,7 @@
+package Controle;
+
 import java.io.IOException;
+import Main.Main;
 
 public class RegionController {
     public void goToHome(javafx.event.ActionEvent actionEvent) throws IOException {

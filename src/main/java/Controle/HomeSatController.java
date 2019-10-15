@@ -1,4 +1,7 @@
+package Controle;
+
 import java.io.IOException;
+import Main.Main;
 
 public class HomeSatController {
 

@@ -1,3 +1,5 @@
+package Controle;
+
 import DAO.DadosImagemDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
@@ -8,13 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-
+import Main.Main;
 import static Controle.ImagemControle.retornaAumento;
 import static Util.UtilDate.localdateToDate;
 

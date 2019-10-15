@@ -1,10 +1,12 @@
+package Controle;
+
 import DAO.DadosImagemDAO;
 import DAO.ImagemDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Modelo.Regiao;
-import Util.UtilDate;
+import Main.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,12 +17,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MakeImageController implements Initializable {

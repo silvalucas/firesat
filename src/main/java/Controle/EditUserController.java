@@ -1,3 +1,5 @@
+package Controle;
+
 import DAO.UsuarioDAO;
 import Modelo.Usuario;
 import javafx.collections.FXCollections;
@@ -9,7 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
+import Main.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

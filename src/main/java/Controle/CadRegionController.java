@@ -1,3 +1,5 @@
+package Controle;
+
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Modelo.Esquadrao;
@@ -9,11 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-
+import Main.Main;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

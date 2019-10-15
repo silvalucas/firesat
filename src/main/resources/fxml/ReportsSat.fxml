@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ReportsSatController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ReportsSatController">
     <children>
         <Pane prefHeight="400.0" prefWidth="600.0">
             <children>

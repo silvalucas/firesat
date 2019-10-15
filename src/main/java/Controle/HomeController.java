@@ -1,12 +1,12 @@
-import Controle.ImagemControle;
+package Controle;
+
 import DAO.DadosImagemDAO;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Util.UtilDados;
-import Util.UtilFirebase;
-
+import Main.Main;
 import java.io.IOException;
 import java.util.ArrayList;
 

@@ -1,9 +1,12 @@
+package Controle;
+
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import Main.Main;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;

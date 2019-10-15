@@ -1,5 +1,7 @@
+package Controle;
+
 import DAO.UsuarioDAO;
-import Modelo.Usuario;
+import Main.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -31,7 +33,7 @@ public class LoginController {
         txtPassword.setText("");
         txtUser.setText("");
 
-        boolean usuario = true;// new UsuarioDAO().AutenticaUsuario(user, password);
+        boolean usuario = new UsuarioDAO().AutenticaUsuario(user, password);
 
         boolean analise = radioAnalise.isSelected();
         boolean satelite = radioSatelite.isSelected();

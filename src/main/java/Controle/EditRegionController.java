@@ -1,3 +1,5 @@
+package Controle;
+
 import DAO.RegiaoDAO;
 import Modelo.Esquadrao;
 import Modelo.Regiao;
@@ -5,18 +7,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import Main.Main;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.BooleanStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class RemoveRegionController implements Initializable {
+import static javafx.scene.control.cell.TextFieldTableCell.forTableColumn;
 
+public class EditRegionController implements Initializable {
+
+    private ObservableList<Regiao> lista;
     @FXML
     private TableView<Regiao> tableRegion;
     @FXML
@@ -31,22 +40,31 @@ public class RemoveRegionController implements Initializable {
     }
 
     @FXML
-    private void removeRegion(ActionEvent actionEvent) throws IOException {
+    private void concludeEditRegion(ActionEvent actionEvent) throws IOException {
         Main.changeScreen("loading");
 
-        ArrayList<Regiao> todos = new RegiaoDAO().RecuperaRegiao();
-        todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
-        new RegiaoDAO().GravaRegiaoArray(todos);
+        ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
+
+        RegiaoDAO dao = new RegiaoDAO();
+        dao.GravaRegiaoArray(todos);
 
         Main.changeScreen("region");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         areaprotecao.setCellValueFactory(new PropertyValueFactory<>("areaDeProtecao"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
+        nome.setCellFactory(forTableColumn());
+        areaprotecao.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
+        nome.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
+        });
+        areaprotecao.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setAreaDeProtecao(event.getNewValue());
+        });
     }
 }

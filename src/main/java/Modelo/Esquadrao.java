@@ -15,11 +15,9 @@ public class Esquadrao {
     }
 
     public Esquadrao() {
-
     }
 
     public Esquadrao(String nome, String especialidade, int qtdSoldados) {
-
         this.nome = nome;
         this.especialidade = especialidade;
         this.qtdSoldados = qtdSoldados;

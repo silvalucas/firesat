@@ -72,6 +72,10 @@ public class DadosImagem {
 
     }
 
+    /* Método que calcula o percentual dos pixels em relação a matriz
+     * @author Nikollas Ferreira
+     * @since 15/10/2019
+     */
     public void calculaPercentual(int cont) {
         this.percentual = ((float) cont / (tam * tam)) * 100.0f;
     }

@@ -13,16 +13,30 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Date;
 
+/*Classe para manipulação de dados do objeto DadosImagem
+ * @version 0.0.1
+ * @author Nikollas Ferreira
+ * @since 15/10/2019
+ */
+
 public class DadosImagemDAO {
     private final String nomeArquivo = "Imagem.json";
 
     public DadosImagemDAO() {
     }
 
+    /* Método que grava um Arraylist do objeto DadosImagem no seu json
+     * @author Nikollas Ferreira
+     * @since 15/10/2019
+     */
     public void GravaDadosImagem(ArrayList<DadosImagem> lista) {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
+    /* Método que ao cadastrar a imagem, seta o objeto DadosImagem no seu json
+     * @author Nikollas Ferreira
+     * @since 15/10/2019
+     */
     public void GravaDadosImagem(DadosImagem imagem) {
 
         ArrayList<DadosImagem> lista;
@@ -34,14 +48,11 @@ public class DadosImagemDAO {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
 
-    public void EnviaDadosImagem() {
-        ArrayList<DadosImagem> lista;
-        if ((lista = RecuperaDadosImagem(false)) == null) {
-            lista = new ArrayList<>();
-        }
-        UtilFirebase.salvaArquivo(lista, nomeArquivo);
-    }
-
+    /* Método para buscar json do objeto DadosImagem
+     * @author Nikollas Ferreira
+     * @since 15/10/2019
+     * @return Arraylist<DadosImagem> if success
+     */
     public ArrayList<DadosImagem> RecuperaDadosImagem(boolean baixaDados) {
         ArrayList<DadosImagem> lista;
         Gson gson = new Gson();
@@ -61,6 +72,11 @@ public class DadosImagemDAO {
         return lista;
     }
 
+    /*Método para listar as imagens conforme data inicial e final fornecidas pelo usuário
+    * @author Nikollas Ferreira
+    * @since 15/10/2019
+    * @return Arraylist<DadosImagem> if success
+     */
     public ArrayList<DadosImagem> imagensEntreDatas(Date data1, Date data2, int id) {
         ArrayList<DadosImagem> lista;
         ArrayList<DadosImagem> aux = new ArrayList<>();

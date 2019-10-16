@@ -39,8 +39,8 @@ public class UtilFirebase {
     }
 
     private static void getCredentials() throws IOException {
-        InputStream serviceAccount = new FileInputStream("serviceAccount.json");
-        credentials = GoogleCredentials.fromStream(serviceAccount);
+        //InputStream serviceAccount = new FileInputStream("serviceAccount.json");
+        credentials = GoogleCredentials.fromStream(UtilFirebase.class.getResourceAsStream("serviceAccount.json"));
 
     }
 

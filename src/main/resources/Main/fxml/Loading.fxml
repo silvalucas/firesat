@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.HomeController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -18,7 +18,7 @@
             </Label>
             <ImageView fitHeight="75.0" fitWidth="49.0" layoutX="276.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/loading-gif.gif" />
+                  <Image url="@../../images/loading-gif.gif" />
                </image>
             </ImageView>
          </children>

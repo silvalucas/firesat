@@ -13,21 +13,6 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         new UtilFirebase();
         launch(args);
-
-      /*  //    EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
-        Esquadrao esquadrao = new Esquadrao("nomi", "fogareu", 65);
-        //   esquadraoDAO.GravaEsquadrao(esquadrao);
-        UtilFirebase utilFirebase = new UtilFirebase();
-        EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
-        // esquadraoDAO.GravaEsquadrao(esquadrao);
-        ArrayList<EsquadraoDAO> lista = esquadraoDAO.RecuperaEsquadrao();
-        if (!lista.isEmpty()) {
-            System.out.println("tem coisa");
-        }
-        Regiao regiao = new Regiao("nome", true, esquadrao);
-        RegiaoDAO regiaoDAO = new RegiaoDAO();
-        regiaoDAO.GravaRegiao(regiao);
-*/
     }
 
 
@@ -68,9 +53,6 @@ public class Main extends Application {
 
         Parent fxmlCadSquad = FXMLLoader.load(getClass().getResource("fxml/CadSquad.fxml"));
         cadSquadScene = new Scene(fxmlCadSquad, 600, 400);
-
-        Parent fxmlCadRegion = FXMLLoader.load(getClass().getResource("fxml/CadRegion.fxml"));
-        cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
 
         Parent fxmlCadUser = FXMLLoader.load(getClass().getResource("fxml/CadUser.fxml"));
         cadUserScene = new Scene(fxmlCadUser, 600, 400);
@@ -124,6 +106,8 @@ public class Main extends Application {
                 stage.setScene(listSquadScene);
                 break;
             case "cadRegion":
+                Parent fxmlCadRegion = FXMLLoader.load(Main.class.getResource("fxml/CadRegion.fxml"));
+                cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
                 stage.setScene(cadRegionScene);
                 break;
             case "editRegion":

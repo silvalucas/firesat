@@ -154,5 +154,4 @@ public class MakeImageController implements Initializable {
         vertical.getChildren().addAll(titulo, txtdata, data, txtregiao, choiceSelectRegion, horizontal);
         root.getChildren().add(vertical);
     }
-
 }

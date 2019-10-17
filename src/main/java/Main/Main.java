@@ -1,5 +1,6 @@
 package Main;
 
+import Controle.ReportsController;
 import Util.UtilFirebase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

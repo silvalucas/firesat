@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controle.ReportsSatController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Label alignment="CENTER" layoutY="6.0" prefHeight="75.0" prefWidth="600.0" text="RELATÓRIOS">
+                    <font>
+                        <Font name="Segoe UI" size="24.0"/>
+                    </font>
+                </Label>
+                <Button layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0"
+                        prefWidth="33.0" style="-fx-background-color: none;">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/back.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <ScrollPane layoutX="5.0" layoutY="99.0" prefHeight="278.0" prefWidth="590.0">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="588.0">
+                            <children>
+                                <TableView fx:id="reportsTable" prefHeight="278.0" prefWidth="587.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="CÓDIGO" fx:id="id"/>
+                                        <TableColumn prefWidth="214.0" text="IMAGEM" fx:id="nome"/>
+                                        <TableColumn prefWidth="181.0" text="DATA" fx:id="data"/>
+                                        <TableColumn prefWidth="116.0" text="BAIXADA" fx:id="baixada"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

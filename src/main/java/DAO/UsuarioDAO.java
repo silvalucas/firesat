@@ -56,14 +56,8 @@ public class UsuarioDAO {
     public boolean AutenticaUsuario(String email, String senha) {
         ArrayList<Usuario> lista = RecuperaUsuario();
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getEmail().equals(email)) {
-                if (lista.get(i).getPassword().equals(senha)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
+            if (lista.get(i).getEmail().equals(email) && lista.get(i).getPassword().equals(senha)) {
+                return true;
             }
         }
         return false;

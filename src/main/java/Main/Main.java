@@ -14,7 +14,20 @@ public class Main extends Application {
         new UtilFirebase();
         launch(args);
 
-
+      /*  //    EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
+        Esquadrao esquadrao = new Esquadrao("nomi", "fogareu", 65);
+        //   esquadraoDAO.GravaEsquadrao(esquadrao);
+        UtilFirebase utilFirebase = new UtilFirebase();
+        EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
+        // esquadraoDAO.GravaEsquadrao(esquadrao);
+        ArrayList<EsquadraoDAO> lista = esquadraoDAO.RecuperaEsquadrao();
+        if (!lista.isEmpty()) {
+            System.out.println("tem coisa");
+        }
+        Regiao regiao = new Regiao("nome", true, esquadrao);
+        RegiaoDAO regiaoDAO = new RegiaoDAO();
+        regiaoDAO.GravaRegiao(regiao);
+*/
     }
 
 
@@ -47,7 +60,7 @@ public class Main extends Application {
         stage = primaryStage;
 
         primaryStage.setTitle("Firesat - Em Prol da Amazonia");
-        Parent fxmlHome = FXMLLoader.load(getClass().getResource("/../fxml/Home.fxml"));
+        Parent fxmlHome = FXMLLoader.load(getClass().getResource("../fxml/Home.fxml"));
         homeScene = new Scene(fxmlHome, 600, 400);
 
         Parent fxmlLoading = FXMLLoader.load(getClass().getResource("../fxml/Loading.fxml"));

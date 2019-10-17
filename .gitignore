@@ -1,17 +1,10 @@
-
-.gradle/
-
 .idea/
 
 build/
 
 gradle/
 
-build.gradle
-
 gradlew
-
-*.bat
 
 *.gradle
 
@@ -20,5 +13,3 @@ Esquadrao
 Regiao
 
 Usuario
-
-1192019134343.ppm

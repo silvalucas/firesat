@@ -1,15 +1,24 @@
 package DAO;
 
 import Modelo.DadosImagem;
+import Modelo.Imagem;
 import Util.UtilDate;
 import Util.UtilFirebase;
 import Util.UtilDados;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,22 +46,66 @@ public class DadosImagemDAO {
      * @author Nikollas Ferreira
      * @since 15/10/2019
      */
-    public void GravaDadosImagem(DadosImagem imagem) {
+    public void GravaDadosImagem(DadosImagem imagem, Connection con) {
+        String sql = "insert into imagem (nome,percentual,data,caminho,baixada,regiao_id) " +
+                "values (?,?,?,?,?,?)";
 
-        ArrayList<DadosImagem> lista;
-        if ((lista = RecuperaDadosImagem(true)) == null) {
-            lista = new ArrayList<>();
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setString(1, imagem.getNome());
+            stmt.setFloat(2, imagem.getPercentual());
+            stmt.setDate(3, (java.sql.Date) Date.from(imagem.getData().
+                    atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+            stmt.setString(4, nomeArquivo);
+            stmt.setBoolean(5, imagem.isBaixada());
+            stmt.setInt(6, imagem.getRegiao());
+
+            // executa
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        imagem.setId(lista.size());
-        lista.add(imagem);
-        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+
     }
+
 
     /* Método para buscar json do objeto DadosImagem
      * @author Nikollas Ferreira
      * @since 15/10/2019
      * @return Arraylist<DadosImagem> if success
      */
+    public ArrayList<DadosImagem> RecuperaDadosImagem(boolean baixaDados, Connection con) {
+        ArrayList<DadosImagem> lista = new ArrayList<>();
+        String sql = "select id,nome,percentual,data,baixada,regiao_id from imagem;";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                DadosImagem imagem = new DadosImagem();
+                imagem.setId(rs.getInt(1));
+                imagem.setNome(rs.getString(2));
+                imagem.setPercentual(rs.getFloat(3));
+                imagem.setData(rs.getDate(4).toLocalDate());
+                imagem.setBaixada(rs.getBoolean(5));
+                imagem.setRegiao(rs.getInt(6));
+
+                lista.add(imagem);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
     public ArrayList<DadosImagem> RecuperaDadosImagem(boolean baixaDados) {
         ArrayList<DadosImagem> lista;
         Gson gson = new Gson();
@@ -73,9 +126,9 @@ public class DadosImagemDAO {
     }
 
     /*Método para listar as imagens conforme data inicial e final fornecidas pelo usuário
-    * @author Nikollas Ferreira
-    * @since 15/10/2019
-    * @return Arraylist<DadosImagem> if success
+     * @author Nikollas Ferreira
+     * @since 15/10/2019
+     * @return Arraylist<DadosImagem> if success
      */
     public ArrayList<DadosImagem> imagensEntreDatas(Date data1, Date data2, int id) {
         ArrayList<DadosImagem> lista;

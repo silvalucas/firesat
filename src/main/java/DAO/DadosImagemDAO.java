@@ -78,7 +78,7 @@ public class DadosImagemDAO {
      * @since 15/10/2019
      * @return Arraylist<DadosImagem> if success
      */
-    public ArrayList<DadosImagem> RecuperaDadosImagem(boolean baixaDados, Connection con) {
+    public ArrayList<DadosImagem> RecuperaDadosImagem(Connection con) {
         ArrayList<DadosImagem> lista = new ArrayList<>();
         String sql = "select id,nome,percentual,data,baixada,regiao_id from imagem;";
         try {
@@ -147,4 +147,48 @@ public class DadosImagemDAO {
             return null;
     }
 
+    public void AlteraDadosImagem(ArrayList<DadosImagem> lista) {
+        Connection con = Conexao.getConnection();
+        String sql = "UPDATE imagem SET nome = ?, percentual = ?, data = ?," +
+                " caminho =?, baixada =?, regiao_id = ? where id = ? ";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+
+            //joga resultado da consulta no ArrayList
+            for (DadosImagem imagem : lista) {
+
+                stmt.setString(1, imagem.getNome());
+                stmt.setFloat(2, imagem.getPercentual());
+                stmt.setDate(3, (java.sql.Date) Date.from(imagem.getData().
+                        atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+                stmt.setString(4, nomeArquivo);
+                stmt.setBoolean(5, imagem.isBaixada());
+                stmt.setInt(6, imagem.getRegiao());
+                stmt.executeUpdate();
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void DeletaImagem(int id) {
+        Connection con = Conexao.getConnection();
+        String sql = "DELETE FROM esquadrao WHERE id = ?";
+
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

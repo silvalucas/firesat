@@ -118,9 +118,10 @@ public class RegiaoDAO {
         }
         return lista;
     }
-    public ArrayList<AreaUrbana> RecuperaRegiaoArea(Connection con){
+
+    public ArrayList<AreaUrbana> RecuperaRegiaoArea(Connection con) {
         ArrayList<AreaUrbana> lista = new ArrayList<>();
-        String sql = "select id,nome,id_esquadrao,cidadePopulosa from esquadrao where nomeLei is NULL;";
+        String sql = "select id,nome,id_esquadrao,cidadePopulosa from regiao where nomeLei is NULL;";
         try {
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -142,10 +143,11 @@ public class RegiaoDAO {
         }
         return lista;
     }
-    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao(Connection con){
+
+    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao(Connection con) {
         ArrayList<ProtecaoAmbiental> lista = new ArrayList<>();
 
-        String sql = "select id,nome,id_esquadrao,nomeLei from esquadrao where nomeLei is NOT NULL;";
+        String sql = "select id,nome,id_esquadrao,nomeLei from regiao where nomeLei is NOT NULL;";
         try {
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -168,5 +170,68 @@ public class RegiaoDAO {
         return lista;
     }
 
+    public void AlteraRegiaoProtecao(ArrayList<ProtecaoAmbiental> lista) {
+
+        Connection con = Conexao.getConnection();
+        String sql = "UPDATE regiao SET nome = ?, nomeLei = ?, id_esquadrao = ? where id = ? ";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+
+            //joga resultado da consulta no ArrayList
+            for (ProtecaoAmbiental regiao : lista) {
+                stmt.setString(1, regiao.getNome());
+                stmt.setString(2, regiao.getNomeLei());
+                stmt.setInt(3, regiao.getEsquadrao());
+                stmt.setInt(4, regiao.getId());
+                stmt.executeUpdate();
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void AlteraRegiaoUrbana(ArrayList<AreaUrbana> lista) {
+
+        Connection con = Conexao.getConnection();
+        String sql = "UPDATE regiao SET nome = ?, cidadePopulosa = ?, id_esquadrao = ? where id = ? ";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+
+            //joga resultado da consulta no ArrayList
+            for (AreaUrbana regiao : lista) {
+                stmt.setString(1, regiao.getNome());
+                stmt.setString(2, regiao.getCidadePopulosa());
+                stmt.setInt(3, regiao.getEsquadrao());
+                stmt.setInt(4, regiao.getId());
+                stmt.executeUpdate();
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void DeletaRegiao(int id) {
+        Connection con = Conexao.getConnection();
+        String sql = "DELETE FROM regiao WHERE id = ?";
+
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 

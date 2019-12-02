@@ -161,4 +161,20 @@ public class EsquadraoDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void DeletaEsquadrao(int id) {
+        Connection con = Conexao.getConnection();
+        String sql = "DELETE FROM esquadrao WHERE id = ?";
+
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
 import javafx.collections.FXCollections;
@@ -42,12 +43,13 @@ public class RemoveSquadController implements Initializable {
         for(int i = 0; i < todos.size();i++){
             Esquadrao e = todos.get(i);
             if(e.getNome().equals(selecionado.getNome())){
-                todos.remove(i);
+                new EsquadraoDAO().DeletaEsquadrao(e.getId());
+                //                todos.remove(i);
                 break;
             }
         }
 
-        new EsquadraoDAO().GravaEsquadraoArray(todos);
+//        new EsquadraoDAO().GravaEsquadraoArray(todos);
 
         //implementar a remoção da linha selecionada na tableview
 
@@ -56,7 +58,7 @@ public class RemoveSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(true));
+        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

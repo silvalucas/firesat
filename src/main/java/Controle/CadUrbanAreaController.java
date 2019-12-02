@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Modelo.AreaUrbana;
@@ -53,7 +54,7 @@ public class CadUrbanAreaController implements Initializable {
         area.setEsquadrao(e.getId());
         area.setCidadePopulosa(cidade);
         area.setNome(nome);
-        new RegiaoDAO().GravaRegiao(area);
+        new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
 
         Main.changeScreen("region");
     }
@@ -62,7 +63,7 @@ public class CadUrbanAreaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<Esquadrao> listaAux;
-        if ((listaAux = new EsquadraoDAO().RecuperaEsquadrao(false)) != null) {
+        if ((listaAux = new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection())) != null) {
             listaSquad = FXCollections.observableArrayList(listaAux);
         } else {
             listaSquad = FXCollections.observableArrayList();

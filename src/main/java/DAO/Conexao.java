@@ -8,7 +8,7 @@ public class Conexao {
     private static final String BANCO = "firesat";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
-    private static final String DRIVER = "org.gjt.mm.mysql.Driver";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     public static Connection getConnection() {
         try {

@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
 import Main.Main;
@@ -39,7 +40,7 @@ public class CadSquadController implements Initializable {
         txtsoldado.setText("");
         Esquadrao esquadrao = new Esquadrao(nome, especialidade, quantSoldados);
         EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
-        esquadraoDAO.GravaEsquadrao(esquadrao);
+        esquadraoDAO.GravaEsquadrao(esquadrao, Conexao.getConnection());
         Main.changeScreen("squad");
 
     }

@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
 import javafx.collections.FXCollections;
@@ -33,7 +34,7 @@ public class ListSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(false));
+        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

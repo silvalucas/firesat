@@ -1,8 +1,11 @@
 package Controle;
 
+import DAO.Conexao;
 import Main.Main;
 import DAO.RegiaoDAO;
+import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
+import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,13 +22,13 @@ import java.util.ResourceBundle;
 public class ListProtectionAreaController implements Initializable {
 
     @FXML
-    private TableView<Regiao> tableRegion;
+    private TableView<ProtecaoAmbiental> tableRegion;
     @FXML
-    private TableColumn<Regiao, String> nome;
+    private TableColumn<ProtecaoAmbiental, String> nome;
     @FXML
-    private TableColumn<Regiao, String> nomelei;
+    private TableColumn<ProtecaoAmbiental, String> nomeLei;
     @FXML
-    private TableColumn<Regiao, Esquadrao> esquadraoResponsavel;
+    private TableColumn<ProtecaoAmbiental, Esquadrao> esquadraoResponsavel;
 
     public void goToRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("protectionArea");
@@ -34,9 +37,9 @@ public class ListProtectionAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        nomelei.setCellValueFactory(new PropertyValueFactory<>("nomelei"));
+        nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
     }

@@ -3,8 +3,8 @@ package Controle;
 import DAO.Conexao;
 import DAO.RegiaoDAO;
 import Main.Main;
+import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
-import Modelo.Regiao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,13 +21,13 @@ import java.util.ResourceBundle;
 public class ListUrbanAreaController implements Initializable {
 
     @FXML
-    private TableView<Regiao> tableRegion;
+    private TableView<AreaUrbana> tableRegion;
     @FXML
-    private TableColumn<Regiao, String> nome;
+    private TableColumn<AreaUrbana, String> nome;
     @FXML
-    private TableColumn<Regiao, String> cidadepopulosa;
+    private TableColumn<AreaUrbana, String> cidadePopulosa;
     @FXML
-    private TableColumn<Regiao, Esquadrao> esquadraoResponsavel;
+    private TableColumn<AreaUrbana, Esquadrao> esquadraoResponsavel;
 
     public void goToRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("urbanArea");
@@ -37,9 +37,9 @@ public class ListUrbanAreaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Connection con = Conexao.getConnection();
-        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(con));
+        ObservableList<AreaUrbana> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoArea(con));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
+        cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
     }

@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.RegiaoDAO;
 import Main.Main;
 import Modelo.Esquadrao;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class ListUrbanAreaController implements Initializable {
@@ -34,7 +36,8 @@ public class ListUrbanAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        Connection con = Conexao.getConnection();
+        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(con));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

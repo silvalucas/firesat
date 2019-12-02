@@ -137,4 +137,28 @@ public class EsquadraoDAO {
         }
         return lista;
     }
+
+    public void AlteraEsquadrao(ArrayList<Esquadrao> lista) {
+        Connection con = Conexao.getConnection();
+        String sql = "UPDATE esquadrao SET nome = ?, descricao_especialidade = ?, qtd_soldado = ? where id = ? ";
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+
+            //joga resultado da consulta no ArrayList
+            for (Esquadrao esquadrao : lista) {
+                stmt.setString(1, esquadrao.getNome());
+                stmt.setString(2, esquadrao.getEspecialidade());
+                stmt.setInt(3, esquadrao.getQtdSoldados());
+                stmt.setInt(4, esquadrao.getId());
+                stmt.executeUpdate();
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

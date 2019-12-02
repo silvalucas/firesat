@@ -41,19 +41,19 @@ public class EditUrbanAreaController implements Initializable {
 
     @FXML
     private void concludeEditRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
-        /*Main.changeScreen("loading");
+        Main.changeScreen("loading");
 
         ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
 
         RegiaoDAO dao = new RegiaoDAO();
         dao.GravaRegiaoArray(todos);
 
-        Main.changeScreen("urbanArea");*/
+        Main.changeScreen("urbanArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
@@ -61,6 +61,6 @@ public class EditUrbanAreaController implements Initializable {
         nome.setCellFactory(forTableColumn());
         nome.setOnEditCommit(event -> {
             lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
-        });*/
+        });
     }
 }

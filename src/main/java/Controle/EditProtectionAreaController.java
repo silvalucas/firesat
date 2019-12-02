@@ -39,23 +39,24 @@ public class EditProtectionAreaController implements Initializable {
     private void concludeEditRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        /*ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
+        ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
 
         RegiaoDAO dao = new RegiaoDAO();
-        dao.GravaRegiaoArray(todos);*/
+        dao.GravaRegiaoArray(todos);
 
         Main.changeScreen("region");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        nomelei.setCellValueFactory(new PropertyValueFactory<>("nomelei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
         nome.setCellFactory(forTableColumn());
         nome.setOnEditCommit(event -> {
             lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
-        });*/
+        });
     }
 }

@@ -2,6 +2,7 @@ package Controle;
 
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
+import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
@@ -36,25 +37,25 @@ public class CadUrbanAreaController implements Initializable {
     }
 
     @FXML
-    private void concludeCadRegion(ActionEvent actionEvent) {
-        /*Main.changeScreen("loading");
+    private void concludeCadRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
+        Main.changeScreen("loading");
 
         String cidade = cidadePopulosa.getText();
         String nome = txtNome.getText();
         String esquadrao = choiceSelectSquad.getSelectionModel().getSelectedItem();
-        checkProtectYes.setSelected(false);
+        cidadePopulosa.setText("");
         txtNome.setText("");
         Esquadrao e = new Esquadrao();
         for (int i = 0; i < listaSquad.size(); i++) {
             if (esquadrao.equals(listaSquad.get(i).getNome())) e = listaSquad.get(i);
         }
-        Regiao regiao = new Regiao();
-        regiao.setEsquadrao(e.getId());
-        regiao.setAreaDeProtecao(areaprotecao);
-        regiao.setNome(nome);
-        new RegiaoDAO().GravaRegiao(regiao);
+        AreaUrbana area = new AreaUrbana();
+        area.setEsquadrao(e.getId());
+        area.setCidadePopulosa(cidade);
+        area.setNome(nome);
+        new RegiaoDAO().GravaRegiao(area);
 
-        Main.changeScreen("region");*/
+        Main.changeScreen("region");
     }
 
 

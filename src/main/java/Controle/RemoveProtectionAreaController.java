@@ -36,19 +36,19 @@ public class RemoveProtectionAreaController implements Initializable {
     private void removeRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        /*ArrayList<Regiao> todos = new RegiaoDAO().RecuperaRegiao();
+        ArrayList<Regiao> todos = new RegiaoDAO().RecuperaRegiao();
         todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
         new RegiaoDAO().GravaRegiaoArray(todos);
-        */
+
         Main.changeScreen("region");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        nomelei.setCellValueFactory(new PropertyValueFactory<>("areaDeProtecao"));
+        nomelei.setCellValueFactory(new PropertyValueFactory<>("nomelei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
-        tableRegion.setItems(lista);*/
+        tableRegion.setItems(lista);
     }
 }

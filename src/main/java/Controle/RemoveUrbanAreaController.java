@@ -34,21 +34,21 @@ public class RemoveUrbanAreaController implements Initializable {
 
     @FXML
     private void removeRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
-        /*Main.changeScreen("loading");
+        Main.changeScreen("loading");
 
         ArrayList<Regiao> todos = new RegiaoDAO().RecuperaRegiao();
         todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
         new RegiaoDAO().GravaRegiaoArray(todos);
 
-        Main.changeScreen("urbanArea");*/
+        Main.changeScreen("urbanArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
-        tableRegion.setItems(lista);*/
+        tableRegion.setItems(lista);
     }
 }

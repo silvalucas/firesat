@@ -34,10 +34,10 @@ public class ListUrbanAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
-        tableRegion.setItems(lista);*/
+        tableRegion.setItems(lista);
     }
 }

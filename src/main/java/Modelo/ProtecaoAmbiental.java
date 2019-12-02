@@ -14,6 +14,10 @@ public class ProtecaoAmbiental extends Regiao implements Initializable {
         this.nomeLei = nomeLei;
     }
 
+    public ProtecaoAmbiental() {
+
+    }
+
     public String getNomeLei() {
         return nomeLei;
     }

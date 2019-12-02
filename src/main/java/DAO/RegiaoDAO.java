@@ -1,5 +1,7 @@
 package DAO;
 
+import Modelo.AreaUrbana;
+import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
 import Util.UtilDados;
 import Util.UtilFirebase;
@@ -10,6 +12,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /*Classe para manipulação de dados do objeto Região
@@ -34,6 +40,38 @@ public class RegiaoDAO {
         regiao.setId(lista.size());
         lista.add(regiao);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
+    }
+
+    public void GravaRegiao(Regiao regiao, Connection con) {
+        String aux = "";
+        if (regiao instanceof ProtecaoAmbiental) {
+            aux = "nomeLei";
+        }
+        if (regiao instanceof AreaUrbana)
+            aux = "cidadePopulosa";
+
+        String sql = "insert into regiao (nome,id_esquadrao," + aux + ") " +
+                "values (?,?,?)";
+
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setString(1, regiao.getNome());
+            stmt.setInt(2, regiao.getEsquadrao());
+            if (regiao instanceof ProtecaoAmbiental)
+                stmt.setString(3, ((ProtecaoAmbiental) regiao).getNomeLei());
+            if (regiao instanceof AreaUrbana)
+                stmt.setString(3, ((AreaUrbana) regiao).getCidadePopulosa());
+
+            // executa
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     /*Método para gravar todas as Regiões no diretório do firebase
@@ -61,9 +99,9 @@ public class RegiaoDAO {
     }
 
     /*Método para buscar as Regiões cadastradas no diretório do firebase
-    * @author Nikollas Ferreira
-    * @return ArrayList<Regiao>
-    * @since 15/10/2019
+     * @author Nikollas Ferreira
+     * @return ArrayList<Regiao>
+     * @since 15/10/2019
      */
     public ArrayList<Regiao> RecuperaRegiao() {
         ArrayList<Regiao> lista = new ArrayList<>();
@@ -77,6 +115,55 @@ public class RegiaoDAO {
                 e.printStackTrace();
                 return null;
             }
+        }
+        return lista;
+    }
+    public ArrayList<AreaUrbana> RecuperaRegiaoArea(Connection con){
+        ArrayList<AreaUrbana> lista = new ArrayList<>();
+        String sql = "select id,nome,id_esquadrao,cidadePopulosa from esquadrao where nomeLei is NULL;";
+        try {
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                AreaUrbana regiao = new AreaUrbana();
+                regiao.setId(rs.getInt(1));
+                regiao.setNome(rs.getString(2));
+                regiao.setEsquadrao(rs.getInt(3));
+                regiao.setCidadePopulosa(rs.getString(4));
+                lista.add(regiao);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao(Connection con){
+        ArrayList<ProtecaoAmbiental> lista = new ArrayList<>();
+
+        String sql = "select id,nome,id_esquadrao,nomeLei from esquadrao where nomeLei is NOT NULL;";
+        try {
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                ProtecaoAmbiental regiao = new ProtecaoAmbiental();
+                regiao.setId(rs.getInt(1));
+                regiao.setNome(rs.getString(2));
+                regiao.setEsquadrao(rs.getInt(3));
+                regiao.setNomeLei(rs.getString(4));
+                lista.add(regiao);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return lista;
     }

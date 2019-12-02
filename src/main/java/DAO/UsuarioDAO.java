@@ -9,6 +9,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /*Classe para manipulação de dados do objeto Usuario
@@ -47,7 +51,25 @@ public class UsuarioDAO {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
 
     }
+    public void GravaUsuario(Usuario usuario, Connection con){
+        String sql = "insert into usuario (nome,senha,email ) values (?,?,?)";
 
+        try {
+            // prepared statement para inserção
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // seta os valores
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getPassword());
+            stmt.setString(3, usuario.getEmail());
+
+            // executa
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     /* Método para autenticar o usuario e senha na tela de login
      * @author Lucas Oliveira
      * @since 15/10/2019
@@ -84,6 +106,31 @@ public class UsuarioDAO {
             }
         }
 
+        return lista;
+    }
+    public ArrayList<Usuario> RecuperaUsuario(Connection con){
+        ArrayList<Usuario> lista = new ArrayList<>();
+
+        String sql = "select id,nome,senha,email from usuario;";
+        try {
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // executa
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt(1));
+                usuario.setNome(rs.getString(2));
+                usuario.setPassword(rs.getString(3));
+                usuario.setEmail(rs.getString(4));
+                lista.add(usuario);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return lista;
     }
 }

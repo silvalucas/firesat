@@ -14,6 +14,10 @@ public class AreaUrbana extends Regiao implements Initializable {
         this.cidadePopulosa = cidadePopulosa;
     }
 
+    public AreaUrbana() {
+
+    }
+
     public String getCidadePopulosa() {
         return cidadePopulosa;
     }

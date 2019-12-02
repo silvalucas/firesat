@@ -24,7 +24,7 @@ public class ListUserController implements Initializable {
     @FXML
     private TableColumn<Usuario, String> email;
 
-    public void goToUser(ActionEvent actionEvent) throws IOException {
+    public void goToUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("user");
     }
 

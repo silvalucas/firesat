@@ -31,7 +31,7 @@ public class ReportsSatController implements Initializable {
     @FXML
     private TableView<DadosImagem> reportsTable;
 
-    public void goToHome(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void goToHome(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("HomeSat");
     }
 

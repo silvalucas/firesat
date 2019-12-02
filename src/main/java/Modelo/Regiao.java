@@ -1,9 +1,8 @@
 package Modelo;
 
-public class Regiao {
+public abstract class Regiao {
     private int id;
     private String nome;
-    private boolean areaDeProtecao;
     private int esquadrao;
 
     public int getId() {
@@ -14,9 +13,8 @@ public class Regiao {
         this.id = id;
     }
 
-    public Regiao(String nome, boolean areaDeProtecao, int esquadrao) {
+    public Regiao(String nome, int esquadrao) {
         this.nome = nome;
-        this.areaDeProtecao = areaDeProtecao;
         this.esquadrao = esquadrao;
     }
 
@@ -32,18 +30,6 @@ public class Regiao {
         this.nome = nome;
     }
 
-    public boolean getAreaDeProtecao() {
-        return areaDeProtecao;
-    }
-
-    public void setAreaDeProtecao(boolean areaDeProtecao) {
-        this.areaDeProtecao = areaDeProtecao;
-    }
-
-    public boolean isAreaDeProtecao() {
-        return areaDeProtecao;
-    }
-
     public int getEsquadrao() {
         return esquadrao;
     }
@@ -55,8 +41,8 @@ public class Regiao {
     @Override
     public String toString() {
         return "Regiao{" +
-                "nome='" + nome + '\'' +
-                ", areaDeProteção=" + areaDeProtecao +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", esquadrao=" + esquadrao +
                 '}';
     }

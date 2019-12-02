@@ -28,12 +28,12 @@ public class RemoveSquadController implements Initializable {
     @FXML
     private TableColumn<Esquadrao, Integer> qtdSoldados;
 
-    public void goToSquad(ActionEvent actionEvent) throws IOException {
+    public void goToSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
     }
 
     @FXML
-    private void removeSquad(ActionEvent actionEvent) throws IOException {
+    private void removeSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
         Esquadrao selecionado = tableSquad.getSelectionModel().getSelectedItem();

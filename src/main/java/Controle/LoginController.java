@@ -27,7 +27,7 @@ public class LoginController {
     @FXML
     private Label errorMsg;
 
-    public void btnEntrar(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void btnEntrar(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         String user = txtUser.getText();
         String password = txtPassword.getText();
         txtPassword.setText("");

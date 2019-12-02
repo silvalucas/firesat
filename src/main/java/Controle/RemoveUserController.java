@@ -25,12 +25,12 @@ public class RemoveUserController implements Initializable {
     @FXML
     private TableColumn<Usuario, String> email;
 
-    public void goToUser(ActionEvent actionEvent) throws IOException {
+    public void goToUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("user");
     }
 
     @FXML
-    private void removeUser(ActionEvent actionEvent) throws IOException {
+    private void removeUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
         ArrayList<Usuario> todos = new UsuarioDAO().RecuperaUsuario();

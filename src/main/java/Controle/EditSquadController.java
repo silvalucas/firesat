@@ -32,12 +32,12 @@ public class EditSquadController implements Initializable {
     @FXML
     private TableColumn<Esquadrao, Integer> qtdSoldados;
 
-    public void goToSquad(ActionEvent actionEvent) throws IOException {
+    public void goToSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
     }
 
     @FXML
-    private void concludeEditSquad(ActionEvent actionEvent) throws IOException {
+    private void concludeEditSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
         ArrayList<Esquadrao> todos = new ArrayList<Esquadrao>(tableSquad.getItems());

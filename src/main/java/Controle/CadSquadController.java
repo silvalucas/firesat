@@ -22,12 +22,12 @@ public class CadSquadController implements Initializable {
     @FXML
     private TextField txtespecialidade;
 
-    public void goToSquad(ActionEvent actionEvent) throws IOException {
+    public void goToSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
     }
 
     @FXML
-    private void concludeCadSquad(javafx.event.ActionEvent actionEvent) throws IOException {
+    private void concludeCadSquad(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
         String nome = txtnome.getText();
         String especialidade = txtespecialidade.getText();

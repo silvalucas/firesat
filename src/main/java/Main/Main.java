@@ -1,6 +1,7 @@
 package Main;
 
-import Controle.ReportsController;
+import Controle.PaginaDesconhecidaException;
+import Modelo.AreaUrbana;
 import Util.UtilFirebase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,6 @@ public class Main extends Application {
         new UtilFirebase();
         launch(args);
     }
-
 
     private static Stage stage;
     private static Scene homeScene;
@@ -40,9 +40,12 @@ public class Main extends Application {
     private static Scene makeImageSat;
     private static Scene reports;
     private static Scene reportsSat;
+    private static Scene choiceRegion;
+    private static Scene urbanArea;
+    private static Scene protectionArea;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
 
         primaryStage.setTitle("Firesat - Em Prol da Amazonia");
@@ -65,23 +68,28 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void changeScreen(String tela) throws IOException {
+    public static void changeScreen(String tela) throws PaginaDesconhecidaException {
         switch (tela) {
             case "squad":
-                Parent fxmlSquad = FXMLLoader.load(Main.class.getResource("fxml/Squad.fxml"));
+                Parent fxmlSquad;
+                try {
+                    fxmlSquad = FXMLLoader.load(Main.class.getResource("fxml/Squad.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 squadScene = new Scene(fxmlSquad, 600, 400);
                 stage.setScene(squadScene);
                 break;
             case "home":
                 stage.setScene(homeScene);
                 break;
-            case "region":
-                Parent fxmlRegion = FXMLLoader.load(Main.class.getResource("fxml/Region.fxml"));
-                regionScene = new Scene(fxmlRegion, 600, 400);
-                stage.setScene(regionScene);
-                break;
             case "user":
-                Parent fxmlUser = FXMLLoader.load(Main.class.getResource("fxml/User.fxml"));
+                Parent fxmlUser;
+                try {
+                    fxmlUser = FXMLLoader.load(Main.class.getResource("fxml/User.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 userScene = new Scene(fxmlUser, 600, 400);
                 stage.setScene(userScene);
                 break;
@@ -92,55 +100,65 @@ public class Main extends Application {
                 stage.setScene(cadSquadScene);
                 break;
             case "editSquad":
-                Parent fxmlEditSquad = FXMLLoader.load(Main.class.getResource("fxml/EditSquad.fxml"));
+                Parent fxmlEditSquad;
+                try {
+                    fxmlEditSquad = FXMLLoader.load(Main.class.getResource("fxml/EditSquad.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 editSquadScene = new Scene(fxmlEditSquad, 600, 400);
                 stage.setScene(editSquadScene);
                 break;
             case "removeSquad":
-                Parent fxmlRemoveSquad = FXMLLoader.load(Main.class.getResource("fxml/RemoveSquad.fxml"));
+                Parent fxmlRemoveSquad;
+                try {
+                    fxmlRemoveSquad = FXMLLoader.load(Main.class.getResource("fxml/RemoveSquad.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 removeSquadScene = new Scene(fxmlRemoveSquad, 600, 400);
                 stage.setScene(removeSquadScene);
                 break;
             case "listSquad":
-                Parent fxmlListSquad = FXMLLoader.load(Main.class.getResource("fxml/ListSquad.fxml"));
+                Parent fxmlListSquad;
+                try {
+                    fxmlListSquad = FXMLLoader.load(Main.class.getResource("fxml/ListSquad.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 listSquadScene = new Scene(fxmlListSquad, 600, 400);
                 stage.setScene(listSquadScene);
-                break;
-            case "cadRegion":
-                Parent fxmlCadRegion = FXMLLoader.load(Main.class.getResource("fxml/CadRegion.fxml"));
-                cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
-                stage.setScene(cadRegionScene);
-                break;
-            case "editRegion":
-                Parent fxmlEditRegion = FXMLLoader.load(Main.class.getResource("fxml/EditRegion.fxml"));
-                editRegionScene = new Scene(fxmlEditRegion, 600, 400);
-                stage.setScene(editRegionScene);
-                break;
-            case "removeRegion":
-                Parent fxmlRemoveRegion = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegion.fxml"));
-                removeRegionScene = new Scene(fxmlRemoveRegion, 600, 400);
-                stage.setScene(removeRegionScene);
-                break;
-            case "listRegion":
-                Parent fxmlListRegion = FXMLLoader.load(Main.class.getResource("fxml/ListRegion.fxml"));
-                listRegionScene = new Scene(fxmlListRegion, 600, 400);
-                stage.setScene(listRegionScene);
                 break;
             case "cadUser":
                 stage.setScene(cadUserScene);
                 break;
             case "editUser":
-                Parent fxmlEditUser = FXMLLoader.load(Main.class.getResource("fxml/EditUser.fxml"));
+                Parent fxmlEditUser;
+                try {
+                    fxmlEditUser = FXMLLoader.load(Main.class.getResource("fxml/EditUser.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 editUserScene = new Scene(fxmlEditUser, 600, 400);
                 stage.setScene(editUserScene);
                 break;
             case "removeUser":
-                Parent fxmlRemoveUser = FXMLLoader.load(Main.class.getResource("fxml/RemoveUser.fxml"));
+                Parent fxmlRemoveUser;
+                try {
+                    fxmlRemoveUser = FXMLLoader.load(Main.class.getResource("fxml/RemoveUser.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 removeUserScene = new Scene(fxmlRemoveUser, 600, 400);
                 stage.setScene(removeUserScene);
                 break;
             case "listUser":
-                Parent fxmlListUser = FXMLLoader.load(Main.class.getResource("fxml/ListUser.fxml"));
+                Parent fxmlListUser;
+                try {
+                    fxmlListUser = FXMLLoader.load(Main.class.getResource("fxml/ListUser.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 listUserScene = new Scene(fxmlListUser, 600, 400);
                 stage.setScene(listUserScene);
                 break;
@@ -148,25 +166,157 @@ public class Main extends Application {
                 stage.setScene(loginScene);
                 break;
             case "HomeSat":
-                Parent fxmlMainSat = FXMLLoader.load(Main.class.getResource("fxml/HomeSat.fxml"));
+                Parent fxmlMainSat;
+                try {
+                    fxmlMainSat = FXMLLoader.load(Main.class.getResource("fxml/HomeSat.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 homeSat = new Scene(fxmlMainSat, 600, 400);
                 stage.setScene(homeSat);
                 break;
             case "MakeImage":
-                Parent fxmlMakeImage = FXMLLoader.load(Main.class.getResource("fxml/MakeImageSat.fxml"));
+                Parent fxmlMakeImage;
+                try {
+                    fxmlMakeImage = FXMLLoader.load(Main.class.getResource("fxml/MakeImageSat.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 makeImageSat = new Scene(fxmlMakeImage, 900, 700);
                 stage.setScene(makeImageSat);
                 break;
             case "reports":
-                Parent fxmlReports = FXMLLoader.load(Main.class.getResource("fxml/Reports.fxml"));
+                Parent fxmlReports;
+                try {
+                    fxmlReports = FXMLLoader.load(Main.class.getResource("fxml/Reports.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 reports = new Scene(fxmlReports, 600, 400);
                 stage.setScene(reports);
                 break;
             case "ReportsSat":
-                Parent fxmlReportsSat = FXMLLoader.load(Main.class.getResource("fxml/ReportsSat.fxml"));
+                Parent fxmlReportsSat;
+                try {
+                    fxmlReportsSat = FXMLLoader.load(Main.class.getResource("fxml/ReportsSat.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
                 reportsSat = new Scene(fxmlReportsSat, 600, 400);
                 stage.setScene(reportsSat);
                 break;
+            case "choiceRegion":
+                Parent fxmlChoiceRegion;
+                try {
+                    fxmlChoiceRegion = FXMLLoader.load(Main.class.getResource("fxml/ChoiceRegion.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                choiceRegion = new Scene(fxmlChoiceRegion, 600, 400);
+                stage.setScene(choiceRegion);
+                break;
+            case "cadRegionUrban":
+                Parent fxmlCadRegion;
+                try {
+                    fxmlCadRegion = FXMLLoader.load(Main.class.getResource("fxml/CadRegionUrban.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
+                stage.setScene(cadRegionScene);
+                break;
+            case "editRegionUrban":
+                Parent fxmlEditRegion;
+                try {
+                    fxmlEditRegion = FXMLLoader.load(Main.class.getResource("fxml/EditRegionUrban.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                editRegionScene = new Scene(fxmlEditRegion, 600, 400);
+                stage.setScene(editRegionScene);
+                break;
+            case "removeRegionUrban":
+                Parent fxmlRemoveRegion;
+                try {
+                    fxmlRemoveRegion = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegionUrban.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                removeRegionScene = new Scene(fxmlRemoveRegion, 600, 400);
+                stage.setScene(removeRegionScene);
+                break;
+            case "listRegionUrban":
+                Parent fxmlListRegion;
+                try {
+                    fxmlListRegion = FXMLLoader.load(Main.class.getResource("fxml/ListRegionUrban.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                listRegionScene = new Scene(fxmlListRegion, 600, 400);
+                stage.setScene(listRegionScene);
+                break;
+            case "urbanArea":
+                Parent fxmlUrbanArea;
+                try {
+                    fxmlUrbanArea = FXMLLoader.load(Main.class.getResource("fxml/UrbanArea.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                urbanArea = new Scene(fxmlUrbanArea, 600, 400);
+                stage.setScene(urbanArea);
+                break;
+            case "protectionArea":
+                Parent fxmlProtectionArea;
+                try {
+                    fxmlProtectionArea = FXMLLoader.load(Main.class.getResource("fxml/ProtectionArea.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                protectionArea = new Scene(fxmlProtectionArea, 600, 400);
+                stage.setScene(protectionArea);
+                break;
+            case "cadRegionProtection":
+                Parent fxmlCadRegionProtection;
+                try {
+                    fxmlCadRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/CadRegionProtection.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                cadRegionScene = new Scene(fxmlCadRegionProtection, 600, 400);
+                stage.setScene(cadRegionScene);
+                break;
+            case "editRegionProtection":
+                Parent fxmlEditRegionProtection;
+                try {
+                    fxmlEditRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/EditRegionProtection.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                editRegionScene = new Scene(fxmlEditRegionProtection, 600, 400);
+                stage.setScene(editRegionScene);
+                break;
+            case "removeRegionProtection":
+                Parent fxmlRemoveRegionProtection;
+                try {
+                    fxmlRemoveRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegionProtection.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                removeRegionScene = new Scene(fxmlRemoveRegionProtection, 600, 400);
+                stage.setScene(removeRegionScene);
+                break;
+            case "listRegionProtection":
+                Parent fxmlListRegionProtection;
+                try {
+                    fxmlListRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/ListRegionProtection.fxml"));
+                } catch (IOException e) {
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                }
+                listRegionScene = new Scene(fxmlListRegionProtection, 600, 400);
+                stage.setScene(listRegionScene);
+                break;
+            default:
+                throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
         }
     }
 }

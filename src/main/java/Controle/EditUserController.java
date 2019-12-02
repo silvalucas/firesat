@@ -27,12 +27,12 @@ public class EditUserController implements Initializable {
     @FXML
     private TableColumn<Usuario, String> email;
 
-    public void goToUser(ActionEvent actionEvent) throws IOException {
+    public void goToUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("user");
     }
 
     @FXML
-    private void concludeEditUser(ActionEvent actionEvent) throws IOException {
+    private void concludeEditUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
         ArrayList<Usuario> todos = new ArrayList<Usuario>(tableUser.getItems());

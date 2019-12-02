@@ -24,12 +24,12 @@ public class CadUserController implements Initializable {
     @FXML
     private PasswordField txtPassword;
 
-    public void goToUser(ActionEvent actionEvent) throws IOException {
+    public void goToUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("user");
     }
 
     @FXML
-    private void concludeCadUser(ActionEvent actionEvent) throws IOException {
+    private void concludeCadUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
         String nome = txtNome.getText();

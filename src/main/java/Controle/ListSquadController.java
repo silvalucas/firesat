@@ -27,7 +27,7 @@ public class ListSquadController implements Initializable {
     private TableColumn<Esquadrao, Integer> qtdSoldados;
 
 
-    public void goToSquad(ActionEvent actionEvent) throws IOException {
+    public void goToSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
     }
 

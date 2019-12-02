@@ -7,7 +7,6 @@ import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Util.UtilDados;
 import Main.Main;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomeController {
@@ -15,19 +14,19 @@ public class HomeController {
     private RegiaoDAO regiaoDAO = new RegiaoDAO();
     private DadosImagemDAO dadosImagemDAO = new DadosImagemDAO();
 
-    public void goToSquad(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void goToSquad(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
     }
 
-    public void goToRegion(javafx.event.ActionEvent actionEvent) throws IOException {
-        Main.changeScreen("region");
+    public void goToChoiceRegion(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
+        Main.changeScreen("choiceRegion");
     }
 
-    public void goToUser(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void goToUser(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("user");
     }
 
-    public void goToLogin(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void goToLogin(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("login");
     }
 
@@ -52,11 +51,9 @@ public class HomeController {
     public void sendDataBtn(javafx.event.ActionEvent actionEvent) {
         esquadraoDAO.EnviaDadosEsquadrao();
         regiaoDAO.EnviaDadosRegiao();
-
-
     }
 
-    public void reportsBtn(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void reportsBtn(javafx.event.ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("reports");
     }
 }

@@ -9,23 +9,23 @@ import java.util.ResourceBundle;
 
 public class SquadController implements Initializable {
 
-    public void goToHome(ActionEvent actionEvent) throws IOException {
+    public void goToHome(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("home");
     }
 
-    public void goToCadSquad(ActionEvent actionEvent) throws IOException {
+    public void goToCadSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("cadSquad");
     }
 
-    public void goToEditSquad(ActionEvent actionEvent) throws IOException {
+    public void goToEditSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("editSquad");
     }
 
-    public void goToListSquad(ActionEvent actionEvent) throws IOException {
+    public void goToListSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("listSquad");
     }
 
-    public void goToRemoveSquad(ActionEvent actionEvent) throws IOException {
+    public void goToRemoveSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("removeSquad");
     }
 

@@ -98,11 +98,11 @@ public class MakeImageController implements Initializable {
             dados.setRegiao(regiaoImg);
             dados.setData(dataImg);
             dados.setPercentual(0f);
-            dadosDao.GravaDadosImagem(dados);
+            //dadosDao.GravaDadosImagem(dados);
 
             try {
                 Main.changeScreen("HomeSat");
-            } catch (IOException ex) {
+            } catch (PaginaDesconhecidaException ex) {
                 ex.printStackTrace();
             }
         });
@@ -115,7 +115,7 @@ public class MakeImageController implements Initializable {
         voltar.setOnAction(e -> {
             try {
                 Main.changeScreen("HomeSat");
-            } catch (IOException ex) {
+            } catch (PaginaDesconhecidaException ex) {
                 ex.printStackTrace();
             }
         });

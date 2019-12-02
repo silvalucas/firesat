@@ -19,7 +19,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToRegion" prefHeight="37.0" prefWidth="174.0" styleClass="botaoMenuSidebar" stylesheets="@../../style/style.css" text="REGIÕES">
+            <Button mnemonicParsing="false" onAction="#goToChoiceRegion" prefHeight="37.0" prefWidth="174.0" styleClass="botaoMenuSidebar" stylesheets="@../../style/style.css" text="REGIÕES">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>

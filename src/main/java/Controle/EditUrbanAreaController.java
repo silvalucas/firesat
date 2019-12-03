@@ -1,6 +1,8 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.RegiaoDAO;
+import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.awt.geom.Area;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,15 +28,15 @@ import static javafx.scene.control.cell.TextFieldTableCell.forTableColumn;
 
 public class EditUrbanAreaController implements Initializable {
 
-    private ObservableList<Regiao> lista;
+    private ObservableList<AreaUrbana> lista;
     @FXML
-    private TableView<Regiao> tableRegion;
+    private TableView<AreaUrbana> tableRegion;
     @FXML
-    private TableColumn<Regiao, String> nome;
+    private TableColumn<AreaUrbana, String> nome;
     @FXML
-    private TableColumn<Regiao, String> cidadepopulosa;
+    private TableColumn<AreaUrbana, String> cidadePopulosa;
     @FXML
-    private TableColumn<Regiao, Esquadrao> esquadraoResponsavel;
+    private TableColumn<AreaUrbana, Esquadrao> esquadraoResponsavel;
 
     public void goToRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("urbanArea");
@@ -43,19 +46,19 @@ public class EditUrbanAreaController implements Initializable {
     private void concludeEditRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
+        ArrayList<AreaUrbana> todos = new ArrayList<>(tableRegion.getItems());
 
         RegiaoDAO dao = new RegiaoDAO();
-        dao.GravaRegiaoArray(todos);
+        dao.AlteraRegiaoUrbana(todos);
 
         Main.changeScreen("urbanArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoArea(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        cidadepopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadepopulosa"));
+        cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
         nome.setCellFactory(forTableColumn());

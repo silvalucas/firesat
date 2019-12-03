@@ -14,21 +14,32 @@ public class Usuario {
     private String nome;
     private String email;
     private String password;
+    private Boolean utilizaBancoLocal;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String email, String password) {
+    public Usuario(int id, String nome, String email, String password, Boolean permissao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.password = password;
+        this.utilizaBancoLocal = permissao;
     }
 
-    public Usuario(String nome, String email, String password) {
+    public Usuario(String nome, String email, String password, Boolean permissao) {
         this.nome = nome;
         this.email = email;
         this.password = password;
+        this.utilizaBancoLocal = permissao;
+    }
+
+    public Boolean getUtilizaBancoLocal() {
+        return utilizaBancoLocal;
+    }
+
+    public void setUtilizaBancoLocal(Boolean utilizaBancoLocal) {
+        this.utilizaBancoLocal = utilizaBancoLocal;
     }
 
     public String getNome() {

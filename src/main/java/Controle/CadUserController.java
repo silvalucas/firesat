@@ -5,6 +5,7 @@ import Modelo.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import Main.Main;
@@ -22,6 +23,9 @@ public class CadUserController implements Initializable {
     private TextField txtEmail;
 
     @FXML
+    private CheckBox bancoLocal;
+
+    @FXML
     private PasswordField txtPassword;
 
     public void goToUser(ActionEvent actionEvent) throws PaginaDesconhecidaException {
@@ -35,7 +39,8 @@ public class CadUserController implements Initializable {
         String nome = txtNome.getText();
         String email = txtEmail.getText();
         String senha = txtPassword.getText();
-        Usuario user = new Usuario(nome,email,senha);
+        Boolean utilizaBancoLocal = bancoLocal.isSelected();
+        Usuario user = new Usuario(nome,email,senha,utilizaBancoLocal);
         new UsuarioDAO().GravaUsuario(user);
 
         //implementar a comunicação com o firebase

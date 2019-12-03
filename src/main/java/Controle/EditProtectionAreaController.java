@@ -1,8 +1,10 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.RegiaoDAO;
 import Main.Main;
 import Modelo.Esquadrao;
+import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,15 +23,15 @@ import static javafx.scene.control.cell.TextFieldTableCell.forTableColumn;
 
 public class EditProtectionAreaController implements Initializable {
 
-    private ObservableList<Regiao> lista;
+    private ObservableList<ProtecaoAmbiental> lista;
     @FXML
-    private TableView<Regiao> tableRegion;
+    private TableView<ProtecaoAmbiental> tableRegion;
     @FXML
-    private TableColumn<Regiao, String> nome;
+    private TableColumn<ProtecaoAmbiental, String> nome;
     @FXML
-    private TableColumn<Regiao, String> nomelei;
+    private TableColumn<ProtecaoAmbiental, String> nomeLei;
     @FXML
-    private TableColumn<Regiao, Esquadrao> esquadraoResponsavel;
+    private TableColumn<ProtecaoAmbiental, Esquadrao> esquadraoResponsavel;
 
     public void goToRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("protectionArea");
@@ -39,19 +41,18 @@ public class EditProtectionAreaController implements Initializable {
     private void concludeEditRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        ArrayList<Regiao> todos = new ArrayList<Regiao>(tableRegion.getItems());
-
+        ArrayList<ProtecaoAmbiental> todos = new ArrayList<>(tableRegion.getItems());
         RegiaoDAO dao = new RegiaoDAO();
-        dao.GravaRegiaoArray(todos);
+        dao.AlteraRegiaoProtecao(todos);
 
-        Main.changeScreen("region");
+        Main.changeScreen("protectionArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        nomelei.setCellValueFactory(new PropertyValueFactory<>("nomelei"));
+        nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
         nome.setCellFactory(forTableColumn());

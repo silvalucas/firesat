@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +38,8 @@ public class ListProtectionAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(
+                new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

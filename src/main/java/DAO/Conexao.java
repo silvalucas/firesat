@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class Conexao {
     private static final String BANCO = "firesat";
     private static final String USER = "root";
@@ -13,7 +14,7 @@ public class Conexao {
     public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + BANCO,
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + BANCO+"?useTimezone=true&serverTimezone=UTC",
                     USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

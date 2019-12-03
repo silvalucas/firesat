@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import Main.Main;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,11 +24,14 @@ public class RemoveSquadController implements Initializable {
     @FXML
     private TableView<Esquadrao> tableSquad;
     @FXML
+    private TableColumn<Esquadrao, Integer> id;
+    @FXML
     private TableColumn<Esquadrao, String> nome;
     @FXML
     private TableColumn<Esquadrao, String> especialidade;
     @FXML
     private TableColumn<Esquadrao, Integer> qtdSoldados;
+
 
     public void goToSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("squad");
@@ -38,27 +42,22 @@ public class RemoveSquadController implements Initializable {
         Main.changeScreen("loading");
 
         Esquadrao selecionado = tableSquad.getSelectionModel().getSelectedItem();
-        ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(true);
+        ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection());
 
-        for(int i = 0; i < todos.size();i++){
+        for (int i = 0; i < todos.size(); i++) {
             Esquadrao e = todos.get(i);
-            if(e.getNome().equals(selecionado.getNome())){
+            if (e.getId() == (selecionado.getId())) {
                 new EsquadraoDAO().DeletaEsquadrao(e.getId());
-                //                todos.remove(i);
                 break;
             }
         }
-
-//        new EsquadraoDAO().GravaEsquadraoArray(todos);
-
-        //implementar a remoção da linha selecionada na tableview
-
         Main.changeScreen("squad");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

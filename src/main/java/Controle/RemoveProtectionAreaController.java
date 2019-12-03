@@ -1,8 +1,11 @@
 package Controle;
 
+import DAO.Conexao;
+import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Main.Main;
 import Modelo.Esquadrao;
+import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,13 +23,13 @@ import java.util.ResourceBundle;
 public class RemoveProtectionAreaController implements Initializable {
 
     @FXML
-    private TableView<Regiao> tableRegion;
+    private TableView<ProtecaoAmbiental> tableRegion;
     @FXML
-    private TableColumn<Regiao, String> nome;
+    private TableColumn<ProtecaoAmbiental, String> nome;
     @FXML
-    private TableColumn<Regiao, String> nomelei;
+    private TableColumn<ProtecaoAmbiental, String> nomeLei;
     @FXML
-    private TableColumn<Regiao, Esquadrao> esquadraoResponsavel;
+    private TableColumn<ProtecaoAmbiental, Esquadrao> esquadraoResponsavel;
 
     public void goToRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("protectionArea");
@@ -36,18 +39,24 @@ public class RemoveProtectionAreaController implements Initializable {
     private void removeRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        ArrayList<Regiao> todos = new RegiaoDAO().RecuperaRegiao();
-        todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
-        new RegiaoDAO().GravaRegiaoArray(todos);
+        ProtecaoAmbiental selecionado = tableRegion.getSelectionModel().getSelectedItem();
+        ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection());
 
-        Main.changeScreen("region");
+        for (int i = 0; i < todos.size(); i++) {
+            ProtecaoAmbiental e = todos.get(i);
+            if (e.getId() == (selecionado.getId())) {
+                new RegiaoDAO().DeletaRegiao(e.getId());
+                break;
+            }
+        }
+        Main.changeScreen("protectionArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Regiao> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        nomelei.setCellValueFactory(new PropertyValueFactory<>("nomelei"));
+        nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
         tableRegion.setItems(lista);
     }

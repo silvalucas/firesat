@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import DAO.RegiaoDAO;
 import Main.Main;
@@ -27,7 +28,7 @@ public class CadProtectionAreaController implements Initializable {
     private TextField txtNome;
 
     @FXML
-    private TextField nomelei;
+    private TextField nomeLei;
 
     private ObservableList<Esquadrao> listaSquad;
 
@@ -39,10 +40,10 @@ public class CadProtectionAreaController implements Initializable {
     private void concludeCadRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        String lei = nomelei.getText();
+        String lei = nomeLei.getText();
         String nome = txtNome.getText();
         String esquadrao = choiceSelectSquad.getSelectionModel().getSelectedItem();
-        nomelei.setText("");
+        nomeLei.setText("");
         txtNome.setText("");
         Esquadrao e = new Esquadrao();
         for (int i = 0; i < listaSquad.size(); i++) {
@@ -50,17 +51,17 @@ public class CadProtectionAreaController implements Initializable {
         }
         ProtecaoAmbiental area = new ProtecaoAmbiental();
         area.setEsquadrao(e.getId());
-        area.setNomeLei(nome);
+        area.setNomeLei(lei);
         area.setNome(nome);
-        new RegiaoDAO().GravaRegiao(area);
+        new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
 
-        Main.changeScreen("region");
+        Main.changeScreen("protectionArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<Esquadrao> listaAux;
-        if ((listaAux = new EsquadraoDAO().RecuperaEsquadrao(false)) != null) {
+        if ((listaAux = new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection())) != null) {
             listaSquad = FXCollections.observableArrayList(listaAux);
         } else {
             listaSquad = FXCollections.observableArrayList();

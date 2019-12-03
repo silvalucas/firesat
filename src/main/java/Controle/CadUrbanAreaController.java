@@ -56,7 +56,7 @@ public class CadUrbanAreaController implements Initializable {
         area.setNome(nome);
         new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
 
-        Main.changeScreen("region");
+        Main.changeScreen("urbanArea");
     }
 
 

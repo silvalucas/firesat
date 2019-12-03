@@ -75,7 +75,7 @@ public class Main extends Application {
                 try {
                     fxmlSquad = FXMLLoader.load(Main.class.getResource("fxml/Squad.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 squadScene = new Scene(fxmlSquad, 600, 400);
                 stage.setScene(squadScene);
@@ -88,7 +88,7 @@ public class Main extends Application {
                 try {
                     fxmlUser = FXMLLoader.load(Main.class.getResource("fxml/User.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 userScene = new Scene(fxmlUser, 600, 400);
                 stage.setScene(userScene);
@@ -104,7 +104,7 @@ public class Main extends Application {
                 try {
                     fxmlEditSquad = FXMLLoader.load(Main.class.getResource("fxml/EditSquad.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 editSquadScene = new Scene(fxmlEditSquad, 600, 400);
                 stage.setScene(editSquadScene);
@@ -114,7 +114,7 @@ public class Main extends Application {
                 try {
                     fxmlRemoveSquad = FXMLLoader.load(Main.class.getResource("fxml/RemoveSquad.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 removeSquadScene = new Scene(fxmlRemoveSquad, 600, 400);
                 stage.setScene(removeSquadScene);
@@ -124,7 +124,7 @@ public class Main extends Application {
                 try {
                     fxmlListSquad = FXMLLoader.load(Main.class.getResource("fxml/ListSquad.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 listSquadScene = new Scene(fxmlListSquad, 600, 400);
                 stage.setScene(listSquadScene);
@@ -137,7 +137,7 @@ public class Main extends Application {
                 try {
                     fxmlEditUser = FXMLLoader.load(Main.class.getResource("fxml/EditUser.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 editUserScene = new Scene(fxmlEditUser, 600, 400);
                 stage.setScene(editUserScene);
@@ -147,7 +147,7 @@ public class Main extends Application {
                 try {
                     fxmlRemoveUser = FXMLLoader.load(Main.class.getResource("fxml/RemoveUser.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 removeUserScene = new Scene(fxmlRemoveUser, 600, 400);
                 stage.setScene(removeUserScene);
@@ -157,7 +157,7 @@ public class Main extends Application {
                 try {
                     fxmlListUser = FXMLLoader.load(Main.class.getResource("fxml/ListUser.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 listUserScene = new Scene(fxmlListUser, 600, 400);
                 stage.setScene(listUserScene);
@@ -170,7 +170,7 @@ public class Main extends Application {
                 try {
                     fxmlMainSat = FXMLLoader.load(Main.class.getResource("fxml/HomeSat.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 homeSat = new Scene(fxmlMainSat, 600, 400);
                 stage.setScene(homeSat);
@@ -180,7 +180,7 @@ public class Main extends Application {
                 try {
                     fxmlMakeImage = FXMLLoader.load(Main.class.getResource("fxml/MakeImageSat.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 makeImageSat = new Scene(fxmlMakeImage, 900, 700);
                 stage.setScene(makeImageSat);
@@ -190,7 +190,7 @@ public class Main extends Application {
                 try {
                     fxmlReports = FXMLLoader.load(Main.class.getResource("fxml/Reports.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 reports = new Scene(fxmlReports, 600, 400);
                 stage.setScene(reports);
@@ -200,7 +200,7 @@ public class Main extends Application {
                 try {
                     fxmlReportsSat = FXMLLoader.load(Main.class.getResource("fxml/ReportsSat.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 reportsSat = new Scene(fxmlReportsSat, 600, 400);
                 stage.setScene(reportsSat);
@@ -210,7 +210,7 @@ public class Main extends Application {
                 try {
                     fxmlChoiceRegion = FXMLLoader.load(Main.class.getResource("fxml/ChoiceRegion.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 choiceRegion = new Scene(fxmlChoiceRegion, 600, 400);
                 stage.setScene(choiceRegion);
@@ -220,7 +220,7 @@ public class Main extends Application {
                 try {
                     fxmlCadRegion = FXMLLoader.load(Main.class.getResource("fxml/CadRegionUrban.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 cadRegionScene = new Scene(fxmlCadRegion, 600, 400);
                 stage.setScene(cadRegionScene);
@@ -230,7 +230,7 @@ public class Main extends Application {
                 try {
                     fxmlEditRegion = FXMLLoader.load(Main.class.getResource("fxml/EditRegionUrban.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 editRegionScene = new Scene(fxmlEditRegion, 600, 400);
                 stage.setScene(editRegionScene);
@@ -240,7 +240,7 @@ public class Main extends Application {
                 try {
                     fxmlRemoveRegion = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegionUrban.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 removeRegionScene = new Scene(fxmlRemoveRegion, 600, 400);
                 stage.setScene(removeRegionScene);
@@ -250,7 +250,7 @@ public class Main extends Application {
                 try {
                     fxmlListRegion = FXMLLoader.load(Main.class.getResource("fxml/ListRegionUrban.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 listRegionScene = new Scene(fxmlListRegion, 600, 400);
                 stage.setScene(listRegionScene);
@@ -260,7 +260,7 @@ public class Main extends Application {
                 try {
                     fxmlUrbanArea = FXMLLoader.load(Main.class.getResource("fxml/UrbanArea.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 urbanArea = new Scene(fxmlUrbanArea, 600, 400);
                 stage.setScene(urbanArea);
@@ -270,7 +270,7 @@ public class Main extends Application {
                 try {
                     fxmlProtectionArea = FXMLLoader.load(Main.class.getResource("fxml/ProtectionArea.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 protectionArea = new Scene(fxmlProtectionArea, 600, 400);
                 stage.setScene(protectionArea);
@@ -280,7 +280,7 @@ public class Main extends Application {
                 try {
                     fxmlCadRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/CadRegionProtection.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 cadRegionScene = new Scene(fxmlCadRegionProtection, 600, 400);
                 stage.setScene(cadRegionScene);
@@ -290,7 +290,7 @@ public class Main extends Application {
                 try {
                     fxmlEditRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/EditRegionProtection.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 editRegionScene = new Scene(fxmlEditRegionProtection, 600, 400);
                 stage.setScene(editRegionScene);
@@ -300,7 +300,7 @@ public class Main extends Application {
                 try {
                     fxmlRemoveRegionProtection = FXMLLoader.load(Main.class.getResource("fxml/RemoveRegionProtection.fxml"));
                 } catch (IOException e) {
-                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
+                    throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!"+e);
                 }
                 removeRegionScene = new Scene(fxmlRemoveRegionProtection, 600, 400);
                 stage.setScene(removeRegionScene);
@@ -316,6 +316,7 @@ public class Main extends Application {
                 stage.setScene(listRegionScene);
                 break;
             default:
+                
                 throw new PaginaDesconhecidaException("Página " + tela + " não encontrada!");
         }
     }

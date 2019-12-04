@@ -65,5 +65,9 @@ public class EditProtectionAreaController implements Initializable {
         nome.setOnEditCommit(event -> {
             lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
         });
+        nomeLei.setCellFactory(forTableColumn());
+        nomeLei.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setNomeLei(event.getNewValue());
+        });
     }
 }

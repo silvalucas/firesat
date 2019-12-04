@@ -64,7 +64,10 @@ public class RemoveSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
+        else
+            lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(false));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));

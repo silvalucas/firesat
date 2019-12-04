@@ -42,7 +42,7 @@ public class ListUrbanAreaController implements Initializable {
         if (Usuario.utilizaBancoLocal)
             lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(con));
         else
-            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana());
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

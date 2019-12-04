@@ -53,7 +53,10 @@ public class EditUrbanAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(Conexao.getConnection()));
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(Conexao.getConnection()));
+        else
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));
@@ -61,6 +64,10 @@ public class EditUrbanAreaController implements Initializable {
         nome.setCellFactory(forTableColumn());
         nome.setOnEditCommit(event -> {
             lista.get(event.getTablePosition().getRow()).setNome(event.getNewValue());
+        });
+        cidadePopulosa.setCellFactory(forTableColumn());
+        cidadePopulosa.setOnEditCommit(event -> {
+            lista.get(event.getTablePosition().getRow()).setCidadePopulosa(event.getNewValue());
         });
     }
 }

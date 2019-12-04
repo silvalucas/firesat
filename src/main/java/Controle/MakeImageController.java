@@ -153,8 +153,8 @@ public class MakeImageController implements Initializable {
         RegiaoDAO dao = new RegiaoDAO();
 
         if (!Usuario.utilizaBancoLocal) {
-            listaRegiao = FXCollections.observableArrayList(dao.RecuperaRegiaoProtecao());
-            listaRegiao.addAll(dao.RecuperaRegiaoUrbana());
+            listaRegiao = FXCollections.observableArrayList(dao.RecuperaRegiaoProtecao(false));
+            listaRegiao.addAll(dao.RecuperaRegiaoUrbana(false));
         } else {
             listaRegiao = FXCollections.observableArrayList(dao.RecuperaRegiaoProtecao(Conexao.getConnection()));
             listaRegiao.addAll(dao.RecuperaRegiaoUrbana(Conexao.getConnection()));

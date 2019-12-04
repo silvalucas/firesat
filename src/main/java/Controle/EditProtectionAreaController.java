@@ -53,7 +53,10 @@ public class EditProtectionAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        else
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

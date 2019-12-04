@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 
 public class RegiaoDAO {
-    //    private final String nomeArquivo = "AreaProtecao.json";
+
     private final String nomeArquivoProtecao = "AreaProtecao.json";
     private final String nomeArquivoAreaUrbana = "AreaUrbana.json";
 
@@ -35,7 +35,7 @@ public class RegiaoDAO {
      */
     public void GravaRegiaoProtecao(ProtecaoAmbiental regiao) {
         ArrayList<ProtecaoAmbiental> lista;
-        if ((lista = RecuperaRegiaoProtecao()) == null) {
+        if ((lista = RecuperaRegiaoProtecao(false)) == null) {
             lista = new ArrayList<>();
         }
         regiao.setId(lista.size());
@@ -45,7 +45,7 @@ public class RegiaoDAO {
 
     public void GravaRegiaoAreaUrbana(AreaUrbana regiao) {
         ArrayList<AreaUrbana> lista;
-        if ((lista = RecuperaRegiaoUrbana()) == null) {
+        if ((lista = RecuperaRegiaoUrbana(true)) == null) {
             lista = new ArrayList<>();
         }
         regiao.setId(lista.size());
@@ -110,10 +110,10 @@ public class RegiaoDAO {
     public void EnviaDadosRegiao() {
         ArrayList<ProtecaoAmbiental> lista;
         ArrayList<AreaUrbana> listaU;
-        if ((lista = RecuperaRegiaoProtecao()) == null) {
+        if ((lista = RecuperaRegiaoProtecao(false)) == null) {
             lista = new ArrayList<>();
         }
-        if ((listaU = RecuperaRegiaoUrbana()) == null) {
+        if ((listaU = RecuperaRegiaoUrbana(false)) == null) {
             listaU = new ArrayList<>();
         }
         UtilFirebase.salvaArquivo(lista, nomeArquivoProtecao);
@@ -125,36 +125,44 @@ public class RegiaoDAO {
      * @return ArrayList<Regiao>
      * @since 15/10/2019
      */
-    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao() {
-        ArrayList<ProtecaoAmbiental> lista = new ArrayList<>();
+    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao(boolean baixaDados) {
+        ArrayList<ProtecaoAmbiental> lista;
         Gson gson = new Gson();
-        if (UtilDados.BaixaDados(nomeArquivoProtecao)) {
-            try {
-                Reader reader = new FileReader(nomeArquivoProtecao);
-                lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {
-                }.getType());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        if (baixaDados) {
+            if (!UtilDados.BaixaDados(nomeArquivoProtecao)) {
                 return null;
             }
         }
+        try {
+            Reader reader = new FileReader(nomeArquivoProtecao);
+            lista = gson.fromJson(reader, new TypeToken<ArrayList<ProtecaoAmbiental>>() {
+            }.getType());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
         return lista;
     }
 
-    public ArrayList<AreaUrbana> RecuperaRegiaoUrbana() {
+    public ArrayList<AreaUrbana> RecuperaRegiaoUrbana(boolean baixaDados) {
         ArrayList<AreaUrbana> lista = new ArrayList<>();
         Gson gson = new Gson();
-        if (UtilDados.BaixaDados(nomeArquivoAreaUrbana)) {
-            try {
-                Reader reader = new FileReader(nomeArquivoAreaUrbana);
-                lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {
-                }.getType());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        if (baixaDados) {
+            if (!UtilDados.BaixaDados(nomeArquivoProtecao)) {
                 return null;
             }
         }
+        try {
+            Reader reader = new FileReader(nomeArquivoAreaUrbana);
+            lista = gson.fromJson(reader, new TypeToken<ArrayList<AreaUrbana>>() {
+            }.getType());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
         return lista;
     }

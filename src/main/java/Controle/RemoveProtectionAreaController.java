@@ -53,7 +53,7 @@ public class RemoveProtectionAreaController implements Initializable {
                 }
             }
         } else {
-            ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao();
+            ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao(true);
             todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
             new RegiaoDAO().GravaRegiaoAreaProtecaoArray(todos);
         }
@@ -62,7 +62,12 @@ public class RemoveProtectionAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+
+        ObservableList<ProtecaoAmbiental> lista;
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        else
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

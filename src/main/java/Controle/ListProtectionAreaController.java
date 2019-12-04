@@ -41,7 +41,7 @@ public class ListProtectionAreaController implements Initializable {
                     new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
         } else {
             lista = FXCollections.observableArrayList(
-                    new RegiaoDAO().RecuperaRegiaoProtecao());
+                    new RegiaoDAO().RecuperaRegiaoProtecao(false));
         }
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));

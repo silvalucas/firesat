@@ -98,8 +98,8 @@ public class ReportsController implements Initializable {
             listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(con));
             listaRegiao.addAll(FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(con)));
         } else {
-            listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao());
-            listaRegiao.addAll(FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana()));
+            listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(false));
+            listaRegiao.addAll(FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(false)));
         }
         for (int i = 0; i < listaRegiao.size(); i++) {
             comboRegiao.getItems().add(listaRegiao.get(i).getNome());

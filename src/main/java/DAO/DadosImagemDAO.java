@@ -41,14 +41,22 @@ public class DadosImagemDAO {
     public void GravaDadosImagem(ArrayList<DadosImagem> lista) {
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
     }
-
+    public void GravaDadosImagem(DadosImagem imagem){
+        ArrayList<DadosImagem> lista;
+        if ((lista = RecuperaDadosImagem(true)) == null) {
+            lista = new ArrayList<>();
+        }
+        imagem.setId(lista.size());
+        lista.add(imagem);
+        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+    }
     /* Método que ao cadastrar a imagem, seta o objeto DadosImagem no seu json
      * @author Nikollas Ferreira
      * @since 15/10/2019
      */
     public void GravaDadosImagem(DadosImagem imagem, Connection con) {
-        String sql = "insert into imagem (nome,percentual,data,caminho,baixada,regiao_id) " +
-                "values (?,?,?,?,?,?)";
+        String sql = "insert into imagem (nome,percentual,data,baixada,regiao_id) " +
+                "values (?,?,?,?,?)";
 
         try {
             // prepared statement para inserção
@@ -59,9 +67,9 @@ public class DadosImagemDAO {
             stmt.setFloat(2, imagem.getPercentual());
             stmt.setDate(3, (java.sql.Date) Date.from(imagem.getData().
                     atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-            stmt.setString(4, nomeArquivo);
-            stmt.setBoolean(5, imagem.isBaixada());
-            stmt.setInt(6, imagem.getRegiao());
+
+            stmt.setBoolean(4, imagem.isBaixada());
+            stmt.setInt(5, imagem.getRegiao());
 
             // executa
             stmt.execute();
@@ -145,6 +153,24 @@ public class DadosImagemDAO {
             return aux;
         } else
             return null;
+    }
+
+    public void AlteraDadosImagem(int id, String caminho) {
+        Connection con = Conexao.getConnection();
+        String sql = "UPDATE imagem SET caminho =? where id = ? ";
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, caminho);
+            stmt.setFloat(2, id);
+
+            stmt.executeUpdate();
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void AlteraDadosImagem(ArrayList<DadosImagem> lista) {

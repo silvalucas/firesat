@@ -4,8 +4,6 @@ import DAO.Conexao;
 import DAO.RegiaoDAO;
 import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
-import Modelo.ProtecaoAmbiental;
-import Modelo.Regiao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,8 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import Main.Main;
 
-import java.awt.geom.Area;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,7 +38,7 @@ public class RemoveUrbanAreaController implements Initializable {
         Main.changeScreen("loading");
 
         AreaUrbana selecionado = tableRegion.getSelectionModel().getSelectedItem();
-        ArrayList<AreaUrbana> todos = new RegiaoDAO().RecuperaRegiaoArea(Conexao.getConnection());
+        ArrayList<AreaUrbana> todos = new RegiaoDAO().RecuperaRegiaoUrbana(Conexao.getConnection());
 
         for (int i = 0; i < todos.size(); i++) {
             AreaUrbana e = todos.get(i);
@@ -57,7 +53,7 @@ public class RemoveUrbanAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<AreaUrbana> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoArea(Conexao.getConnection()));
+        ObservableList<AreaUrbana> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

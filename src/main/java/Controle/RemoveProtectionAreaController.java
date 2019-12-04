@@ -7,6 +7,7 @@ import Main.Main;
 import Modelo.Esquadrao;
 import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,15 +40,22 @@ public class RemoveProtectionAreaController implements Initializable {
     private void removeRegion(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        ProtecaoAmbiental selecionado = tableRegion.getSelectionModel().getSelectedItem();
-        ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection());
 
-        for (int i = 0; i < todos.size(); i++) {
-            ProtecaoAmbiental e = todos.get(i);
-            if (e.getId() == (selecionado.getId())) {
-                new RegiaoDAO().DeletaRegiao(e.getId());
-                break;
+        if (Usuario.utilizaBancoLocal) {
+            ProtecaoAmbiental selecionado = tableRegion.getSelectionModel().getSelectedItem();
+            ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection());
+
+            for (int i = 0; i < todos.size(); i++) {
+                ProtecaoAmbiental e = todos.get(i);
+                if (e.getId() == (selecionado.getId())) {
+                    new RegiaoDAO().DeletaRegiao(e.getId());
+                    break;
+                }
             }
+        } else {
+            ArrayList<ProtecaoAmbiental> todos = new RegiaoDAO().RecuperaRegiaoProtecao();
+            todos.remove(tableRegion.getSelectionModel().getSelectedIndex());
+            new RegiaoDAO().GravaRegiaoAreaProtecaoArray(todos);
         }
         Main.changeScreen("protectionArea");
     }

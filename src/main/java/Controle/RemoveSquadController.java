@@ -3,6 +3,7 @@ package Controle;
 import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,17 +41,24 @@ public class RemoveSquadController implements Initializable {
     @FXML
     private void removeSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
+        if (Usuario.utilizaBancoLocal) {
+            Esquadrao selecionado = tableSquad.getSelectionModel().getSelectedItem();
+            ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection());
 
-        Esquadrao selecionado = tableSquad.getSelectionModel().getSelectedItem();
-        ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection());
-
-        for (int i = 0; i < todos.size(); i++) {
-            Esquadrao e = todos.get(i);
-            if (e.getId() == (selecionado.getId())) {
-                new EsquadraoDAO().DeletaEsquadrao(e.getId());
-                break;
+            for (int i = 0; i < todos.size(); i++) {
+                Esquadrao e = todos.get(i);
+                if (e.getId() == (selecionado.getId())) {
+                    new EsquadraoDAO().DeletaEsquadrao(e.getId());
+                    break;
+                }
             }
+        } else {
+            ArrayList<Esquadrao> todos = new EsquadraoDAO().RecuperaEsquadrao(false);
+            todos.remove(tableSquad.getSelectionModel().getSelectedIndex());
+            new EsquadraoDAO().GravaEsquadraoArray(todos);
         }
+
+
         Main.changeScreen("squad");
     }
 

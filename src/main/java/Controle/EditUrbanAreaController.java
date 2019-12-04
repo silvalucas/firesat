@@ -4,7 +4,7 @@ import DAO.Conexao;
 import DAO.RegiaoDAO;
 import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
-import Modelo.Regiao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,12 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.BooleanStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
-import java.awt.geom.Area;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -49,14 +44,16 @@ public class EditUrbanAreaController implements Initializable {
         ArrayList<AreaUrbana> todos = new ArrayList<>(tableRegion.getItems());
 
         RegiaoDAO dao = new RegiaoDAO();
-        dao.AlteraRegiaoUrbana(todos);
-
+        if (Usuario.utilizaBancoLocal)
+            dao.AlteraRegiaoUrbana(todos);
+        else
+            dao.GravaRegiaoUrbanaArray(todos);
         Main.changeScreen("urbanArea");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoArea(Conexao.getConnection()));
+        lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(Conexao.getConnection()));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

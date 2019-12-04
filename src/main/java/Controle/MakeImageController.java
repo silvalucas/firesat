@@ -1,5 +1,6 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.DadosImagemDAO;
 import DAO.ImagemDAO;
 import DAO.RegiaoDAO;
@@ -7,6 +8,7 @@ import Modelo.DadosImagem;
 import Modelo.Imagem;
 import Modelo.Regiao;
 import Main.Main;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -88,7 +91,7 @@ public class MakeImageController implements Initializable {
                     String.valueOf(min) + String.valueOf(seg) + ".ppm";
 
             new ImagemDAO().GravaDadosImagem(imagem, nome);
-            int contRed = 0;
+
 
             DadosImagemDAO dadosDao = new DadosImagemDAO();
             DadosImagem dados = new DadosImagem();
@@ -98,7 +101,10 @@ public class MakeImageController implements Initializable {
             dados.setRegiao(regiaoImg);
             dados.setData(dataImg);
             dados.setPercentual(0f);
-            //dadosDao.GravaDadosImagem(dados);
+            if (Usuario.utilizaBancoLocal)
+                dadosDao.GravaDadosImagem(dados, Conexao.getConnection());
+            else
+                dadosDao.GravaDadosImagem(dados);
 
             try {
                 Main.changeScreen("HomeSat");
@@ -144,8 +150,15 @@ public class MakeImageController implements Initializable {
         txtregiao.setFont(new Font("Segoe UI Semilight", 12));
         choiceSelectRegion = new ChoiceBox<>();
         choiceSelectRegion.setPrefSize(100, 40);
+        RegiaoDAO dao = new RegiaoDAO();
 
-        listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        if (!Usuario.utilizaBancoLocal) {
+            listaRegiao = FXCollections.observableArrayList(dao.RecuperaRegiaoProtecao());
+            listaRegiao.addAll(dao.RecuperaRegiaoUrbana());
+        } else {
+            listaRegiao = FXCollections.observableArrayList(dao.RecuperaRegiaoProtecao(Conexao.getConnection()));
+            listaRegiao.addAll(dao.RecuperaRegiaoUrbana(Conexao.getConnection()));
+        }
         for (int i = 0; i < listaRegiao.size(); i++) {
             choiceSelectRegion.getItems().add(listaRegiao.get(i).getNome());
         }

@@ -32,7 +32,7 @@ public class HomeController {
 
     public void requestInfoBtn(javafx.event.ActionEvent actionEvent) {
         esquadraoDAO.RecuperaEsquadrao(true);
-        regiaoDAO.RecuperaRegiao();
+
         ArrayList<DadosImagem> listaImg = dadosImagemDAO.RecuperaDadosImagem(true);
         ImagemControle imagemControle = new ImagemControle();
         if (listaImg != null) {
@@ -42,6 +42,7 @@ public class HomeController {
                 int cont = imagemControle.contadorFogo(imagem);
                 dadosImagem.calculaPercentual(cont);
                 dadosImagem.setBaixada(true);
+
             }
             dadosImagemDAO.GravaDadosImagem(listaImg);
 

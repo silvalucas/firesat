@@ -1,8 +1,10 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.DadosImagemDAO;
 import Modelo.DadosImagem;
 import Main.Main;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,8 +45,14 @@ public class ReportsSatController implements Initializable {
         data.setCellValueFactory(new PropertyValueFactory<>("data"));
         baixada.setCellValueFactory(new PropertyValueFactory<>("baixada"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        ObservableList<DadosImagem> lista = FXCollections.observableArrayList(
-                new DadosImagemDAO().RecuperaDadosImagem(false));
+        ObservableList<DadosImagem> lista;
+        if(Usuario.utilizaBancoLocal){
+            lista = FXCollections.observableArrayList(
+                    new DadosImagemDAO().RecuperaDadosImagem(Conexao.getConnection()));
+        }else{
+            lista = FXCollections.observableArrayList(
+                    new DadosImagemDAO().RecuperaDadosImagem(false));
+        }
 
         reportsTable.setItems(lista);
 

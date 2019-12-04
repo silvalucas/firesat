@@ -6,6 +6,7 @@ import Main.Main;
 import Modelo.Esquadrao;
 import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,8 +44,10 @@ public class EditProtectionAreaController implements Initializable {
 
         ArrayList<ProtecaoAmbiental> todos = new ArrayList<>(tableRegion.getItems());
         RegiaoDAO dao = new RegiaoDAO();
-        dao.AlteraRegiaoProtecao(todos);
-
+        if (Usuario.utilizaBancoLocal)
+            dao.AlteraRegiaoProtecao(todos);
+        else
+            dao.GravaRegiaoAreaProtecaoArray(todos);
         Main.changeScreen("protectionArea");
     }
 

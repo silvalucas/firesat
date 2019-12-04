@@ -82,7 +82,7 @@ public class EsquadraoDAO {
      */
     public void EnviaDadosEsquadrao() {
         ArrayList<Esquadrao> lista;
-        if ((lista = RecuperaEsquadrao(false)) == null) {
+        if ((lista = RecuperaEsquadrao(true)) == null) {
             lista = new ArrayList<>();
         }
         UtilFirebase.salvaArquivo(lista, nomeArquivo);

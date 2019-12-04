@@ -1,21 +1,28 @@
 package Controle;
 
+import DAO.Conexao;
 import DAO.DadosImagemDAO;
 import DAO.RegiaoDAO;
 import Modelo.DadosImagem;
 import Modelo.Regiao;
+import Modelo.Usuario;
+import com.google.api.client.http.javanet.ConnectionFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+
 import Main.Main;
+
 import static Controle.ImagemControle.retornaAumento;
 import static Util.UtilDate.localdateToDate;
 
@@ -86,7 +93,14 @@ public class ReportsController implements Initializable {
         data.setCellValueFactory(new PropertyValueFactory<>("data"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         percentual.setCellValueFactory(new PropertyValueFactory<>("percentual"));
-        listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiao());
+        Connection con = Conexao.getConnection();
+        if (Usuario.utilizaBancoLocal) {
+            listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao(con));
+            listaRegiao.addAll(FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(con)));
+        } else {
+            listaRegiao = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoProtecao());
+            listaRegiao.addAll(FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana()));
+        }
         for (int i = 0; i < listaRegiao.size(); i++) {
             comboRegiao.getItems().add(listaRegiao.get(i).getNome());
         }

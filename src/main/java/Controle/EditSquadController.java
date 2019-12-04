@@ -3,6 +3,7 @@ package Controle;
 import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,11 +42,14 @@ public class EditSquadController implements Initializable {
     private void concludeEditSquad(ActionEvent actionEvent) throws PaginaDesconhecidaException {
         Main.changeScreen("loading");
 
-        ArrayList<Esquadrao> todos = new ArrayList<Esquadrao>(tableSquad.getItems());
+        ArrayList<Esquadrao> todos = new ArrayList<>(tableSquad.getItems());
 
         EsquadraoDAO dao = new EsquadraoDAO();
-//        dao.GravaEsquadraoArray(todos);
-        dao.AlteraEsquadrao(todos);
+
+        if (Usuario.utilizaBancoLocal)
+            dao.AlteraEsquadrao(todos);
+        else
+            dao.GravaEsquadraoArray(todos);
         Main.changeScreen("squad");
     }
 

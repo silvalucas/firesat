@@ -5,6 +5,7 @@ import DAO.RegiaoDAO;
 import Main.Main;
 import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +38,11 @@ public class ListUrbanAreaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Connection con = Conexao.getConnection();
-        ObservableList<AreaUrbana> lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoArea(con));
+        ObservableList<AreaUrbana> lista;
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana(con));
+        else
+            lista = FXCollections.observableArrayList(new RegiaoDAO().RecuperaRegiaoUrbana());
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cidadePopulosa.setCellValueFactory(new PropertyValueFactory<>("cidadePopulosa"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

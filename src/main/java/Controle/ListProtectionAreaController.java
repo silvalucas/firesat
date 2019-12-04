@@ -3,10 +3,7 @@ package Controle;
 import DAO.Conexao;
 import Main.Main;
 import DAO.RegiaoDAO;
-import Modelo.AreaUrbana;
-import Modelo.Esquadrao;
-import Modelo.ProtecaoAmbiental;
-import Modelo.Regiao;
+import Modelo.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,8 +35,14 @@ public class ListProtectionAreaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<ProtecaoAmbiental> lista = FXCollections.observableArrayList(
-                new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        ObservableList<ProtecaoAmbiental> lista;
+        if (Usuario.utilizaBancoLocal) {
+            lista = FXCollections.observableArrayList(
+                    new RegiaoDAO().RecuperaRegiaoProtecao(Conexao.getConnection()));
+        } else {
+            lista = FXCollections.observableArrayList(
+                    new RegiaoDAO().RecuperaRegiaoProtecao());
+        }
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         nomeLei.setCellValueFactory(new PropertyValueFactory<>("nomeLei"));
         esquadraoResponsavel.setCellValueFactory(new PropertyValueFactory<>("esquadrao"));

@@ -3,6 +3,7 @@ package Controle;
 import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,9 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.net.URL;
+
 import Main.Main;
+
 import java.util.ResourceBundle;
 
 public class ListSquadController implements Initializable {
@@ -34,7 +38,11 @@ public class ListSquadController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Esquadrao> lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
+        ObservableList<Esquadrao> lista;
+        if (Usuario.utilizaBancoLocal)
+            lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(Conexao.getConnection()));
+        else
+            lista = FXCollections.observableArrayList(new EsquadraoDAO().RecuperaEsquadrao(false));
         nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         especialidade.setCellValueFactory(new PropertyValueFactory<>("especialidade"));
         qtdSoldados.setCellValueFactory(new PropertyValueFactory<>("qtdSoldados"));

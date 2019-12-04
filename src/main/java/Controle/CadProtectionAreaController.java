@@ -6,6 +6,7 @@ import DAO.RegiaoDAO;
 import Main.Main;
 import Modelo.Esquadrao;
 import Modelo.ProtecaoAmbiental;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,8 +54,10 @@ public class CadProtectionAreaController implements Initializable {
         area.setEsquadrao(e.getId());
         area.setNomeLei(lei);
         area.setNome(nome);
-        new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
-
+        if (Usuario.utilizaBancoLocal)
+            new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
+        else
+            new RegiaoDAO().GravaRegiaoProtecao(area);
         Main.changeScreen("protectionArea");
     }
 

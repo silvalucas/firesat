@@ -6,6 +6,7 @@ import DAO.RegiaoDAO;
 import Modelo.AreaUrbana;
 import Modelo.Esquadrao;
 import Modelo.Regiao;
+import Modelo.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import Main.Main;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -54,8 +56,10 @@ public class CadUrbanAreaController implements Initializable {
         area.setEsquadrao(e.getId());
         area.setCidadePopulosa(cidade);
         area.setNome(nome);
-        new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
-
+        if (Usuario.utilizaBancoLocal)
+            new RegiaoDAO().GravaRegiao(area, Conexao.getConnection());
+        else
+            new RegiaoDAO().GravaRegiaoAreaUrbana(area);
         Main.changeScreen("urbanArea");
     }
 

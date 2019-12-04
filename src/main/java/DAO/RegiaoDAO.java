@@ -5,7 +5,6 @@ import Modelo.ProtecaoAmbiental;
 import Modelo.Regiao;
 import Util.UtilDados;
 import Util.UtilFirebase;
-import Util.UtilDados;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,21 +24,33 @@ import java.util.ArrayList;
  */
 
 public class RegiaoDAO {
-    private final String nomeArquivo = "Regiao.json";
+    //    private final String nomeArquivo = "AreaProtecao.json";
+    private final String nomeArquivoProtecao = "AreaProtecao.json";
+    private final String nomeArquivoAreaUrbana = "AreaUrbana.json";
 
     /*Método para gravar uma Região no diretório do firebase
      * @author Nikollas Ferreira
      * @return ArrayList<Regiao>
      * @since 15/10/2019
      */
-    public void GravaRegiao(Regiao regiao) {
-        ArrayList<Regiao> lista;
-        if ((lista = RecuperaRegiao()) == null) {
+    public void GravaRegiaoProtecao(ProtecaoAmbiental regiao) {
+        ArrayList<ProtecaoAmbiental> lista;
+        if ((lista = RecuperaRegiaoProtecao()) == null) {
             lista = new ArrayList<>();
         }
         regiao.setId(lista.size());
         lista.add(regiao);
-        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+        UtilFirebase.salvaArquivo(lista, nomeArquivoProtecao);
+    }
+
+    public void GravaRegiaoAreaUrbana(AreaUrbana regiao) {
+        ArrayList<AreaUrbana> lista;
+        if ((lista = RecuperaRegiaoUrbana()) == null) {
+            lista = new ArrayList<>();
+        }
+        regiao.setId(lista.size());
+        lista.add(regiao);
+        UtilFirebase.salvaArquivo(lista, nomeArquivoAreaUrbana);
     }
 
     public void GravaRegiao(Regiao regiao, Connection con) {
@@ -79,9 +90,15 @@ public class RegiaoDAO {
      * @return ArrayList<Regiao>
      * @since 15/10/2019
      */
-    public void GravaRegiaoArray(ArrayList<Regiao> lista) {
+    public void GravaRegiaoAreaProtecaoArray(ArrayList<ProtecaoAmbiental> lista) {
 
-        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+        UtilFirebase.salvaArquivo(lista, nomeArquivoProtecao);
+
+    }
+
+    public void GravaRegiaoUrbanaArray(ArrayList<AreaUrbana> lista) {
+
+        UtilFirebase.salvaArquivo(lista, nomeArquivoAreaUrbana);
 
     }
 
@@ -91,11 +108,16 @@ public class RegiaoDAO {
      * @since 15/10/2019
      */
     public void EnviaDadosRegiao() {
-        ArrayList<Regiao> lista;
-        if ((lista = RecuperaRegiao()) == null) {
+        ArrayList<ProtecaoAmbiental> lista;
+        ArrayList<AreaUrbana> listaU;
+        if ((lista = RecuperaRegiaoProtecao()) == null) {
             lista = new ArrayList<>();
         }
-        UtilFirebase.salvaArquivo(lista, nomeArquivo);
+        if ((listaU = RecuperaRegiaoUrbana()) == null) {
+            listaU = new ArrayList<>();
+        }
+        UtilFirebase.salvaArquivo(lista, nomeArquivoProtecao);
+        UtilFirebase.salvaArquivo(listaU, nomeArquivoAreaUrbana);
     }
 
     /*Método para buscar as Regiões cadastradas no diretório do firebase
@@ -103,12 +125,12 @@ public class RegiaoDAO {
      * @return ArrayList<Regiao>
      * @since 15/10/2019
      */
-    public ArrayList<Regiao> RecuperaRegiao() {
-        ArrayList<Regiao> lista = new ArrayList<>();
+    public ArrayList<ProtecaoAmbiental> RecuperaRegiaoProtecao() {
+        ArrayList<ProtecaoAmbiental> lista = new ArrayList<>();
         Gson gson = new Gson();
-        if (UtilDados.BaixaDados(nomeArquivo)) {
+        if (UtilDados.BaixaDados(nomeArquivoProtecao)) {
             try {
-                Reader reader = new FileReader(nomeArquivo);
+                Reader reader = new FileReader(nomeArquivoProtecao);
                 lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {
                 }.getType());
             } catch (FileNotFoundException e) {
@@ -116,10 +138,28 @@ public class RegiaoDAO {
                 return null;
             }
         }
+
         return lista;
     }
 
-    public ArrayList<AreaUrbana> RecuperaRegiaoArea(Connection con) {
+    public ArrayList<AreaUrbana> RecuperaRegiaoUrbana() {
+        ArrayList<AreaUrbana> lista = new ArrayList<>();
+        Gson gson = new Gson();
+        if (UtilDados.BaixaDados(nomeArquivoAreaUrbana)) {
+            try {
+                Reader reader = new FileReader(nomeArquivoAreaUrbana);
+                lista = gson.fromJson(reader, new TypeToken<ArrayList<Regiao>>() {
+                }.getType());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        return lista;
+    }
+
+    public ArrayList<AreaUrbana> RecuperaRegiaoUrbana(Connection con) {
         ArrayList<AreaUrbana> lista = new ArrayList<>();
         String sql = "select id,nome,id_esquadrao,cidadePopulosa from regiao where nomeLei is NULL;";
         try {
@@ -194,6 +234,7 @@ public class RegiaoDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void AlteraRegiaoUrbana(ArrayList<AreaUrbana> lista) {
 
         Connection con = Conexao.getConnection();
@@ -218,6 +259,7 @@ public class RegiaoDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void DeletaRegiao(int id) {
         Connection con = Conexao.getConnection();
         String sql = "DELETE FROM regiao WHERE id = ?";

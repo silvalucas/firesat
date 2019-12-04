@@ -41,17 +41,18 @@ public class UsuarioDAO {
      * @author Nikollas Ferreira
      * @since 15/10/2019
      */
-    public void GravaUsuario(Usuario esquadrao) {
+    public void GravaUsuario(Usuario usuario) {
 
         ArrayList<Usuario> lista;
         if ((lista = RecuperaUsuario()) == null) {
             lista = new ArrayList<>();
         }
-        lista.add(esquadrao);
+        lista.add(usuario);
         UtilFirebase.salvaArquivo(lista, nomeArquivo);
 
     }
-    public void GravaUsuario(Usuario usuario, Connection con){
+
+    public void GravaUsuario(Usuario usuario, Connection con) {
         String sql = "insert into usuario (nome,senha,email ) values (?,?,?)";
 
         try {
@@ -70,6 +71,7 @@ public class UsuarioDAO {
             throw new RuntimeException(e);
         }
     }
+
     /* Método para autenticar o usuario e senha na tela de login
      * @author Lucas Oliveira
      * @since 15/10/2019
@@ -79,6 +81,8 @@ public class UsuarioDAO {
         ArrayList<Usuario> lista = RecuperaUsuario();
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getEmail().equals(email) && lista.get(i).getPassword().equals(senha)) {
+
+                Usuario.utilizaBancoLocal = lista.get(i).getPermissao();
                 return true;
             }
         }
@@ -108,7 +112,8 @@ public class UsuarioDAO {
 
         return lista;
     }
-    public ArrayList<Usuario> RecuperaUsuario(Connection con){
+
+    public ArrayList<Usuario> RecuperaUsuario(Connection con) {
         ArrayList<Usuario> lista = new ArrayList<>();
 
         String sql = "select id,nome,senha,email from usuario;";

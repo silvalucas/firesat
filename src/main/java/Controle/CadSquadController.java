@@ -4,10 +4,12 @@ import DAO.Conexao;
 import DAO.EsquadraoDAO;
 import Modelo.Esquadrao;
 import Main.Main;
+import Modelo.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +42,10 @@ public class CadSquadController implements Initializable {
         txtsoldado.setText("");
         Esquadrao esquadrao = new Esquadrao(nome, especialidade, quantSoldados);
         EsquadraoDAO esquadraoDAO = new EsquadraoDAO();
-        esquadraoDAO.GravaEsquadrao(esquadrao, Conexao.getConnection());
+        if (Usuario.utilizaBancoLocal)
+            esquadraoDAO.GravaEsquadrao(esquadrao, Conexao.getConnection());
+        else
+            esquadraoDAO.GravaEsquadrao(esquadrao);
         Main.changeScreen("squad");
 
     }

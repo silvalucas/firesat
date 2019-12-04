@@ -14,7 +14,9 @@ public class Usuario {
     private String nome;
     private String email;
     private String password;
-    private Boolean utilizaBancoLocal;
+    private boolean permissao;
+    public static Boolean utilizaBancoLocal = false;
+
 
     public Usuario() {
     }
@@ -24,22 +26,23 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
         this.password = password;
-        this.utilizaBancoLocal = permissao;
+        this.permissao = permissao;
+        utilizaBancoLocal = permissao;
     }
 
     public Usuario(String nome, String email, String password, Boolean permissao) {
         this.nome = nome;
         this.email = email;
         this.password = password;
-        this.utilizaBancoLocal = permissao;
+        this.permissao = permissao;
     }
 
-    public Boolean getUtilizaBancoLocal() {
-        return utilizaBancoLocal;
+    public Boolean getPermissao() {
+        return permissao;
     }
 
-    public void setUtilizaBancoLocal(Boolean utilizaBancoLocal) {
-        this.utilizaBancoLocal = utilizaBancoLocal;
+    public void setUtilizaBancoLocal(Boolean permissao) {
+        this.permissao = permissao;
     }
 
     public String getNome() {

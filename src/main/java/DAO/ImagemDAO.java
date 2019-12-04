@@ -24,6 +24,7 @@ public class ImagemDAO {
      */
     public void GravaDadosImagem(Imagem img[][], String nomeArquivo) {
         UtilFirebase.salvaArquivo(img, nomeArquivo);
+
     }
 
     /* Método para buscar uma imagem em PPM no diretório do firebase
